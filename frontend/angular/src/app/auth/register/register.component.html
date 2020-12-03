@@ -1,0 +1,22 @@
+<section class="register_page">
+
+    <div class="register-display-form">
+        <h1>CREATE ACCOUNT</h1>
+
+        <div class="register_form">
+            <form [formGroup]="registerForm">
+                <label>Username</label>
+                <input required type="text" formControlName="username">
+
+                <label>Email</label>
+                <input required type="text" formControlName="email">
+
+                <label>Password</label>
+                <input required type="password" formControlName="password">
+
+                <button type="submit" [disabled]="!registerForm.valid" (click)="submitRegister()">Sign Up</button>
+            </form>
+        </div>
+    </div>
+
+</section>

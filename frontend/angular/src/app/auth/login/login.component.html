@@ -1,0 +1,19 @@
+<section class="login_page">
+
+    <div class="login-display-form">
+        <h1>CUSTOMER LOGIN</h1>
+
+        <div class="login_form">
+            <form [formGroup]="loginForm">
+                <label>Email</label>
+                <input required type="text" formControlName="email">
+
+                <label>Password</label>
+                <input required type="password" formControlName="password">
+
+                <button type="submit" [disabled]="!loginForm.valid" (click)="submitLogin()">Login</button>
+            </form>
+        </div>
+    </div>
+
+</section>

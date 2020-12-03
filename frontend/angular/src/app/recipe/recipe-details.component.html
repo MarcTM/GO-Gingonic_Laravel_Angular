@@ -1,0 +1,10 @@
+<div *ngIf="recipe">
+
+    <h2>{{recipe.Name | uppercase}} Details</h2>
+    <div><span>ID: </span>{{recipe.Id}}</div>
+    <div><span>Description: </span>{{recipe.Description}}</div>
+
+    <br><br>
+    <button (click)="goBack()">GO BACK</button>
+
+</div>

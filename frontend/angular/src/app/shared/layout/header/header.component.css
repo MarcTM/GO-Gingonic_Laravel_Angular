@@ -1,0 +1,66 @@
+header {
+    display: block;
+    background-color: black;
+}
+
+
+/* Main nav */
+
+.main_nav_wrapper {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+
+/* Logo, banner */
+
+.main_nav_wrapper .logo {
+    margin: 60px 0px 60px 0px;
+}
+
+.logo a,
+.logo a:visited,
+.logo a:active {
+    font-weight: bold;
+    font-size: 30px;
+    text-decoration: none;
+    color: white;
+}
+
+
+/* Navigation */
+
+nav {
+    margin-top: 10px;
+    margin-bottom: 30px;
+    display: flex;
+    justify-content: space-around;
+    width: 40%;
+}
+
+nav a,
+nav a:visited,
+nav a:active {
+    padding-bottom: 10px;
+    border-bottom: 1px solid black;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 16px;
+    color: white;
+}
+
+nav a:hover {
+    border-bottom: 1px solid #d6a63e;
+}
+
+.icon-down-arrow {
+    border: solid white;
+    border-width: 0 1px 1px 0;
+    display: inline-block;
+    margin: 0px 0px 6px 4px;
+    padding: 3px;
+    transform: rotate(45deg);
+}

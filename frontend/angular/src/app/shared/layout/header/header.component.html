@@ -1,0 +1,56 @@
+<header>
+    <div class="top_bar"></div>
+    <div class="main_nav_wrapper">
+
+        <div class="logo">
+            <a routerLink="/" title="TORRES MEALS">TORRES MEALS</a>
+        </div>
+
+        <!-- Show if not authenticated -->
+        <nav *appShowAuthed="false">
+            <a routerLink="/">
+                HOME
+                <span class="icon-down-arrow"></span>
+            </a>
+
+            <a routerLink="/recipes">
+                RECIPES
+                <span class="icon-down-arrow"></span>
+            </a>
+
+            <a routerLink="/signin">
+                LOGIN
+                <span class="icon-down-arrow"></span>
+            </a>
+
+            <a *appShowAuthed="false" routerLink="/signup">
+                REGISTER
+                <span class="icon-down-arrow"></span>
+            </a>
+        </nav>
+
+        <!-- Show if authenticated -->
+        <nav *appShowAuthed="true">
+            <a routerLink="/">
+                HOME
+                <span class="icon-down-arrow"></span>
+            </a>
+
+            <a routerLink="/recipes">
+                RECIPES
+                <span class="icon-down-arrow"></span>
+            </a>
+
+            <a *appShowAuthed="true" routerLink="/meals">
+                MEALS
+                <span class="icon-down-arrow"></span>
+            </a>
+
+            <a *appShowAuthed="true" routerLink="/" (click)="logout() ">
+                LOGOUT
+                <span class="icon-down-arrow"></span>
+            </a>
+        </nav>
+
+    </div>
+</header>
