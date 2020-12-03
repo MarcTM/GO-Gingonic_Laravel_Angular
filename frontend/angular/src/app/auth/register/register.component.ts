@@ -1,6 +1,7 @@
 import { FormBuilder, FormArray, Validators } from '@angular/forms';
 import {Router} from "@angular/router"
 import { Component, OnInit } from '@angular/core';
+import { ToastrService } from 'ngx-toastr';
 
 import { UserService } from 'src/app/core/services/user.service';
 
@@ -16,7 +17,8 @@ export class RegisterComponent implements OnInit {
 
   constructor(private fb: FormBuilder,
     private router: Router,
-    private userService: UserService) { }
+    private userService: UserService,
+    private toastr: ToastrService) { }
 
 
   // Register form
@@ -32,10 +34,11 @@ export class RegisterComponent implements OnInit {
     this.userService.attemptAuth('register', this.registerForm.value)
       .subscribe(
         response => {
+          this.toastr.error('Registration successfull')
           console.log(response);
           this.router.navigate(['/signin']);
         },
-        error => console.log(error)
+        error => {this.toastr.error('Username or email already exists')}
       )
   }
 

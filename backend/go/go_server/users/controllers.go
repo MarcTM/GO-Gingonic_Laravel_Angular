@@ -45,6 +45,9 @@ func RegisterUser(c *gin.Context) {
 	c.JSON(http.StatusUnprocessableEntity, "User already exists")
 }
 
+func TestUsers(c *gin.Context) {
+	c.JSON(http.StatusOK, "pililaaaa")
+}
 
 // Login user
 func LoginUser(c *gin.Context) {
