@@ -31,10 +31,12 @@ export class RegisterComponent implements OnInit {
 
   // Submit register
   submitRegister() {
-    this.userService.attemptAuth('register', this.registerForm.value)
+    let data = { "user": this.registerForm.value };
+
+    this.userService.attemptAuth('register', data)
       .subscribe(
         response => {
-          this.toastr.error('Registration successfull')
+          this.toastr.success('Registration successfull')
           console.log(response);
           this.router.navigate(['/signin']);
         },

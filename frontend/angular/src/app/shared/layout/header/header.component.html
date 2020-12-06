@@ -23,7 +23,7 @@
                 <span class="icon-down-arrow"></span>
             </a>
 
-            <a *appShowAuthed="false" routerLink="/signup">
+            <a routerLink="/signup">
                 REGISTER
                 <span class="icon-down-arrow"></span>
             </a>
@@ -41,12 +41,12 @@
                 <span class="icon-down-arrow"></span>
             </a>
 
-            <a *appShowAuthed="true" routerLink="/meals">
+            <a routerLink="/meals">
                 MEALS
                 <span class="icon-down-arrow"></span>
             </a>
 
-            <a *appShowAuthed="true" routerLink="/" (click)="logout() ">
+            <a routerLink="/" (click)="logout()">
                 LOGOUT
                 <span class="icon-down-arrow"></span>
             </a>

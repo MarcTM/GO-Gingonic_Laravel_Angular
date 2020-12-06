@@ -35,6 +35,7 @@ export class LoginComponent implements OnInit {
     this.userService.attemptAuth('login', data)
       .subscribe(
         response => {
+          this.toastr.success('Logged in')
           console.log(response);
           this.router.navigate(['/']);
         },

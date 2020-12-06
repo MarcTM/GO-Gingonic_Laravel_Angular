@@ -45,9 +45,6 @@ func RegisterUser(c *gin.Context) {
 	c.JSON(http.StatusUnprocessableEntity, "User already exists")
 }
 
-func TestUsers(c *gin.Context) {
-	c.JSON(http.StatusOK, "pililaaaa")
-}
 
 // Login user
 func LoginUser(c *gin.Context) {
@@ -61,11 +58,14 @@ func LoginUser(c *gin.Context) {
 	userModel, err := FindUser(&UserModel{Email: loginValidator.userModel.Email})
 	
 	if err != nil {
-		c.JSON(http.StatusUnprocessableEntity, "Invalid credentials")
+		c.JSON(http.StatusUnprocessableEntity, "Email doesn't exist")
 		return
 	}
 
-	// CheckPassword(&loginValidator.userModel, loginValidator.userModel.Email, loginValidator.userModel.Password)
+	if user := CheckUser(&userModel, loginValidator.userModel.Email, loginValidator.userModel.Password); user == false {
+		c.JSON(http.StatusUnprocessableEntity, "Incorrect password")
+		return
+	}
 
 	SetSessionUser(c, userModel.ID)
 

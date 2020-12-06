@@ -28,26 +28,19 @@ func FindUser(condition interface{}) (UserModel, error) {
 }
 
 
-// func CheckPassword(user *UserModel, email string, password string) (err error) {
-// 	if err = Config.DB.Where("email = ? AND password = ?", email, password).First(user).Error; err != nil {
-// 		fmt.Println("no")
-// 		return err
-// 	}
-// 	fmt.Println("si")
-// 	return nil
-// }
+// Check if user email and password match (login)
+func CheckUser(user *UserModel, email string, password string) bool {
+	err := Config.DB.Where("email = ? AND password = ?", email, password).First(user).Error
+	if err != nil {
+		return false
+	} else {
+		return true
+	}
+
+}
 
 
-// // Check if user exists (login)
-// func CheckUser(user *UserModel, email string, password string) (err error) {
-// 	if err = Config.DB.Where("email = ? AND password = ?", email, password).First(user).Error; err != nil {
-// 		return err
-// 	}
-// 	return nil
-// }
-
-
-// Check if user exists (register)
+// Check if user exists by email or username (register)
 func CheckUserRegister(user *UserModel, username string, email string) (error) {
 	err := Config.DB.Where("email = ?", email).Or("username = ?", username).First(user).Error
 

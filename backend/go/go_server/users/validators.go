@@ -55,6 +55,7 @@ func (self *LoginValidator) Bind(c *gin.Context) error {
 	}
 
 	self.userModel.Email = self.User.Email
+	self.userModel.Password = self.User.Password
 	return nil
 }
 
