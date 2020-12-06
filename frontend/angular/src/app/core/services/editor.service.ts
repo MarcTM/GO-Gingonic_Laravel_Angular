@@ -3,7 +3,7 @@ import { Observable, of } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 
 import { environment } from '../../../environments/environment';
-import { Meal } from '../interfaces/meal';
+import { Recipe } from '../interfaces/recipe';
 
 
 @Injectable({
@@ -11,13 +11,13 @@ import { Meal } from '../interfaces/meal';
 })
 
 
-export class MealService {
+export class EditorService {
 
   constructor(private http: HttpClient) { }
 
 
-  getMeals(): Observable<Meal[]> {
-    return this.http.get<Meal[]>(environment.laravel_url+'/meals');
+  uploadRecipe(data) {
+    return this.http.post<any>(environment.api_url+'/recipes', data)
   }
-  
+
 }

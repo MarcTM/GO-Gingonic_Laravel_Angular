@@ -8,10 +8,15 @@
                 <label>Email</label>
                 <input required type="text" formControlName="email">
 
+
                 <label>Password</label>
                 <input required type="password" formControlName="password">
+                <small class="recover_password">
+                    <em><a>Forgot your password?</a></em>
+                </small>
 
                 <button type="submit" [disabled]="!loginForm.valid" (click)="submitLogin()">Login</button>
+                <span class="new_customer">New Customer? <a routerLink="/signup">Sign Up</a></span>
             </form>
         </div>
     </div>

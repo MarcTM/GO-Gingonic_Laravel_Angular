@@ -14,12 +14,12 @@ export class NoAuthGuardService {
   constructor(private jwtService: JwtService) { }
 
 
-    canActivate(): boolean {
-      if(this.jwtService.getToken()){
-        return false;
-      } else {
-        return true;
-      }
+  canActivate(): boolean {
+    if(this.jwtService.getToken()){
+      return false;
+    } else {
+      return true;
     }
+  }
 
 }

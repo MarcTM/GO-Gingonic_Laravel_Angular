@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormArray, Validators } from '@angular/forms';
-import {Router} from "@angular/router"
+import { Router } from "@angular/router"
 import { ToastrService } from 'ngx-toastr';
 
 import { UserService } from '../../core/services/user.service';
@@ -30,19 +30,17 @@ export class LoginComponent implements OnInit {
 
   // Submit login
   submitLogin() {
-    let data = { "user": this.loginForm.value };
+      let data = { "user": this.loginForm.value };
 
-    this.userService.attemptAuth('login', data)
+      this.userService.attemptAuth('login', data)
       .subscribe(
         response => {
           this.toastr.success('Logged in')
           console.log(response);
-          this.router.navigate(['/']);
+          setTimeout(() => {this.router.navigate(['/'])}, 1000);
         },
         error => {
-          this.toastr.error('Invalid credentials', 'Check your email and password', {
-          timeOut: 3000
-          })
+          this.toastr.error(error.error, 'Invalid credentials')
         }
       )
   }

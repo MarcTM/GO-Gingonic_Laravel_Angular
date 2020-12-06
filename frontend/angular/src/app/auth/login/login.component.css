@@ -67,6 +67,51 @@ form button {
 }
 
 form button:hover {
+    display: inline-block;
     background-color: #bdb9b9;
     border: 1px solid #bdb9b9;
+}
+
+
+/* Forgot yur password? */
+
+.recover_password {
+    display: block;
+    position: relative;
+    font-size: 90%;
+    margin-bottom: 30px;
+}
+
+.recover_password a {
+    transition: color .1s linear;
+    font-weight: bold;
+}
+
+.recover_password a:hover {
+    color: red;
+}
+
+
+/* New customer (go to sign up) */
+
+.new_customer {
+    padding-top: 20px;
+    font-weight: bold;
+    margin-left: 70px;
+}
+
+.new_customer a {
+    text-decoration: none;
+    color: black;
+    transition: color .1s linear;
+}
+
+.new_customer a:visited,
+.new_customer a:active,
+.new_customer a:link {
+    text-decoration: none;
+}
+
+.new_customer a:hover {
+    color: red;
 }

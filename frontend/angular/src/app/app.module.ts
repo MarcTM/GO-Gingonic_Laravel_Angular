@@ -15,6 +15,7 @@ import { LoginComponent } from './auth/login/login.component';
 import { RegisterComponent } from './auth/register/register.component';
 import { MealsComponent } from './meals/meals.component';
 import { ShowAuthedDirective } from './core/directives/show-authed.directive';
+import { EditorComponent } from './editor/editor.component';
 
 
 @NgModule({
@@ -27,7 +28,8 @@ import { ShowAuthedDirective } from './core/directives/show-authed.directive';
     LoginComponent,
     RegisterComponent,
     MealsComponent,
-    ShowAuthedDirective
+    ShowAuthedDirective,
+    EditorComponent
   ],
   imports: [
     BrowserModule,

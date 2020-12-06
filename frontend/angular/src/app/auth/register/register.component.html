@@ -15,6 +15,7 @@
                 <input required type="password" formControlName="password">
 
                 <button type="submit" [disabled]="!registerForm.valid" (click)="submitRegister()">Sign Up</button>
+                <span class="already">Already Registered? <a routerLink="/signin">Login</a></span>
             </form>
         </div>
     </div>

@@ -1,0 +1,20 @@
+<section class="editor_page">
+
+    <div class="editor-display-form">
+        <h1>POST A NEW RECIPE</h1>
+
+        <div class="editor_form">
+            <form [formGroup]="editorForm">
+                <label>Name</label>
+                <input required type="text" formControlName="name">
+
+
+                <label>Description</label>
+                <input required type="text" formControlName="description">
+
+                <button type="submit" [disabled]="!editorForm.valid" (click)="submitEditor()">Post Recipe!</button>
+            </form>
+        </div>
+    </div>
+
+</section>
