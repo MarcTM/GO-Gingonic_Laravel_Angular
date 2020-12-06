@@ -21,7 +21,7 @@ export class RegisterComponent implements OnInit {
     private toastr: ToastrService) { }
 
 
-  // Register form
+  // Register form fields
   registerForm = this.fb.group({
     username: ['', Validators.required],
     email: ['', Validators.required],
@@ -31,16 +31,14 @@ export class RegisterComponent implements OnInit {
 
   // Submit register
   submitRegister() {
-    let data = { "user": this.registerForm.value };
-
-    this.userService.attemptAuth('register', data)
+    this.userService.attemptAuth('register', this.registerForm.value)
       .subscribe(
         response => {
           this.toastr.success('Registration successfull')
           console.log(response);
-          this.router.navigate(['/signin']);
+          setTimeout(() => {this.router.navigate(['/signin'])}, 1000);
         },
-        error => {this.toastr.error('Username or email already exists')}
+        error => {this.toastr.error(error.error)}
       )
   }
 

@@ -30,9 +30,7 @@ export class LoginComponent implements OnInit {
 
   // Submit login
   submitLogin() {
-      let data = { "user": this.loginForm.value };
-
-      this.userService.attemptAuth('login', data)
+      this.userService.attemptAuth('login', this.loginForm.value)
       .subscribe(
         response => {
           this.toastr.success('Logged in')

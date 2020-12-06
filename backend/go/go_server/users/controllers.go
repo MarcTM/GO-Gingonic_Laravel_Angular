@@ -30,9 +30,7 @@ func RegisterUser(c *gin.Context) {
 		return
 	}
 
-	fmt.Println(&registerValidator.userModel)
-
-	// Checks if email and password exist in database
+	// Checks if email and password exist in database, if not, creates the user
 	if err := CheckUserRegister(&registerValidator.userModel, registerValidator.userModel.Username, registerValidator.userModel.Email); err != nil {
 		if err := Create(&registerValidator.userModel); err != nil {
 			fmt.Println(err.Error())
@@ -42,7 +40,7 @@ func RegisterUser(c *gin.Context) {
 		}
 		return
 	}
-	c.JSON(http.StatusUnprocessableEntity, "User already exists")
+	c.JSON(http.StatusUnprocessableEntity, "The username or email is already token")
 }
 
 

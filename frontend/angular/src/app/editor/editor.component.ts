@@ -3,7 +3,7 @@ import { FormBuilder, FormArray, Validators } from '@angular/forms';
 import { Router } from "@angular/router"
 import { ToastrService } from 'ngx-toastr';
 
-import { EditorService } from '../core/services/editor.service';
+import { RecipeService } from '../core/services/recipe.service';
 
 
 @Component({
@@ -17,21 +17,20 @@ export class EditorComponent implements OnInit {
 
   constructor(private fb: FormBuilder,
     private router: Router,
-    private editorService: EditorService,
+    private recipeService: RecipeService,
     private toastr: ToastrService) { }
 
 
-  // Editor form
+  // Editor form fields
   editorForm = this.fb.group({
     name: ['', Validators.required],
     description: ['', Validators.required],
   });
 
 
-  // Submit editor
+  // Submit form
   submitEditor() {
-
-      this.editorService.uploadRecipe(this.editorForm.value)
+      this.recipeService.save(this.editorForm.value)
       .subscribe(
         response => {
           this.toastr.success('Created successfully');
