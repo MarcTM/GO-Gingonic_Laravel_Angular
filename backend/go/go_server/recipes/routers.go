@@ -7,7 +7,7 @@ import (
 
 func RecipesRegister(router *gin.RouterGroup) {
 	router.GET("/", GetRecipes)
-	router.POST("/", CreateRecipe)
+	router.POST("/", isAuthenticated(CreateRecipe))
 	router.GET("/:id", GetRecipeByID)
 	router.PUT("/:id", UpdateRecipe)
 	router.DELETE("/:id", DeleteRecipe)
