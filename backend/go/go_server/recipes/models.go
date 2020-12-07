@@ -4,17 +4,18 @@ import (
 	"fmt"
 	
 	"go_server/Config"
+	"go_server/users"
 
 	_ "github.com/go-sql-driver/mysql"
 )
 
 
 type RecipeModel struct {
-	Id      	uint   `gorm:"primary_key"`
-	Name    	string `gorm;"column:name"`
-	Description string `gorm:"column:description"`
-	// Author		User   `gorm:"foreignKey:UserId" json:"author" binding:"required"`
-	// UserId		int	   `json:"-"`
+	Id      	uint   `json:"id"`
+	Name    	string `json:"name"`
+	Description string `json:"description"`
+	Author		users.UserModel   `json:"author"`
+	AuthorID	uint   `json:"author_id"`
 }
 
 

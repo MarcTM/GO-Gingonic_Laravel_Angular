@@ -1,8 +1,8 @@
 package recipes
 
+
 import (
 	"net/http"
-	"fmt"
 
 	"github.com/gin-gonic/gin"
 )
@@ -19,18 +19,22 @@ func GetRecipes(c *gin.Context) {
 	}
 }
 
+
 //CreateRecipe
 func CreateRecipe(c *gin.Context) {
-	var recipe RecipeModel
-	c.BindJSON(&recipe)
-
-	err := Create(&recipe)
-	if err != nil {
-		fmt.Println(err.Error())
-		c.AbortWithStatus(http.StatusNotFound)
-	} else {
-		c.JSON(http.StatusOK, recipe)
+	recipeModelValidator := NewRecipeModelValidator()
+	if err := recipeModelValidator.Bind(c); err != nil {
+		c.JSON(http.StatusUnprocessableEntity, "Invalid JSON")
+		return
 	}
+
+	if err := Create(&recipeModelValidator.recipeModel); err != nil {
+		c.JSON(http.StatusUnprocessableEntity, "error")
+		return
+	}
+
+	serializer := RecipeSerializer{c, recipeModelValidator.recipeModel}
+	c.JSON(http.StatusCreated, gin.H{"recipe": serializer.Response()})
 }
 
 
@@ -45,6 +49,7 @@ func GetRecipeByID(c *gin.Context) {
 		c.JSON(http.StatusOK, recipe)
 	}
 }
+
 
 //UpdateRecipe
 func UpdateRecipe(c *gin.Context) {
@@ -62,6 +67,7 @@ func UpdateRecipe(c *gin.Context) {
 		}
 	}
 }
+
 
 //DeleteRecipe
 func DeleteRecipe(c *gin.Context) {

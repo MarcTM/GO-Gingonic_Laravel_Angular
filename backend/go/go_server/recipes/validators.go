@@ -2,11 +2,9 @@ package recipes
 
 
 import(
-	// "fmt"
-
 	"github.com/gin-gonic/gin"
 
-	// "go_server/users"
+	"go_server/users"
 )
 
 
@@ -25,21 +23,16 @@ func NewRecipeModelValidator() RecipeModelValidator {
 
 
 func (self *RecipeModelValidator) Bind(c *gin.Context) error {
-	// myUserModel := c.MustGet("my_user_model").(users.UserModel)
-	// fmt.Println(myUserModel)
+	myUserModel := c.MustGet("my_user_model").(users.UserModel)
 
 	err := c.ShouldBindJSON(self)
 	if err != nil {
 		return err
 	}
 
+	self.recipeModel.Name = self.Recipe.Name
+	self.recipeModel.Description = self.Recipe.Description
+	self.recipeModel.Author = myUserModel
+	self.recipeModel.AuthorID = myUserModel.ID
 	return nil
-
-	// s.articleModel.Slug = slug.Make(s.Article.Title)
-	// s.articleModel.Title = s.Article.Title
-	// s.articleModel.Description = s.Article.Description
-	// s.articleModel.Body = s.Article.Body
-	// s.articleModel.Author = GetArticleUserModel(myUserModel)
-	// s.articleModel.setTags(s.Article.Tags)
-	// return nil
 }

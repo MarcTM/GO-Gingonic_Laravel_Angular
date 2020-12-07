@@ -16,8 +16,8 @@ type UserResponse struct {
 	Username string  `json:"username"`
 	Email    string  `json:"email"`
 	Bio      string  `json:"bio"`
-	Image    string `json:"image"`
-	Bearer    string  `json:"bearer"`
+	Image    string  `json:"image"`
+	Bearer   string  `json:"bearer"`
 }
 
 
