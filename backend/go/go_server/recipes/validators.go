@@ -32,7 +32,7 @@ func (self *RecipeModelValidator) Bind(c *gin.Context) error {
 
 	self.recipeModel.Name = self.Recipe.Name
 	self.recipeModel.Description = self.Recipe.Description
-	self.recipeModel.Author = myUserModel
+	// self.recipeModel.Author = myUserModel
 	self.recipeModel.AuthorID = myUserModel.ID
 	return nil
 }

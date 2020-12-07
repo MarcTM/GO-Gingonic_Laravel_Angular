@@ -1,13 +1,4 @@
 <div class="recipes_page">
-
     <h2>Recipes</h2>
-
-    <ul class="recipes">
-        <li *ngFor="let recipe of recipes">
-            <a routerLink="/recipe/{{recipe.Id}}">
-                <span class="badge">{{recipe.Id}}</span> {{recipe.Name}}
-            </a>
-        </li>
-    </ul>
-
+    <app-recipe-list></app-recipe-list>
 </div>

@@ -4,7 +4,7 @@ import (
 	"fmt"
 	
 	"go_server/Config"
-	"go_server/users"
+	// "go_server/users"
 
 	_ "github.com/go-sql-driver/mysql"
 )
@@ -14,7 +14,7 @@ type RecipeModel struct {
 	Id      	uint   `json:"id"`
 	Name    	string `json:"name"`
 	Description string `json:"description"`
-	Author		users.UserModel   `json:"author"`
+	// Author		users.UserModel   `json:"author"`
 	AuthorID	uint   `json:"author_id"`
 }
 

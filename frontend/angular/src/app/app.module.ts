@@ -16,6 +16,8 @@ import { RegisterComponent } from './auth/register/register.component';
 import { MealsComponent } from './meals/meals.component';
 import { ShowAuthedDirective } from './core/directives/show-authed.directive';
 import { EditorComponent } from './editor/editor.component';
+import { RecipeListComponent } from './shared/recipe-helpers/recipe-list.component';
+import { RecipePreviewComponent } from './shared/recipe-helpers/recipe-preview.component';
 
 
 @NgModule({
@@ -29,7 +31,9 @@ import { EditorComponent } from './editor/editor.component';
     RegisterComponent,
     MealsComponent,
     ShowAuthedDirective,
-    EditorComponent
+    EditorComponent,
+    RecipeListComponent,
+    RecipePreviewComponent
   ],
   imports: [
     BrowserModule,
