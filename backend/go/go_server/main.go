@@ -15,30 +15,23 @@ import (
 var err error
 
 func main() {
+	// Start connection to DB(mySql)
 	Config.DB, err = gorm.Open("mysql", Config.DbURL(Config.BuildDBConfig()))
-
 	if err != nil {
 		fmt.Println("Status:", err)
 	}
-
 	defer Config.DB.Close()
+
+	// Migrate tables
 	Config.DB.AutoMigrate(&users.UserModel{})
 	Config.DB.AutoMigrate(&recipes.RecipeModel{})
 
+	// Set routes
 	r := Routes.SetupRouter()
+
+	// CORS
 	r.Use(cors.Default())
 
-	// r.Use(cors.New(cors.Config{
-	// 	AllowOrigins:     []string{"*"},
-	// 	AllowMethods:     []string{"*"},
-	// 	AllowHeaders:     []string{"*"},
-	// 	ExposeHeaders:    []string{"*"},
-	// 	AllowCredentials: true,
-	// 	AllowOriginFunc: func(origin string) bool {
-	// 		return origin == "https://github.com"
-	// 	},
-	// 	MaxAge: 12 * time.Hour,
-	// }))
-	
+	// Run application on port 3000
 	r.Run(":3000")
 }
