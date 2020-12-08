@@ -70,3 +70,20 @@ func LoginUser(c *gin.Context) {
 	serializer := UserSerializer{c}
 	c.JSON(http.StatusOK, gin.H{"user": serializer.Response()})
 }
+
+
+// Validate if a token is correct or incorrect
+func ValidateUserToken(c *gin.Context) {
+	const BEARER_SCHEMA = "Bearer "
+	authHeader := c.GetHeader("Authorization")
+	tokenString := authHeader[len(BEARER_SCHEMA):]
+
+	token, err := ValidateToken(tokenString)
+
+	if token.Valid {
+		c.JSON(http.StatusOK, "Valid Token")
+	} else {
+		fmt.Println(err)
+		c.JSON(http.StatusUnprocessableEntity, "Invalid Token")
+	}
+}

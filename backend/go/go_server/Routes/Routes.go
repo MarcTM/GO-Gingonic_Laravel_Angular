@@ -15,6 +15,9 @@ func SetupRouter() *gin.Engine {
 		// Users
 		users.UsersRegister(grp1.Group("/users"))
 
+		// Auth
+		users.UsersValidation(grp1.Group("/auth"))
+
 		// Recipes
 		recipes.RecipesRegister(grp1.Group("/recipes"))
 	}

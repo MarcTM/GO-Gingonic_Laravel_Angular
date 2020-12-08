@@ -48,7 +48,7 @@ func isAuthenticated(endpoint func(*gin.Context)) gin.HandlerFunc {
 }
 
 
-// Validates the received token and returns the user email
+// Validates the received token and returns the claims
 func ValidateToken(tokenString string) (*jwt.Token, error) {
 	return jwt.Parse(tokenString, func(token *jwt.Token) (interface{}, error) {
 		if _, ok := token.Method.(*jwt.SigningMethodHMAC); !ok {
