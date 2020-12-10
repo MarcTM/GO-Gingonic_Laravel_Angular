@@ -50,6 +50,41 @@ func CreateBearer(email string) string {
 }
 
 
+// Validate if there is a bearer in the headers, and if it is valid. Then, proceeds with the callback
+func IsAuthenticated(endpoint func(*gin.Context)) gin.HandlerFunc {
+	return func(c *gin.Context) {
+		if c.Request.Header["Authorization"] != nil {
+
+			const BEARER_SCHEMA = "Bearer "
+			authHeader := c.GetHeader("Authorization")
+			tokenString := authHeader[len(BEARER_SCHEMA):]
+
+			token, err := ValidateToken(tokenString)
+			if token.Valid {
+				var user UserModel
+				claims := token.Claims.(jwt.MapClaims)
+				
+				err := Config.DB.Where("email = ?", claims["email"]).First(&user).Error
+				if err != nil {
+					fmt.Println(err)
+					return
+				} else{
+					SetSessionUser(c, user.ID)
+					endpoint(c)
+					return
+				}
+			} else {
+				fmt.Println(err)
+				return
+			}
+		} else {
+			fmt.Println("No")
+			return
+		}
+	}
+}
+
+
 // Validates the received token and returns the claims
 func ValidateToken(tokenString string) (*jwt.Token, error) {
 	return jwt.Parse(tokenString, func(token *jwt.Token) (interface{}, error) {
