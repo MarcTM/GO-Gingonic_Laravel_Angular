@@ -1,0 +1,7 @@
+# go_server/users
+users/middlewares.go:20:3: undefined: Config.DB
+users/models.go:26:9: undefined: Config.DB
+users/models.go:33:9: undefined: Config.DB
+users/models.go:45:9: undefined: Config.DB
+users/models.go:56:11: undefined: Config.DB
+users/models.go:64:11: undefined: Config.DB
