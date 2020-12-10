@@ -16,7 +16,10 @@ export class MealsComponent implements OnInit {
   
   getMeals(): void {
     this.mealService.getMeals()
-        .subscribe(meals => this.meals = meals);
+        .subscribe(meals => {
+          console.log(meals);
+          this.meals = meals;
+        });
   }
 
   constructor(private mealService: MealService) {}

@@ -11,6 +11,7 @@
 
 Route::group([
 
+    'middleware' => ['cors'],
     // 'middleware' => 'api',
     'prefix' => 'auth'
 
@@ -24,48 +25,102 @@ Route::group([
 });
 
 
+Route::group([
 
-// Students
+    'middleware' => ['cors'],
+    'prefix' => 'laravel'
 
-Route::post('/student', 'ApiController@create');
+], function ($router) {
+    
+    // Students
 
-Route::get('/students', 'ApiController@show');
+    Route::post('/student', 'ApiController@create');
 
-Route::get('/student/{id}', 'ApiController@showStudent');
+    Route::get('/students', 'ApiController@show');
 
-Route::put('/student/{id}', 'ApiController@updateStudent');
+    Route::get('/student/{id}', 'ApiController@showStudent');
 
-Route::delete('/student/{id}', 'ApiController@deleteStudent');
+    Route::put('/student/{id}', 'ApiController@updateStudent');
 
-
-// Meals
-
-Route::post('/meal', 'MealsController@create');
-
-Route::get('/meals', 'MealsController@show');
-
-Route::get('/meal/{id}', 'MealsController@showMeal');
-
-Route::put('/meal/{id}', 'MealsController@updateMeal');
-
-Route::delete('/meal/{id}', 'MealsController@deleteMeal');
+    Route::delete('/student/{id}', 'ApiController@deleteStudent');
 
 
-// Categories
+    // Meals
 
-Route::post('/category', 'CategoriesController@create');
+    Route::post('/meal', 'MealsController@create');
 
-Route::get('/categories', 'CategoriesController@show');
+    Route::get('/meals', 'MealsController@show');
 
-Route::get('/category/{id}', 'CategoriesController@showCategory');
+    Route::get('/meal/{id}', 'MealsController@showMeal');
 
-Route::put('/category/{id}', 'CategoriesController@updateCategory');
+    Route::put('/meal/{id}', 'MealsController@updateMeal');
 
-Route::delete('/category/{id}', 'CategoriesController@deleteCategory');
+    Route::delete('/meal/{id}', 'MealsController@deleteMeal');
 
 
-// Test 
+    // Categories
 
-Route::post('/tests', 'TestsController@create');
+    Route::post('/category', 'CategoriesController@create');
 
-Route::get('/tests', 'TestsController@show');
+    Route::get('/categories', 'CategoriesController@show');
+
+    Route::get('/category/{id}', 'CategoriesController@showCategory');
+
+    Route::put('/category/{id}', 'CategoriesController@updateCategory');
+
+    Route::delete('/category/{id}', 'CategoriesController@deleteCategory');
+
+
+    // Test 
+
+    Route::post('/tests', 'TestsController@create');
+
+    Route::get('/tests', 'TestsController@show');
+});
+
+
+
+// // Students
+
+// Route::post('/student', 'ApiController@create');
+
+// Route::get('/students', 'ApiController@show');
+
+// Route::get('/student/{id}', 'ApiController@showStudent');
+
+// Route::put('/student/{id}', 'ApiController@updateStudent');
+
+// Route::delete('/student/{id}', 'ApiController@deleteStudent');
+
+
+// // Meals
+
+// Route::post('/meal', 'MealsController@create');
+
+// Route::get('/meals', 'MealsController@show');
+
+// Route::get('/meal/{id}', 'MealsController@showMeal');
+
+// Route::put('/meal/{id}', 'MealsController@updateMeal');
+
+// Route::delete('/meal/{id}', 'MealsController@deleteMeal');
+
+
+// // Categories
+
+// Route::post('/category', 'CategoriesController@create');
+
+// Route::get('/categories', 'CategoriesController@show');
+
+// Route::get('/category/{id}', 'CategoriesController@showCategory');
+
+// Route::put('/category/{id}', 'CategoriesController@updateCategory');
+
+// Route::delete('/category/{id}', 'CategoriesController@deleteCategory');
+
+
+// // Test 
+
+// Route::post('/tests', 'TestsController@create');
+
+// Route::get('/tests', 'TestsController@show');
