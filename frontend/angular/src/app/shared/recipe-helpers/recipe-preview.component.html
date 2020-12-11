@@ -1,3 +1,10 @@
-<a routerLink="/recipe/{{recipe.id}}">
-    <span class="badge">{{recipe.id}}</span> {{recipe.name}}
-</a>
+<div class="recipe_preview">
+    <section class="recipe_img"></section>
+
+    <section class="recipe_caption">
+        <a routerLink="/recipe/{{recipe.id}}">
+            <p class="recipe_name">{{recipe.name}}</p>
+            <p class="recipe_description">{{recipe.description}}</p>
+        </a>
+    </section>
+</div>
