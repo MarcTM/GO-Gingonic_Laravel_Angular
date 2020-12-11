@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 import { environment } from '../../../environments/environment';
 import { Recipe } from '../interfaces/recipe';
@@ -28,7 +28,7 @@ export class RecipeService {
 
   // Create recipe
   save(data) {
-    return this.http.post<any>(environment.api_url+'/recipes', data)
+    return this.http.post<any>(environment.api_url+'/recipes', { recipe: data }, {headers: new HttpHeaders({'Authorization': `Bearer ${localStorage.getItem('Bearer')}`})})
   }
 
 }

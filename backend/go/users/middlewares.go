@@ -52,6 +52,7 @@ func CreateBearer(email string) string {
 
 // Validate if there is a bearer in the headers, and if it is valid. Then, proceeds with the callback
 func IsAuthenticated(endpoint func(*gin.Context)) gin.HandlerFunc {
+	fmt.Println("esta aci")
 	return func(c *gin.Context) {
 		if c.Request.Header["Authorization"] != nil {
 
@@ -75,6 +76,7 @@ func IsAuthenticated(endpoint func(*gin.Context)) gin.HandlerFunc {
 				}
 			} else {
 				fmt.Println(err)
+				fmt.Println("invalid")
 				return
 			}
 		} else {

@@ -9,8 +9,8 @@ import(
 
 // Redis set value
 func RedisSet(name string, value string) {
-	// conn, err := redis.Dial("tcp", "redis:6379") //Docker
-	conn, err := redis.Dial("tcp", "localhost:6379") //Local
+	conn, err := redis.Dial("tcp", "redis:6379") //Docker
+	// conn, err := redis.Dial("tcp", "localhost:6379") //Local
 
 	if err != nil {
 		fmt.Println("error")
@@ -32,8 +32,8 @@ func RedisSet(name string, value string) {
 
 // Redis get value
 func RedisGet(name string) string {
-	// conn, err := redis.Dial("tcp", "redis:6379") //Docker
-	conn, err := redis.Dial("tcp", "localhost:6379") //Local
+	conn, err := redis.Dial("tcp", "redis:6379") //Docker
+	// conn, err := redis.Dial("tcp", "localhost:6379") //Local
 	
 	if err != nil {
 		fmt.Println(err)
