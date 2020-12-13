@@ -41,7 +41,8 @@ func CreateBearer(email string) string {
 	bearer := jwt.NewWithClaims(jwt.SigningMethodHS256, claims)
 
 	// Generate encoded bearer using the secret signing key
-	b, err := bearer.SignedString([]byte(os.Getenv("ACCESS_SECRET")))
+	// b, err := bearer.SignedString([]byte(os.Getenv("ACCESS_SECRET")))
+	b, err := bearer.SignedString([]byte("marc_secret"))
 	if err != nil {
 		return "undefined"
 	}

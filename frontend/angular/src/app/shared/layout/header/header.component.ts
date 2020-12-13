@@ -8,17 +8,16 @@ import { UserService } from 'src/app/core/services/user.service';
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.css']
 })
-export class HeaderComponent implements OnInit {
+export class HeaderComponent implements OnInit{
 
     constructor(private userService: UserService,
       private router: Router) { }
 
-
     // Logout
     logout() {
       this.userService.purgeAuth();
+      this.router.navigate(['/']); 
     }
-
 
     ngOnInit(): void {
     }

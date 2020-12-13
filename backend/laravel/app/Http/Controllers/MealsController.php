@@ -4,13 +4,13 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Meal;
-use App\Category;
 
 
 class MealsController extends Controller
 {
     // Meals
 
+    // Create meal
     public function create(Request $request)
     {
         $meals = new Meal();
@@ -26,18 +26,24 @@ class MealsController extends Controller
     	return response()->json($meals);
     }
 
+
+    // Show all meals
     public function show()
     {
-        $meals = Meal::select('meals.id', 'meals.name AS meal_name', 'meals.category_id', 'categories.name AS category_name')->leftJoin('categories', 'categories.id', '=', 'meals.category_id')->get();
-    	return response()->json($meals);
+        $meals = Meal::all();
+        return response()->json($meals);
     }
 
+
+    // Show one meal
     public function showMeal($id)
     {
         $meal = Meal::find($id);
         return response()->json($meal);
     }
 
+
+    // Update meal
     public function updateMeal(Request $request, $id)
     {
         $meal = Meal::find($id);
@@ -51,6 +57,8 @@ class MealsController extends Controller
         return response()->json($meal);
     }
 
+
+    // Delete meal
     public function deleteMeal($id)
     {
         $meal = Meal::find($id);

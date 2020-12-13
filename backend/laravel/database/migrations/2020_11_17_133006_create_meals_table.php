@@ -6,11 +6,7 @@ use Illuminate\Database\Migrations\Migration;
 
 class CreateMealsTable extends Migration
 {
-    /**
-     * Run the migrations.
-     *
-     * @return void
-     */
+    // Create table
     public function up()
     {
         Schema::create('meals', function (Blueprint $table) {
@@ -18,16 +14,11 @@ class CreateMealsTable extends Migration
             $table->string('name');
             $table->string('description');
             $table->integer('price');
-            $table->integer('category_id');
             $table->timestamps();
         });
     }
 
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
+    // Drop table
     public function down()
     {
         Schema::dropIfExists('meals');
