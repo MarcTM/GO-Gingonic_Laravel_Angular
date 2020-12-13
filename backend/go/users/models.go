@@ -11,11 +11,12 @@ import (
 // User model
 type UserModel struct {
 	ID           uint    `json:"id"`
-	Username     string  `json:"username"`
-	Email        string  `json:"email"`
+	Username     string  `json:"username" gorm:"not null;unique"`
+	Email        string  `json:"email" gorm:"not null;unique"`
+	Password     string  `json:"password"`
 	Bio          string  `json:"bio"`
 	Image        string  `json:"image"`
-	Password     string  `json:"password"`
+	Type		 string  `json:"type"`
 }
 
 
@@ -36,7 +37,6 @@ func CheckUser(user *UserModel, email string, password string) bool {
 	} else {
 		return true
 	}
-
 }
 
 
@@ -59,7 +59,8 @@ func GetAll(user *[]UserModel) (err error) {
 	return nil
 }
 
-//Create user
+
+//Register user
 func Create(user *UserModel) (err error) {
 	if err = Config.DB.Create(user).Error; err != nil {
 		return err

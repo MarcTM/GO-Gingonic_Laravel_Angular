@@ -17,7 +17,6 @@ class CreateUsersTable extends Migration
             $table->string('bio')->nullable();
             $table->string('image')->nullable();
             $table->string('type');
-            $table->timestamps();
         });
     }
 

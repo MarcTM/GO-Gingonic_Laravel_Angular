@@ -12,6 +12,7 @@ import (
 //Get users
 func GetUsers(c *gin.Context) {
 	var user []UserModel
+
 	err := GetAll(&user)
 	if err != nil {
 		c.AbortWithStatus(http.StatusNotFound)
@@ -33,14 +34,16 @@ func RegisterUser(c *gin.Context) {
 	// Checks if email and password exist in database, if not, creates the user
 	if err := CheckUserRegister(&registerValidator.userModel, registerValidator.userModel.Username, registerValidator.userModel.Email); err != nil {
 		if err := Create(&registerValidator.userModel); err != nil {
+
 			fmt.Println(err.Error())
 			c.AbortWithStatus(http.StatusNotFound)
 		} else {
-			c.JSON(http.StatusOK, registerValidator.userModel)
+
+			c.JSON(http.StatusOK, "Registration successfull")
 		}
 		return
 	}
-	c.JSON(http.StatusUnprocessableEntity, "The username or email is already token")
+	c.JSON(http.StatusUnprocessableEntity, "The username or email is already taken")
 }
 
 

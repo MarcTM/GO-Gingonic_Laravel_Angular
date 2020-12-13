@@ -18,6 +18,7 @@ type UserResponse struct {
 	Bio      string  `json:"bio"`
 	Image    string  `json:"image"`
 	Bearer   string  `json:"bearer"`
+	Type	 string  `json:"type"`
 }
 
 
@@ -29,6 +30,7 @@ func (self *UserSerializer) Response() UserResponse{
 		Bio:      myUserModel.Bio,
 		Image:    myUserModel.Image,
 		Bearer:    CreateBearer(myUserModel.Email),
+		Type:	  myUserModel.Type,
 	}
 	return user
 }

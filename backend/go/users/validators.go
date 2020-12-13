@@ -26,6 +26,7 @@ func (self *RegisterValidator) Bind(c *gin.Context) error {
 	self.userModel.Username = self.User.Username
 	self.userModel.Email = self.User.Email
 	self.userModel.Password = self.User.Password
+	self.userModel.Type = "user"
 
 	return nil
 }
