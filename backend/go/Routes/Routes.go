@@ -13,7 +13,10 @@ func SetupRouter() *gin.Engine {
 	r := gin.Default()
 
 	// CORS
-	r.Use(cors.Default())
+	config := cors.DefaultConfig()
+	config.AllowOrigins = []string{"*"}
+	config.AddAllowHeaders("*")
+	r.Use(cors.New(config))
 
 	grp1 := r.Group("/api")
 	{

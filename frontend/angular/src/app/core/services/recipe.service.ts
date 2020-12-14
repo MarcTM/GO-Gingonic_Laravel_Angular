@@ -28,7 +28,7 @@ export class RecipeService {
 
   // Create recipe
   save(data) {
-    return this.http.post<any>(environment.api_url+'/recipes', { recipe: data }, {headers: new HttpHeaders({'Authorization': `Bearer ${localStorage.getItem('Bearer')}`})})
+    return this.http.post<any>(environment.api_url+'/recipes/', { recipe: data }, {headers: new HttpHeaders({'Authorization': `Bearer ${localStorage.getItem('Bearer')}`})})
   }
 
 }
