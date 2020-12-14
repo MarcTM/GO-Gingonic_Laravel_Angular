@@ -13,6 +13,7 @@ import { FooterComponent } from './shared/layout/footer/footer.component';
 import { RecipeDetailsComponent } from './recipe/recipe-details.component';
 import { LoginComponent } from './auth/login/login.component';
 import { RegisterComponent } from './auth/register/register.component';
+import { RecoverPasswordComponent } from './auth/recover-password/recover-password.component';
 import { MealsComponent } from './meals/meals.component';
 import { ShowAuthedDirective } from './core/directives/show-authed.directive';
 import { EditorComponent } from './editor/editor.component';
@@ -33,7 +34,8 @@ import { RecipePreviewComponent } from './shared/recipe-helpers/recipe-preview.c
     ShowAuthedDirective,
     EditorComponent,
     RecipeListComponent,
-    RecipePreviewComponent
+    RecipePreviewComponent,
+    RecoverPasswordComponent
   ],
   imports: [
     BrowserModule,

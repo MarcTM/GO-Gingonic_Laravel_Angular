@@ -6,13 +6,13 @@
         <div class="login_form">
             <form [formGroup]="loginForm">
                 <label>Email</label>
-                <input required type="text" formControlName="email">
+                <input required type="email" formControlName="email">
 
 
                 <label>Password</label>
                 <input required type="password" formControlName="password">
                 <small class="recover_password">
-                    <em><a>Forgot your password?</a></em>
+                    <em><a routerLink="/recover">Forgot your password?</a></em>
                 </small>
 
                 <button type="submit" [disabled]="!loginForm.valid" (click)="submitLogin()">Login</button>

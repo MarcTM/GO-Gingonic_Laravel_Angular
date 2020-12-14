@@ -5,6 +5,7 @@ import { RecipeDetailsComponent } from './recipe/recipe-details.component';
 import { EditorComponent } from './editor/editor.component';
 import { LoginComponent } from './auth/login/login.component';
 import { RegisterComponent } from './auth/register/register.component';
+import { RecoverPasswordComponent } from './auth/recover-password/recover-password.component';
 import { MealsComponent } from './meals/meals.component';
 import { AuthGuardService } from './core/services/auth-guard.service';
 import { NoAuthGuardService } from './core/services/no-auth-guard.service';
@@ -24,6 +25,9 @@ const routes: Routes = [
     canActivate: [NoAuthGuardService] },
 
   { path: 'signup', component: RegisterComponent,
+    canActivate: [NoAuthGuardService] },
+
+  { path: 'recover', component: RecoverPasswordComponent,
     canActivate: [NoAuthGuardService] },
 
   { path: 'meals', component: MealsComponent,
