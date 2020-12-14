@@ -268,6 +268,7 @@ return [
         */
 
         'jwt' => Tymon\JWTAuth\Providers\JWT\Namshi::class,
+        // 'jwt' => Tymon\JWTAuth\Providers\JWT\Lcobucci::class,
 
         /*
         |--------------------------------------------------------------------------

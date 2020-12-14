@@ -10,13 +10,11 @@ Route::group([
 
 ], function ($router) {
     
-    // Register and login
+    // Authentication
     Route::post('register', 'Api\Auth\AuthController@register');
     Route::post('login', 'Api\Auth\AuthController@login');
-    // Route::post('logout', 'Api\Auth\AuthController@logout');
-    // Route::post('refresh', 'Api\Auth\AuthController@refresh');
-    // Route::post('me', 'Api\Auth\AuthController@me');
-
+    Route::post('refresh', 'Api\Auth\AuthController@refresh');
+    // Route::post('create', 'Api\Auth\AuthController@create');
 });
 
 

@@ -31,30 +31,32 @@ class AuthController extends Controller
     {
         $credentials = $request->only(['email','password']);
 
-        $bearer = auth()->attempt($credentials);
+        if(!$bearer = auth()->attempt($credentials)) {
+            return response()->json(['error' => 'Incorrect email or password'], 401);
+        }
+
         return response()->json(['token' => $bearer]);
     }
 
 
-    // // Returns current user
-    // public function me(){
-    //     return response()->json(auth()->user());
-    // }
+    // Refresh token
+    public function refresh()
+    {
+        try {
+            $newToken = auth()->refresh();
+        } catch(\Tymon\JWTAuth\Exceptions\TokenInvalidException $e) {
+            return response()->json(['error' => $e->getMessage()], 422);
+        }
+
+        return response()->json(['bearer' => $newToken]);
+    }
 
 
-    // // Logout
-    // public function logout()
+    // public function create(Request $request)
     // {
-    //     auth()->logout();
+    //     $user = $this->authUser();
 
-    //     return response()->json(['message' => 'Successfully logged out']);
-    // }
-
-
-    // // Refresh token
-    // public function refresh()
-    // {
-    //     return $this->respondWithToken(auth()->refresh());
+    //     return response()->json($user);
     // }
 
 }

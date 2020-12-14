@@ -11,8 +11,22 @@ class Controller extends BaseController
 {
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
 
+    
     public function __construct()
     {
         auth()->setDefaultDriver('api');
+    }
+
+
+    // Get if user authentication is valid or not
+    public function authUser()
+    {
+        try {
+            $user = auth()->userOrFail();
+        } catch(\Tymon\JWTAuth\Exceptions\UserNotDefinedException $e) {
+            return response()->json(['error' => $e->getMessage()]);
+        }
+
+        return $user;
     }
 }
