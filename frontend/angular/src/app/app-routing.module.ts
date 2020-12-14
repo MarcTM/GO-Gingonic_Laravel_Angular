@@ -31,7 +31,9 @@ const routes: Routes = [
     canActivate: [NoAuthGuardService] },
 
   { path: 'meals', component: MealsComponent,
-    canActivate: [AuthGuardService] }
+    canActivate: [AuthGuardService] },
+
+  { path: '**', redirectTo: '/recipes', pathMatch: 'full' }
 ];
 
 
