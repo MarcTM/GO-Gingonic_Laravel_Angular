@@ -16,7 +16,7 @@ type UserModel struct {
 	Password     string  `json:"password"`
 	Bio          string  `json:"bio"`
 	Image        string  `json:"image"`
-	Type		 string  `json:"type"`
+	Type		 string  `json:"type" gorm:"not null"`
 }
 
 
