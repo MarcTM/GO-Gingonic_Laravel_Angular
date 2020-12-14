@@ -16,7 +16,7 @@ export class RecipeService {
 
   // Get recipes
   getRecipes(): Observable<Recipe[]> {
-    return this.http.get<Recipe[]>(environment.api_url+'/recipes');
+    return this.http.get<Recipe[]>(environment.api_url+'/recipes/');
   }
 
 

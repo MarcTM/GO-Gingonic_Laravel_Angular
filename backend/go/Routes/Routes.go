@@ -5,11 +5,16 @@ import (
 	"go_server/recipes"
 
 	"github.com/gin-gonic/gin"
+	"github.com/gin-contrib/cors"
 )
 
 //SetupRouter ... Configure routes
 func SetupRouter() *gin.Engine {
 	r := gin.Default()
+
+	// CORS
+	r.Use(cors.Default())
+
 	grp1 := r.Group("/api")
 	{
 		// Users
@@ -21,6 +26,5 @@ func SetupRouter() *gin.Engine {
 		// Recipes
 		recipes.RecipesRegister(grp1.Group("/recipes"))
 	}
-	
 	return r
 }
