@@ -48,4 +48,13 @@ export class UserService {
     ));
   }
 
+  attemptAuthLaravel(credentials) {
+    return this.http.post<any>(environment.laravel_url+'/auth/login', credentials)
+    .pipe(map(
+        data => {
+          return data;
+        }
+    ));
+  }
+
 }

@@ -6,7 +6,7 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-
+// /recipes
 func RecipesRegister(router *gin.RouterGroup) {
 	router.GET("/", GetRecipes)
 	router.POST("/", users.IsAuthenticated(CreateRecipe))

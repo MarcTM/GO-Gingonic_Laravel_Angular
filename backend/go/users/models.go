@@ -4,6 +4,7 @@ import (
 	// "fmt"
 	"go_server/Config"
 
+	"golang.org/x/crypto/bcrypt"
 	_ "github.com/go-sql-driver/mysql"
 )
 
@@ -30,13 +31,9 @@ func FindUser(condition interface{}) (UserModel, error) {
 
 
 // Check if user email and password match (login)
-func CheckUser(user *UserModel, email string, password string) bool {
-	err := Config.DB.Where("email = ? AND password = ?", email, password).First(user).Error
-	if err != nil {
-		return false
-	} else {
-		return true
-	}
+func CheckUser(pass string, hashpass string) bool {
+	validated := UnhashPass(pass, hashpass)
+	return validated
 }
 
 
@@ -66,4 +63,17 @@ func Create(user *UserModel) (err error) {
 		return err
 	}
 	return nil
+}
+
+
+// Create hashed pass
+func HashPass(str string) (string) {
+    hashed, _ := bcrypt.GenerateFromPassword([]byte(str), bcrypt.DefaultCost)
+    return string(hashed)
+}
+
+
+// Compare password with hashed password
+func UnhashPass(str string, hashed string) bool {
+    return bcrypt.CompareHashAndPassword([]byte(hashed), []byte(str)) == nil
 }
