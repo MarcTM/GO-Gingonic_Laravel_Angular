@@ -30,13 +30,6 @@ func FindUser(condition interface{}) (UserModel, error) {
 }
 
 
-// Check if user email and password match (login)
-func CheckUser(pass string, hashpass string) bool {
-	validated := UnhashPass(pass, hashpass)
-	return validated
-}
-
-
 // Check if user exists by email or username (register)
 func CheckUserRegister(user *UserModel, username string, email string) (error) {
 	err := Config.DB.Where("email = ?", email).Or("username = ?", username).First(user).Error

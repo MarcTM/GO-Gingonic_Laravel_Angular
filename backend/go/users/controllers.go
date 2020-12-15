@@ -63,7 +63,8 @@ func LoginUser(c *gin.Context) {
 		return
 	}
 
-	if user := CheckUser(loginValidator.User.Password, userModel.Password); user == false {
+	userpass := UnhashPass(loginValidator.User.Password, userModel.Password)
+	if userpass == false {
 		c.JSON(http.StatusUnprocessableEntity, "Incorrect password")
 		return
 	}
