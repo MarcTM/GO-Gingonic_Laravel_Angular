@@ -18,14 +18,17 @@ export class AuthGuardService implements CanActivate {
     bool: boolean;
 
     canActivate(): boolean {
-      if(this.jwtService.getToken()){
+      if(this.jwtService.getToken('Bearer')){
         // Check if token is valid in the server
         this.http.post(environment.api_url+'/auth/validate', null, {headers: new HttpHeaders({'Authorization': `Bearer ${localStorage.getItem('Bearer')}`})})
         .subscribe(
           valid => {},
-          error => {localStorage.removeItem('Bearer')}
+          error => {
+            localStorage.removeItem('Bearer')
+            localStorage.removeItem('Bearer_lar')
+          }
         );
-        if (this.jwtService.getToken()){
+        if (this.jwtService.getToken('Bearer')){
           return true;
         } else {
           this.router.navigate(['signin']); 

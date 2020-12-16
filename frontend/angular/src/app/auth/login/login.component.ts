@@ -33,23 +33,28 @@ export class LoginComponent {
       this.userService.attemptAuth('login', this.loginForm.value)
       .subscribe(
         response => {
-          console.log(response.user.type)
-          this.userService.attemptAuthLaravel(this.loginForm.value)
-          .subscribe(
-            response => {
-              console.log(response)
-            },
-            error => {
-              this.toastr.error(error.error, 'Invalid credentials')
+          // Type user
+            if (response.user.type==="user"){
+
+              this.toastr.success('Logged in')
+              console.log(response);
+              setTimeout(() => {this.router.navigate(['/'])}, 1000);
+        
+          // Type admin
+            } else if (response.user.type==="admin") {
+
+              this.userService.attemptAuthAdmin(this.loginForm.value)
+              .subscribe(
+                response => {
+                  console.log(response)
+                  this.toastr.success('Logged in')
+                  setTimeout(() => {this.router.navigate(['/'])}, 1000);
+                }
+              )
             }
-          )
-          // this.toastr.success('Logged in')
-          // console.log(response);
-          // setTimeout(() => {this.router.navigate(['/'])}, 1000);
         },
-        error => {
-          this.toastr.error(error.error, 'Invalid credentials')
-        }
+
+        error => {this.toastr.error(error.error, 'Invalid credentials')}
       )
   }
 }

@@ -19,20 +19,20 @@ export class UserService {
 
   
   // Save JWT in localstorage
-  setAuth(token) {
-    this.jwtService.saveToken(token);
+  setAuth(name, token) {
+    this.jwtService.saveToken(name, token);
   }
 
 
   // Remove JWT from localstorage
-  purgeAuth() {
-    this.jwtService.destroyToken();
+  purgeAuth(name) {
+    this.jwtService.destroyToken(name);
   }
 
 
   // Returns a token or not, to know if user is authenticated
   isAuthenticated(){
-    return this.jwtService.getToken();
+    return this.jwtService.getToken('Bearer');
   }
 
 
@@ -42,16 +42,17 @@ export class UserService {
     return this.http.post<any>(environment.api_url + '/users/' + attemptType, {user: credentials})
     .pipe(map(
         data => {
-          if (type === 'login') this.setAuth(data.user.bearer);
+          if (type === 'login') this.setAuth('Bearer', data.user.bearer);
           return data;
         }
     ));
   }
 
-  attemptAuthLaravel(credentials) {
+  attemptAuthAdmin(credentials) {
     return this.http.post<any>(environment.laravel_url+'/auth/login', credentials)
     .pipe(map(
         data => {
+          this.setAuth('Bearer_lar', data.token);
           return data;
         }
     ));

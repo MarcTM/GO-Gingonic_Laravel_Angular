@@ -7,16 +7,16 @@ export class JwtService {
 
   constructor() { }
 
-  getToken(): String {
-    return window.localStorage['Bearer'];
+  getToken(name): String {
+    return window.localStorage[name];
   }
 
-  saveToken(token: String) {
-    window.localStorage['Bearer'] = token;
+  saveToken(name, token: String) {
+    window.localStorage[name] = token;
   }
 
-  destroyToken() {
-    window.localStorage.removeItem('Bearer');
+  destroyToken(name) {
+    window.localStorage.removeItem(name);
   }
 
 }

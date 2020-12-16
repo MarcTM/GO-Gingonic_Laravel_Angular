@@ -15,7 +15,7 @@ export class NoAuthGuardService {
 
 
   canActivate(): boolean {
-    if(this.jwtService.getToken()){
+    if(this.jwtService.getToken('Bearer')){
       return false;
     } else {
       return true;
