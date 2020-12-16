@@ -2,8 +2,8 @@ import { Injectable } from '@angular/core';
 import { CanActivate, Router } from '@angular/router';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 
-import { environment } from '../../../environments/environment';
-import { JwtService } from './jwt.service';
+import { environment } from '../../../../environments/environment';
+import { JwtService } from '../jwt.service';
 
 
 @Injectable({
@@ -14,8 +14,6 @@ export class AuthGuardService implements CanActivate {
   constructor(private jwtService: JwtService,
     private router: Router,
     private http: HttpClient) { }
-
-    bool: boolean;
 
     canActivate(): boolean {
       if(this.jwtService.getToken('Bearer')){

@@ -1,7 +1,7 @@
 package users
 
 import (
-	// "fmt"
+	"time"
 	"go_server/Config"
 
 	"golang.org/x/crypto/bcrypt"
@@ -12,12 +12,18 @@ import (
 // User model
 type UserModel struct {
 	ID           uint    `json:"id"`
-	Username     string  `json:"username" gorm:"not null;unique"`
-	Email        string  `json:"email" gorm:"not null;unique"`
-	Password     string  `json:"password"`
-	Bio          string  `json:"bio"`
-	Image        string  `json:"image"`
-	Type		 string  `json:"type" gorm:"not null"`
+	Username     string  `json:"username" gorm:"not null;unique;type:varchar(191)"`
+	Email        string  `json:"email" gorm:"not null;unique;type:varchar(191)"`
+	Password     string  `json:"password" gorm:"not null;type:varchar(191)"`
+	Bio          string  `json:"bio" gorm:"type:varchar(191)"`
+	Image        string  `json:"image" gorm:"type:varchar(191)"`
+	Type		 string  `json:"type" gorm:"not null;type:varchar(191)"`
+	CreatedAt	 time.Time
+	UpdatedAt	 time.Time
+}
+
+func (user *UserModel) TableName() string {
+    return "users"
 }
 
 

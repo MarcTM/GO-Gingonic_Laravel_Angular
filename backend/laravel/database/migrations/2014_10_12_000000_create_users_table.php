@@ -9,21 +9,19 @@ class CreateUsersTable extends Migration
     // Create table
     public function up()
     {
-        Schema::create('users', function (Blueprint $table) {
-            $table->increments('id');
-            $table->string('username')->unique();
-            $table->string('email')->unique();
-            $table->string('password');
-            $table->string('bio')->nullable();
-            $table->string('image')->nullable();
-            $table->string('type');
-            $table->timestamps();
-        });
-    }
+        // If table doesn't exist, create it
+        if(!Schema::hasTable('users')){
 
-    // Drop table
-    public function down()
-    {
-        Schema::dropIfExists('users');
+            Schema::create('users', function (Blueprint $table) {
+                $table->increments('id');
+                $table->string('username')->unique();
+                $table->string('email')->unique();
+                $table->string('password');
+                $table->string('bio')->nullable();
+                $table->string('image')->nullable();
+                $table->string('type');
+                $table->timestamps();
+            });
+        }
     }
 }

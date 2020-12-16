@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { CanActivate, Router } from '@angular/router';
 
-import { JwtService } from './jwt.service';
+import { JwtService } from '../jwt.service';
 
 
 @Injectable({
@@ -12,7 +12,6 @@ import { JwtService } from './jwt.service';
 export class NoAuthGuardService {
 
   constructor(private jwtService: JwtService) { }
-
 
   canActivate(): boolean {
     if(this.jwtService.getToken('Bearer')){

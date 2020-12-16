@@ -7,8 +7,8 @@ import { LoginComponent } from './auth/login/login.component';
 import { RegisterComponent } from './auth/register/register.component';
 import { RecoverPasswordComponent } from './auth/recover-password/recover-password.component';
 import { MealsComponent } from './meals/meals.component';
-import { AuthGuardService } from './core/services/auth-guard.service';
-import { NoAuthGuardService } from './core/services/no-auth-guard.service';
+import { AuthGuardService } from './core/services/guards/auth-guard.service';
+import { NoAuthGuardService } from './core/services/guards/no-auth-guard.service';
 
 
 const routes: Routes = [
