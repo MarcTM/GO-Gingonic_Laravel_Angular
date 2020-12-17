@@ -16,9 +16,11 @@ import { RegisterComponent } from './auth/register/register.component';
 import { RecoverPasswordComponent } from './auth/recover-password/recover-password.component';
 import { MealsComponent } from './meals/meals.component';
 import { ShowAuthedDirective } from './core/directives/show-authed.directive';
+import { ShowAdminDirective } from './core/directives/show-admin.directive';
 import { EditorComponent } from './editor/editor.component';
 import { RecipeListComponent } from './shared/recipe-helpers/recipe-list.component';
 import { RecipePreviewComponent } from './shared/recipe-helpers/recipe-preview.component';
+import { CreateMealComponent } from './meals/create/create-meal.component';
 
 
 @NgModule({
@@ -32,10 +34,12 @@ import { RecipePreviewComponent } from './shared/recipe-helpers/recipe-preview.c
     RegisterComponent,
     MealsComponent,
     ShowAuthedDirective,
+    ShowAdminDirective,
     EditorComponent,
     RecipeListComponent,
     RecipePreviewComponent,
-    RecoverPasswordComponent
+    RecoverPasswordComponent,
+    CreateMealComponent
   ],
   imports: [
     BrowserModule,

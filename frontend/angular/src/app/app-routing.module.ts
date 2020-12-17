@@ -7,7 +7,9 @@ import { LoginComponent } from './auth/login/login.component';
 import { RegisterComponent } from './auth/register/register.component';
 import { RecoverPasswordComponent } from './auth/recover-password/recover-password.component';
 import { MealsComponent } from './meals/meals.component';
+import { CreateMealComponent } from './meals/create/create-meal.component';
 import { AuthGuardService } from './core/services/guards/auth-guard.service';
+import { AdminGuardService } from './core/services/guards/admin-guard.service';
 import { NoAuthGuardService } from './core/services/guards/no-auth-guard.service';
 
 
@@ -32,6 +34,9 @@ const routes: Routes = [
 
   { path: 'meals', component: MealsComponent,
     canActivate: [AuthGuardService] },
+
+  { path: 'create', component: CreateMealComponent,
+    canActivate: [AdminGuardService] },
 
   { path: '**', redirectTo: '/recipes', pathMatch: 'full' }
 ];

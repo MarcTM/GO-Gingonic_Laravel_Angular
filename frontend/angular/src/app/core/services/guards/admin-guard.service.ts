@@ -17,9 +17,19 @@ export class AdminGuardService implements CanActivate {
 
     canActivate(): boolean {
       if(this.jwtService.getToken('Bearer_lar')){
+        this.http.post(environment.laravel_url+'/auth/validate', null, {headers: new HttpHeaders({'Authorization': `Bearer ${localStorage.getItem('Bearer_lar')}`})})
+        .subscribe(
+          valid => {},
+          error => {
+            localStorage.removeItem('Bearer_lar')
+            this.router.navigate(['recipes']);
+            console.log(error)
+          }
+        );
         return true;
       } else {
-        this.router.navigate(['signin']);
+
+        (this.jwtService.getToken('Bearer')) ? this.router.navigate(['recipes']) : this.router.navigate(['signin']);
         return false;
       }
     }

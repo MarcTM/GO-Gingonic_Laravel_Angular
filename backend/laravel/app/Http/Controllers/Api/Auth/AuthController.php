@@ -52,6 +52,23 @@ class AuthController extends Controller
     }
 
 
+    // Check if user is admin
+    public function isAdmin()
+    {
+        $isAdmin = auth()->user();
+
+        if(!$isAdmin){
+            return response('error', 404);
+        } else {
+            if($isAdmin->type!="admin"){
+                return response('error', 404);
+            } else {
+                return response()->json("ok");
+            }
+        }
+    }
+
+
     // public function create(Request $request)
     // {
     //     $user = $this->authUser();

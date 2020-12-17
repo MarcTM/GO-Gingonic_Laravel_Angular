@@ -3,8 +3,10 @@ import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { HttpClient } from '@angular/common/http';
 
+import { User } from '../interfaces/user';
 import { JwtService } from './jwt.service';
 import { environment } from '../../../environments/environment';
+import { nextTick } from 'process';
 
 
 @Injectable({
@@ -35,6 +37,10 @@ export class UserService {
     return this.jwtService.getToken('Bearer');
   }
 
+  isAdmin(){
+    return this.jwtService.getToken('Bearer_lar');
+  }
+
 
   // Attempt to login or register
   attemptAuth(type, credentials) {
@@ -42,7 +48,9 @@ export class UserService {
     return this.http.post<any>(environment.api_url + '/users/' + attemptType, {user: credentials})
     .pipe(map(
         data => {
-          if (type === 'login') this.setAuth('Bearer', data.user.bearer);
+          if (type === 'login') {
+            this.setAuth('Bearer', data.user.bearer)
+          };
           return data;
         }
     ));
