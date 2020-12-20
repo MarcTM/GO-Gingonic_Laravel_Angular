@@ -3,7 +3,7 @@
 use Illuminate\Http\Request;
 
 
-Route::group(['middleware'=>['cors'], 'prefix'=>'auth'], function ($router) {
+Route::group(['prefix'=>'auth'], function ($router) {
     
     // Authentication
     Route::post('register', 'Api\Auth\AuthController@register');
@@ -14,7 +14,7 @@ Route::group(['middleware'=>['cors'], 'prefix'=>'auth'], function ($router) {
 });
 
 
-Route::group(['middleware'=>['cors'], 'prefix'=>'laravel'], function ($router) {
+Route::group(['prefix'=>'laravel'], function ($router) {
     
     // Meals
     Route::post('/meal', 'MealsController@create');
