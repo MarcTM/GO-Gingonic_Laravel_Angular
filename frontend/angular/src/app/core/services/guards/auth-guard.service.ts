@@ -18,7 +18,7 @@ export class AuthGuardService implements CanActivate {
     canActivate(): boolean {
       if(this.jwtService.getToken('Bearer')){
         // Check if token is valid in the server
-        this.http.post(environment.api_url+'/auth/validate', null, {headers: new HttpHeaders({'Authorization': `Bearer ${localStorage.getItem('Bearer')}`})})
+        this.http.post(environment.api_users_url+'/auth/validate', null, {headers: new HttpHeaders({'Authorization': `Bearer ${localStorage.getItem('Bearer')}`})})
         .subscribe(
           valid => {},
           error => {

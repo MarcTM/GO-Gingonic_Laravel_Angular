@@ -16,19 +16,19 @@ export class RecipeService {
 
   // Get recipes
   getRecipes(): Observable<Recipe[]> {
-    return this.http.get<Recipe[]>(environment.api_url+'/recipes/');
+    return this.http.get<Recipe[]>(environment.api_recipes_url+'/recipes/');
   }
 
 
   // Get recipe by Id
   getRecipe(id: number): Observable<Recipe> {
-    return this.http.get<Recipe>(`${environment.api_url}/recipes/${id}`)
+    return this.http.get<Recipe>(`${environment.api_recipes_url}/recipes/${id}`)
   }
 
 
   // Create recipe
   save(data) {
-    return this.http.post<any>(environment.api_url+'/recipes/', { recipe: data }, {headers: new HttpHeaders({'Authorization': `Bearer ${localStorage.getItem('Bearer')}`})})
+    return this.http.post<any>(environment.api_recipes_url+'/recipes/', { recipe: data }, {headers: new HttpHeaders({'Authorization': `Bearer ${localStorage.getItem('Bearer')}`})})
   }
 
 }

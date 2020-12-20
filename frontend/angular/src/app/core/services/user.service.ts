@@ -45,7 +45,7 @@ export class UserService {
   // Attempt to login or register
   attemptAuth(type, credentials) {
     const attemptType = (type === 'login') ? 'login' : 'register';
-    return this.http.post<any>(environment.api_url + '/users/' + attemptType, {user: credentials})
+    return this.http.post<any>(environment.api_users_url + '/users/' + attemptType, {user: credentials})
     .pipe(map(
         data => {
           if (type === 'login') {
