@@ -32,21 +32,15 @@ func CreateRecipe(c *gin.Context) {
 		return
 	}
 
-	serializer := RecipeSerializer{c, recipeModelValidator.recipeModel}
-	c.JSON(http.StatusCreated, gin.H{"recipe": serializer.Response()})
+	c.JSON(http.StatusCreated, "ok")
 }
 
 
 //GetRecipeByID
 func GetRecipeByID(c *gin.Context) {
-	id := c.Params.ByName("id")
-	var recipe RecipeModel
-	err := Get(&recipe, id)
-	if err != nil {
-		c.AbortWithStatus(http.StatusNotFound)
-	} else {
-		c.JSON(http.StatusOK, recipe)
-	}
+	serializer := OneRecipeSerializer{c}
+	recipe := serializer.Response()
+	c.JSON(http.StatusOK, recipe)
 }
 
 

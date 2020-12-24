@@ -5,7 +5,6 @@ import (
 	"strconv"
 	"fmt"
 	"os"
-	"time"
 	"go_server/models"
 	"go_server/Config"
 	"github.com/dgrijalva/jwt-go"
@@ -27,28 +26,6 @@ func SetSessionUser(c *gin.Context, user_id uint){
 	// fmt.Println(c.MustGet("my_user_id"))
 	Config.RedisSet("user_id", strconv.FormatUint(uint64(user_id), 10))
 	Config.RedisSet("user_email", userModel.Email)
-}
-
-
-// Creates the user bearer
-func CreateBearer(email string) string {
-	var err error
-
-	// Set claims
-	claims := jwt.MapClaims{}
-	claims["authorized"] = true
-	claims["email"] = email
-	claims["exp"] = time.Now().Add(time.Hour * 72).Unix()
-
-	// Generate bearer with claims
-	bearer := jwt.NewWithClaims(jwt.SigningMethodHS256, claims)
-
-	// Generate encoded bearer using the secret signing key
-	b, err := bearer.SignedString([]byte(os.Getenv("ACCESS_SECRET")))
-	if err != nil {
-		return "undefined"
-	}
-	return b
 }
 
 

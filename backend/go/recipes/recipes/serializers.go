@@ -2,61 +2,65 @@ package recipes
 
 
 import(
+	"net/http"
+	"fmt"
+	"go_server/Config"
 	"go_server/models"
 	"github.com/gin-gonic/gin"
 )
 
 
-// Recipe serializer
-type RecipeSerializer struct {
+// Recipe serializer when finding one
+type OneRecipeSerializer struct {
 	c *gin.Context
-	RecipeModel
 }
 
-
-type RecipeResponse struct {
-	ID             uint                  `json:"-"`
+type OneRecipeResponse struct {
+	ID             uint                  `json:"id"`
 	Name           string                `json:"name"`
 	Description    string                `json:"description"`
-	Author         ProfileResponse		 `json:"author"`
+	Author         RecipeProfileResponse `json:"author"`
 }
 
+func (self *OneRecipeSerializer) Response() OneRecipeResponse {
+	id := self.c.Params.ByName("id")
+	var recipe RecipeModel
+	err := Get(&recipe, id)	
+	if err != nil {
+		fmt.Println("error")
+		self.c.AbortWithStatus(http.StatusNotFound)
+	}
+	recipeProfileSerializer := RecipeProfileSerializer{recipe}
 
-func (self *RecipeSerializer) Response() RecipeResponse {
-	profileSerializer := ProfileSerializer{self.c}
-
-	response := RecipeResponse{
-		ID:          self.Id,
-		Name:        self.Name,
-		Description: self.Description,
-		Author:      profileSerializer.Response(),
+	response := OneRecipeResponse{
+		ID:          recipe.Id,
+		Name:        recipe.Name,
+		Description: recipe.Description,
+		Author:      recipeProfileSerializer.Response(),
 	}
 	return response
 }
 
 
-
-// Profile serializers
-type ProfileSerializer struct {
-	c *gin.Context
+// Profile for one recipe
+type RecipeProfileSerializer struct {
+	recipe RecipeModel
 }
 
-
-type ProfileResponse struct {
+type RecipeProfileResponse struct {
 	ID		 uint	 `json:"id"`
 	Username string  `json:"username"`
-	Bio      string  `json:"bio"`
 	Image    string  `json:"image"`
 }
 
+func (self *RecipeProfileSerializer) Response() RecipeProfileResponse{
+	var user models.UserModel
+	Config.DB.Model(self.recipe).Related(&user)
 
-func (self *ProfileSerializer) Response() ProfileResponse{
-	myUserModel := self.c.MustGet("my_user_model").(models.UserModel)
-	profile := ProfileResponse{
-		ID:		  myUserModel.ID,
-		Username: myUserModel.Username,
-		Bio:      myUserModel.Bio,
-		Image:    myUserModel.Image,
+	profile := RecipeProfileResponse{
+		ID:		  user.ID,
+		Username: user.Username,
+		Image:    user.Image,
 	}
 	return profile
 }

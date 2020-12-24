@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"go_server/Config"
 	_ "github.com/go-sql-driver/mysql"
+	"go_server/models"
 )
 
 
@@ -11,7 +12,8 @@ type RecipeModel struct {
 	Id      	uint   `json:"id"`
 	Name    	string `json:"name"`
 	Description string `json:"description"`
-	AuthorID	uint   `json:"author_id"`
+	UserModelID	uint
+	UserModel   models.UserModel
 }
 
 func (recipe *RecipeModel) TableName() string {

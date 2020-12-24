@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	// "go_server/models"
 	"go_server/Config"
 	"go_server/Routes"
 	"go_server/recipes"
@@ -24,6 +25,16 @@ func main() {
 
 	// Set routes
 	r := Routes.SetupRouter()
+
+
+	// // Prova foreign keys
+	// var fRecipe recipes.RecipeModel
+	// var use models.UserModel
+	// Config.DB.Last(&fRecipe, "Name = ?", "p")
+	// fmt.Println(fRecipe)
+	// Config.DB.Model(fRecipe).Related(&use)
+	// fmt.Println(use)
+
 
 	// Run application on port 3000
 	r.Run(":3002")
