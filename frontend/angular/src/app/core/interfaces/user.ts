@@ -7,3 +7,9 @@ export interface User {
     image: string;
     type: string;
 }
+
+export interface RecipeAuthor {
+    id: number;
+    username: string;
+    image: string;
+}

@@ -10,7 +10,7 @@ import(
 )
 
 
-// Recipe serializer when finding one
+// One recipe serializer
 type OneRecipeSerializer struct {
 	c *gin.Context
 }
@@ -42,7 +42,43 @@ func (self *OneRecipeSerializer) Response() OneRecipeResponse {
 }
 
 
-// Profile for one recipe
+// All recipes serializer
+type AllRecipeSerializer struct {
+	c *gin.Context
+}
+
+type AllRecipeResponse struct {
+	ID             uint                  `json:"id"`
+	Name           string                `json:"name"`
+	Description    string                `json:"description"`
+	Author         RecipeProfileResponse `json:"author"`
+}
+
+func (self *AllRecipeSerializer) Response() []AllRecipeResponse {
+	var recipe []RecipeModel
+	err := GetAll(&recipe)
+	if err != nil {
+		fmt.Println("error")
+		self.c.AbortWithStatus(http.StatusNotFound)
+	}
+
+	var recipeAll []AllRecipeResponse
+	for _, r := range recipe {
+		recipeProfileSerializer := RecipeProfileSerializer{r}
+
+		response := AllRecipeResponse{
+			ID:          r.Id,
+			Name:        r.Name,
+			Description: r.Description,
+			Author:      recipeProfileSerializer.Response(),
+		}
+		recipeAll = append(recipeAll, response)
+	}
+	return recipeAll
+}
+
+
+// Recipe author profile serializer
 type RecipeProfileSerializer struct {
 	recipe RecipeModel
 }

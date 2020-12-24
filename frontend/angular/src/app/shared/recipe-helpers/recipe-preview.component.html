@@ -1,10 +1,19 @@
 <div class="recipe_preview">
-    <section class="recipe_img"></section>
+    <section class="author_info">
+        <a>
+            <span class="author_img"><img src="https://lh3.googleusercontent.com/ogw/ADGmqu_wixuPJYRfks70Xz_NL3vS68HLHfKUIsBKKsBIIw=s32-c-mo"/></span>
+            <!-- <span class="author_img"><img src="{{recipe.author.image}}"/></span> -->
+            <span class="author_username">{{recipe.author.username}}</span>
+        </a>
+    </section>
 
-    <section class="recipe_caption">
+    <section class="recipe_info">
         <a routerLink="/recipe/{{recipe.id}}">
             <p class="recipe_name">{{recipe.name}}</p>
             <p class="recipe_description">{{recipe.description}}</p>
         </a>
+        <article class="recipe_img">
+        </article>
     </section>
+    
 </div>

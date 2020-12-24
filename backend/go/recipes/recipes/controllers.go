@@ -7,18 +7,6 @@ import (
 )
 
 
-//GetRecipes
-func GetRecipes(c *gin.Context) {
-	var recipe []RecipeModel
-	err := GetAll(&recipe)
-	if err != nil {
-		c.AbortWithStatus(http.StatusNotFound)
-	} else {
-		c.JSON(http.StatusOK, recipe)
-	}
-}
-
-
 //CreateRecipe
 func CreateRecipe(c *gin.Context) {
 	recipeModelValidator := NewRecipeModelValidator()
@@ -33,6 +21,14 @@ func CreateRecipe(c *gin.Context) {
 	}
 
 	c.JSON(http.StatusCreated, "ok")
+}
+
+
+//GetRecipes
+func GetRecipes(c *gin.Context) {
+	serializer := AllRecipeSerializer{c}
+	recipes := serializer.Response()
+	c.JSON(http.StatusOK, recipes)
 }
 
 
