@@ -35,8 +35,7 @@ const routes: Routes = [
   { path: 'recover', component: RecoverPasswordComponent,
     canActivate: [NoAuthGuardService] },
 
-  { path: 'meals', component: MealsComponent,
-    canActivate: [AuthGuardService] },
+  { path: 'meals', component: MealsComponent },
 
   { path: 'create', component: CreateMealComponent,
     canActivate: [AdminGuardService] },

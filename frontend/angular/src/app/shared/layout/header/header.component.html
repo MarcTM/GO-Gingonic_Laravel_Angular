@@ -1,13 +1,32 @@
 <header>
-    <div class="top_bar"></div>
+    <!-- Top bar navigation -->
+    <div class="top_bar">
+        <!-- Show if not authenticated -->
+        <nav *appShowAuthed="false">
+            <a routerLink="/signin">LOGIN</a>
+            <a routerLink="/signup">REGISTER</a>
+            <a>CART</a>
+        </nav>
+
+        <!-- Show if authenticated -->
+        <nav *appShowAuthed="true">
+            <!-- Show if admin -->
+            <a *appShowAdmin="true" (click)="showAdmin()">{{adminText}}</a>
+            <!--  -->
+            <a>MY ACCOUNT</a>
+            <a routerLink="/" (click)="logout()">LOGOUT</a>
+            <a>CART</a>
+        </nav>
+    </div>
+
+    <!-- Main navigation -->
     <div class="main_nav_wrapper">
 
         <div class="logo">
             <a routerLink="/" title="TORRES MEALS">TORRES MEALS</a>
         </div>
 
-        <!-- Show if not authenticated -->
-        <nav *appShowAuthed="false">
+        <nav>
             <a routerLink="/">
                 HOME
                 <span class="icon-down-arrow"></span>
@@ -15,34 +34,6 @@
 
             <a routerLink="/recipes">
                 RECIPES
-                <span class="icon-down-arrow"></span>
-            </a>
-
-            <a routerLink="/signin">
-                LOGIN
-                <span class="icon-down-arrow"></span>
-            </a>
-
-            <a routerLink="/signup">
-                REGISTER
-                <span class="icon-down-arrow"></span>
-            </a>
-        </nav>
-
-        <!-- Show if authenticated -->
-        <nav *appShowAuthed="true">
-            <a routerLink="/">
-                HOME
-                <span class="icon-down-arrow"></span>
-            </a>
-
-            <a routerLink="/recipes">
-                RECIPES
-                <span class="icon-down-arrow"></span>
-            </a>
-
-            <a routerLink="/editor">
-                POST RECIPE
                 <span class="icon-down-arrow"></span>
             </a>
 
@@ -51,16 +42,19 @@
                 <span class="icon-down-arrow"></span>
             </a>
 
-            <a routerLink="/" (click)="logout()">
-                LOGOUT
-                <span class="icon-down-arrow"></span>
-            </a>
-
-            <a *appShowAdmin="true" routerLink="/create">
-                NEW MEAL
+            <!-- Show if authenticated -->
+            <a *appShowAuthed="true" routerLink="/editor">
+                POST RECIPE
                 <span class="icon-down-arrow"></span>
             </a>
         </nav>
 
+    </div>
+
+    <!-- Pannel-admin nav -->
+    <div *ngIf="admin" class="pannel_admin_nav">
+        <nav>
+            <a routerLink="/create">NEW MEAL</a>
+        </nav>
     </div>
 </header>

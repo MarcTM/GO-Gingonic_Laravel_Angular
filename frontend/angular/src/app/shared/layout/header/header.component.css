@@ -1,11 +1,43 @@
+/* Header */
 header {
     display: block;
     background-color: black;
 }
 
+/* Top bar */
+.top_bar {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    width: 100%;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    color: white;
+}
+
+.top_bar nav {
+    margin-right: 20px;
+}
+
+.top_bar nav a{
+    text-decoration: none;
+    color: white;
+    font-weight: bold;
+    margin-right: 20px;
+}
+
+.top_bar nav a,
+.top_bar nav a:visited,
+.top_bar nav a:active {
+    text-decoration: none;
+}
+
+.top_bar nav a:hover {
+    transition: 0.4s;
+    color: rgb(211, 207, 207);
+}
 
 /* Main nav */
-
 .main_nav_wrapper {
     width: 100%;
     display: flex;
@@ -14,9 +46,7 @@ header {
     align-items: center;
 }
 
-
 /* Logo, banner */
-
 .main_nav_wrapper .logo {
     margin: 60px 0px 60px 0px;
 }
@@ -30,10 +60,8 @@ header {
     color: white;
 }
 
-
 /* Navigation */
-
-nav {
+.main_nav_wrapper nav {
     margin-top: 10px;
     margin-bottom: 30px;
     display: flex;
@@ -41,9 +69,9 @@ nav {
     width: 40%;
 }
 
-nav a,
-nav a:visited,
-nav a:active {
+.main_nav_wrapper nav a,
+.main_nav_wrapper nav a:visited,
+.main_nav_wrapper nav a:active {
     padding-bottom: 10px;
     border-bottom: 1px solid black;
     text-decoration: none;
@@ -52,7 +80,7 @@ nav a:active {
     color: white;
 }
 
-nav a:hover {
+.main_nav_wrapper nav a:hover {
     border-bottom: 1px solid #d6a63e;
 }
 
@@ -63,4 +91,27 @@ nav a:hover {
     margin: 0px 0px 6px 4px;
     padding: 3px;
     transform: rotate(45deg);
+}
+
+/* Pannel-admin */
+.pannel_admin_nav {
+    padding-top: 20px;
+    padding-bottom: 20px;
+    background-color: grey;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.pannel_admin_nav nav a {
+    text-decoration: none;
+    font-weight: bold;
+    color: white;
+}
+
+.pannel_admin_nav nav a,
+.pannel_admin_nav nav a:visited,
+.pannel_admin_nav nav a:active {
+    text-decoration: none;
 }

@@ -15,7 +15,6 @@ import { UserService } from '../../core/services/user.service';
 
 export class LoginComponent {
 
-  // public currentUser = 
   constructor(private fb: FormBuilder,
     private router: Router,
     private userService: UserService,

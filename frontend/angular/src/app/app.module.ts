@@ -41,7 +41,7 @@ import { ProfilesComponent } from './profiles/profiles.component';
     RecipeListComponent,
     RecipePreviewComponent,
     RecoverPasswordComponent,
-    CreateMealComponent
+    CreateMealComponent,
   ],
   imports: [
     BrowserModule,
