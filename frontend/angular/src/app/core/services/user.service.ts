@@ -3,7 +3,7 @@ import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { HttpClient } from '@angular/common/http';
 
-import { User } from '../interfaces/user';
+import { User, Profile } from '../interfaces/user';
 import { JwtService } from './jwt.service';
 import { environment } from '../../../environments/environment';
 import { nextTick } from 'process';
@@ -16,8 +16,10 @@ import { nextTick } from 'process';
 
 export class UserService {
 
-  constructor(private jwtService: JwtService,
-              private http: HttpClient) { }
+  constructor(
+    private jwtService: JwtService,
+    private http: HttpClient
+  ) {}
 
   
   // Save JWT in localstorage
@@ -37,6 +39,8 @@ export class UserService {
     return this.jwtService.getToken('Bearer');
   }
 
+
+  // Returns an admin token or not, to know if user is authenticated as admin
   isAdmin(){
     return this.jwtService.getToken('Bearer_lar');
   }
@@ -56,6 +60,8 @@ export class UserService {
     ));
   }
 
+
+  // Attempt to login when user is admin
   attemptAuthAdmin(credentials) {
     return this.http.post<any>(environment.laravel_url+'/auth/login', credentials)
     .pipe(map(
@@ -64,6 +70,17 @@ export class UserService {
           return data;
         }
     ));
+  }
+
+
+  // Get user profile by username
+  getProfile(username) {
+    return this.http.get<Profile>(environment.api_users_url+'/profiles/'+username)
+    .pipe(map(
+      data => {
+        return data;
+      }
+    ))
   }
 
 }

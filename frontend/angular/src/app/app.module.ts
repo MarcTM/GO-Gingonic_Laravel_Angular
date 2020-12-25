@@ -21,6 +21,7 @@ import { EditorComponent } from './editor/editor.component';
 import { RecipeListComponent } from './shared/recipe-helpers/recipe-list.component';
 import { RecipePreviewComponent } from './shared/recipe-helpers/recipe-preview.component';
 import { CreateMealComponent } from './meals/create/create-meal.component';
+import { ProfilesComponent } from './profiles/profiles.component';
 
 
 @NgModule({
@@ -29,6 +30,7 @@ import { CreateMealComponent } from './meals/create/create-meal.component';
     HeaderComponent,
     RecipesComponent,
     RecipeDetailsComponent,
+    ProfilesComponent,
     FooterComponent,
     LoginComponent,
     RegisterComponent,

@@ -17,9 +17,16 @@
 }
 
 .author_info a {
+    color: black;
     display: inline-flex;
     align-items: center;
 }
+
+.author_info a, .author_info a:visited, .author_info a:active {
+    text-decoration: none;
+    color: black;
+}
+
 
 .author_img {
     margin-left: 20px;

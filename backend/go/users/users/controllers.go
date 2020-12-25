@@ -7,6 +7,21 @@ import (
 )
 
 
+// Get user profile
+func GetProfile(c *gin.Context) {
+	username := c.Params.ByName("username")
+	userModel, err := FindUser(&UserModel{Username: username})
+
+	if err != nil {
+		c.JSON(http.StatusUnprocessableEntity, "User not found")
+		return
+	}
+
+	profileSerializer := ProfileSerializer{userModel}
+	c.JSON(http.StatusOK, profileSerializer.Response())
+}
+
+
 //Get users
 func GetUsers(c *gin.Context) {
 	var user []UserModel

@@ -1,0 +1,39 @@
+.profile_page {
+    width: 100%;
+    display: flex;
+    padding-top: 100px;
+    padding-bottom: 100px;
+    align-items: center;
+    justify-content: center;
+    background-color: rgb(206, 206, 142);
+}
+
+.profile_user {
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.profile_img {
+    display: block;
+    margin-top: 20px;
+}
+
+.profile_img img {
+    border-radius: 50%;
+    width: 120px;
+    height: 120px;
+}
+
+.profile_username {
+    font-size: 2.5em;
+    margin-bottom: 30px;
+}
+
+.profile_description {
+    text-align: center;
+    display: block;
+    width: 60%;
+}

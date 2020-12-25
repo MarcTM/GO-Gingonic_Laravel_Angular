@@ -10,7 +10,6 @@ type UserSerializer struct {
 	c *gin.Context
 }
 
-
 type UserResponse struct {
 	Username string  `json:"username"`
 	Email    string  `json:"email"`
@@ -20,8 +19,8 @@ type UserResponse struct {
 	Type	 string  `json:"type"`
 }
 
-
 func (self *UserSerializer) Response() UserResponse{
+
 	myUserModel := self.c.MustGet("my_user_model").(UserModel)
 	user := UserResponse{
 		Username: myUserModel.Username,
@@ -32,4 +31,28 @@ func (self *UserSerializer) Response() UserResponse{
 		Type:	  myUserModel.Type,
 	}
 	return user
+}
+
+
+// Profile serializers
+type ProfileSerializer struct {
+	profile UserModel
+}
+
+type ProfileResponse struct {
+	ID		 uint	 `json:"id"`
+	Username string  `json:"username"`
+	Bio      string  `json:"bio"`
+	Image    string  `json:"image"`
+}
+
+func (self *ProfileSerializer) Response() ProfileResponse{
+
+	profile := ProfileResponse{
+		ID:       self.profile.ID,
+		Username: self.profile.Username,
+		Bio:      self.profile.Bio,
+		Image:    self.profile.Image,
+	}
+	return profile
 }

@@ -11,20 +11,24 @@ import { RecipeService } from '../core/services/recipe.service';
   templateUrl: './recipe-details.component.html',
   styleUrls: ['./recipe-details.component.css']
 })
+
 export class RecipeDetailsComponent implements OnInit {
 
   @Input() recipe: Recipe;
-
+  
   constructor(
     private route: ActivatedRoute,
     private recipeService: RecipeService,
     private location: Location
   ) {}
 
+
   ngOnInit(): void {
     this.getRecipe();
   }
 
+
+  // Get one recipe information
   getRecipe(): void {
     const id = +this.route.snapshot.paramMap.get('id');
     this.recipeService.getRecipe(id)
@@ -34,6 +38,8 @@ export class RecipeDetailsComponent implements OnInit {
       })
   }
 
+
+  // Go back to the previous page
   goBack(): void {
     this.location.back();
   }

@@ -13,3 +13,10 @@ export interface RecipeAuthor {
     username: string;
     image: string;
 }
+
+export interface Profile {
+    id: number;
+    username: string;
+    image: string;
+    bio: string;
+}
