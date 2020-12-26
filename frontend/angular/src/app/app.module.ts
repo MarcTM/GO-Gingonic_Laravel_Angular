@@ -4,6 +4,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
+import { CarouselModule } from 'ngx-owl-carousel-o';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -25,6 +26,8 @@ import { ProfilesComponent } from './profiles/profiles.component';
 import { MealListComponent } from './shared/meal-helpers/meal-list.component';
 import { MealPreviewComponent } from './shared/meal-helpers/meal-preview.component';
 import { MealDetailsComponent } from './meal/meal-details.component';
+import { HomeComponent } from './home/home.component';
+import { SliderComponent } from './shared/slider/slider.component';
 
 
 @NgModule({
@@ -48,6 +51,8 @@ import { MealDetailsComponent } from './meal/meal-details.component';
     MealListComponent,
     MealPreviewComponent,
     MealDetailsComponent,
+    HomeComponent,
+    SliderComponent,
   ],
   imports: [
     BrowserModule,
@@ -55,9 +60,13 @@ import { MealDetailsComponent } from './meal/meal-details.component';
     ReactiveFormsModule,
     AppRoutingModule,
     BrowserAnimationsModule,
+    CarouselModule,
     ToastrModule.forRoot()
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [
+    AppComponent,
+  ]
 })
+
 export class AppModule { }

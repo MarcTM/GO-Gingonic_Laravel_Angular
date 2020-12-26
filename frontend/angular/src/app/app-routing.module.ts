@@ -1,5 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+
+import { HomeComponent } from './home/home.component';
 import { RecipesComponent } from './recipes/recipes.component';
 import { RecipeDetailsComponent } from './recipe/recipe-details.component';
 import { ProfilesComponent } from './profiles/profiles.component';
@@ -16,7 +18,7 @@ import { NoAuthGuardService } from './core/services/guards/no-auth-guard.service
 
 
 const routes: Routes = [
-  { path: '', redirectTo: '/recipes', pathMatch: 'full' },
+  { path: '', component: HomeComponent },
 
   { path: 'recipes', component: RecipesComponent },
 
@@ -43,7 +45,7 @@ const routes: Routes = [
   { path: 'create', component: CreateMealComponent,
     canActivate: [AdminGuardService] },
 
-  { path: '**', redirectTo: '/recipes', pathMatch: 'full' }
+  { path: '**', redirectTo: '', pathMatch: 'full' }
 ];
 
 
@@ -51,6 +53,5 @@ const routes: Routes = [
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })
-
 
 export class AppRoutingModule { }
