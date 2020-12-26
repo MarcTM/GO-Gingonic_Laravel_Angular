@@ -10,16 +10,17 @@ Route::group(['prefix'=>'auth'], function ($router) {
     Route::post('login', 'Api\Auth\AuthController@login');
     Route::post('refresh', 'Api\Auth\AuthController@refresh');
     Route::post('validate', 'Api\Auth\AuthController@isAdmin');
-    // Route::post('create', 'Api\Auth\AuthController@create');
 });
 
 
-Route::group(['prefix'=>'laravel'], function ($router) {
+Route::group(['prefix'=>'meals'], function ($router) {
     
+    // Meals authed
+    Route::post('/', 'Api\Auth\AuthMealsController@createMeal');
+    Route::put('/{id}', 'Api\Auth\AuthMealsController@updateMeal');
+    Route::delete('/{id}', 'Api\Auth\AuthMealsController@deleteMeal');
+
     // Meals
-    Route::post('/meal', 'MealsController@create');
-    Route::get('/meals', 'MealsController@show');
-    Route::get('/meal/{id}', 'MealsController@showMeal');
-    Route::put('/meal/{id}', 'MealsController@updateMeal');
-    Route::delete('/meal/{id}', 'MealsController@deleteMeal');
+    Route::get('/', 'MealsController@show');
+    Route::get('/{id}', 'MealsController@showMeal');
 });

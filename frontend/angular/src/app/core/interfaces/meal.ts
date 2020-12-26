@@ -6,7 +6,7 @@ export interface Meal {
     name: string;
     description: string;
     price: number;
-    category_id: number;
+    // category_id: number;
     created_at: string;
     updated_at: string;
 }

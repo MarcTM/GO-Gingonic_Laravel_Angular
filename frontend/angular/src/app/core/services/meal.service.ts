@@ -17,7 +17,7 @@ export class MealService {
 
 
   getMeals(): Observable<Meal[]> {
-    return this.http.get<Meal[]>(environment.laravel_url+'/laravel/meals');
+    return this.http.get<Meal[]>(environment.laravel_url+'/meals/');
   }
   
 }

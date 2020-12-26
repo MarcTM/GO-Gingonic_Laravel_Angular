@@ -22,6 +22,8 @@ import { RecipeListComponent } from './shared/recipe-helpers/recipe-list.compone
 import { RecipePreviewComponent } from './shared/recipe-helpers/recipe-preview.component';
 import { CreateMealComponent } from './meals/create/create-meal.component';
 import { ProfilesComponent } from './profiles/profiles.component';
+import { MealListComponent } from './shared/meal-helpers/meal-list.component';
+import { MealPreviewComponent } from './shared/meal-helpers/meal-preview.component';
 
 
 @NgModule({
@@ -42,6 +44,8 @@ import { ProfilesComponent } from './profiles/profiles.component';
     RecipePreviewComponent,
     RecoverPasswordComponent,
     CreateMealComponent,
+    MealListComponent,
+    MealPreviewComponent,
   ],
   imports: [
     BrowserModule,
