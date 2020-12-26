@@ -1,4 +1,4 @@
-/* Login page */
+/* Editor page */
 
 .editor_page {
     display: flex;
@@ -28,7 +28,7 @@
 }
 
 
-/* Login form */
+/* Editor form */
 
 .editor_form {
     margin-top: 50px;

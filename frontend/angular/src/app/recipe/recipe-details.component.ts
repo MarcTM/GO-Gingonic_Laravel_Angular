@@ -14,8 +14,6 @@ import { RecipeService } from '../core/services/recipe.service';
 
 export class RecipeDetailsComponent implements OnInit {
 
-  @Input() recipe: Recipe;
-  
   constructor(
     private route: ActivatedRoute,
     private recipeService: RecipeService,
@@ -23,25 +21,26 @@ export class RecipeDetailsComponent implements OnInit {
   ) {}
 
 
-  ngOnInit(): void {
-    this.getRecipe();
-  }
-
+  @Input() recipe: Recipe;
 
   // Get one recipe information
   getRecipe(): void {
     const id = +this.route.snapshot.paramMap.get('id');
-    this.recipeService.getRecipe(id)
-      .subscribe(recipe => {
-        console.log(recipe);
-        this.recipe = recipe;
-      })
-  }
 
+    this.recipeService.getRecipe(id)
+    .subscribe(recipe => {
+      console.log(recipe);
+      this.recipe = recipe;
+    })
+  }
 
   // Go back to the previous page
   goBack(): void {
     this.location.back();
+  }
+
+  ngOnInit(): void {
+    this.getRecipe();
   }
 
 }

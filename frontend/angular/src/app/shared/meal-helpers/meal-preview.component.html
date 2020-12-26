@@ -1,6 +1,11 @@
 <div class="meal_preview">
 
-    <h1>{{meal.name}}</h1>
-    <br><br><br>
+    <div style="padding: 20px; margin: 20px; border: 1px solid orange;">
+        <a routerLink="/meal/{{meal.id}}">
+            <h1>{{meal.name}}</h1>
+            <p>{{meal.description}}</p>
+            <p>{{meal.price}}</p>
+        </a>
+    </div>
     
 </div>

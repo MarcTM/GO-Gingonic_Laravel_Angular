@@ -24,6 +24,7 @@ import { CreateMealComponent } from './meals/create/create-meal.component';
 import { ProfilesComponent } from './profiles/profiles.component';
 import { MealListComponent } from './shared/meal-helpers/meal-list.component';
 import { MealPreviewComponent } from './shared/meal-helpers/meal-preview.component';
+import { MealDetailsComponent } from './meal/meal-details.component';
 
 
 @NgModule({
@@ -46,6 +47,7 @@ import { MealPreviewComponent } from './shared/meal-helpers/meal-preview.compone
     CreateMealComponent,
     MealListComponent,
     MealPreviewComponent,
+    MealDetailsComponent,
   ],
   imports: [
     BrowserModule,

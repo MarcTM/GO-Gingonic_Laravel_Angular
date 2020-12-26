@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormArray, Validators } from '@angular/forms';
+import { Component } from '@angular/core';
+import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from "@angular/router"
 import { ToastrService } from 'ngx-toastr';
 
@@ -13,7 +13,7 @@ import { RecipeService } from '../core/services/recipe.service';
 })
 
 
-export class EditorComponent implements OnInit {
+export class EditorComponent {
 
   constructor(private fb: FormBuilder,
     private router: Router,
@@ -40,10 +40,6 @@ export class EditorComponent implements OnInit {
           this.toastr.error(error.error);
         }
       )
-  }
-
-
-  ngOnInit(): void {
   }
 
 }

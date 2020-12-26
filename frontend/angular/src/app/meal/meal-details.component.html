@@ -1,0 +1,11 @@
+<div *ngIf="meal">
+
+    <h2>{{meal.name}} Details</h2>
+    <div><span>ID: </span>{{meal.id}}</div>
+    <div><span>Description: </span>{{meal.description}}</div>
+    <div><span>Price: </span>{{meal.price}}€</div>
+
+    <br><br>
+    <button (click)="goBack()">GO BACK</button>
+
+</div>
