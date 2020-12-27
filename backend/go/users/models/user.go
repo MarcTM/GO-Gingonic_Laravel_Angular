@@ -2,8 +2,6 @@ package models
 
 import "time"
 
-
-// User model
 type UserModel struct {
 	ID           uint    `json:"id"`
 	Username     string  `json:"username" gorm:"not null;unique;type:varchar(191)"`

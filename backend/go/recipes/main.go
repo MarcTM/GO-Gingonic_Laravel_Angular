@@ -2,10 +2,9 @@ package main
 
 import (
 	"fmt"
-	// "go_server/models"
+	"go_server/models"
 	"go_server/Config"
 	"go_server/Routes"
-	"go_server/recipes"
 	"github.com/jinzhu/gorm"
 )
 
@@ -21,14 +20,15 @@ func main() {
 	defer Config.DB.Close()
 
 	// Migrate tables
-	Config.DB.AutoMigrate(&recipes.RecipeModel{})
+	Config.DB.AutoMigrate(&models.RecipeModel{})
 
 	// Set routes
 	r := Routes.SetupRouter()
 
 
-	// // Prova foreign keys
-	// var fRecipe recipes.RecipeModel
+	// // Chuleta has one (related)
+	// 
+	// var fRecipe models.RecipeModel
 	// var use models.UserModel
 	// Config.DB.Last(&fRecipe, "Name = ?", "p")
 	// fmt.Println(fRecipe)

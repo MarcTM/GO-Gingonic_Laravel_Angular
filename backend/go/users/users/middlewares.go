@@ -6,6 +6,7 @@ import (
 	"os"
 	"time"
 	"go_server/Config"
+	"go_server/models"
 	"github.com/dgrijalva/jwt-go"
 	"github.com/gin-gonic/gin"
 )
@@ -13,7 +14,7 @@ import (
 
 // Sets the user and the user id in session
 func SetSessionUser(c *gin.Context, user_id uint){
-	var userModel UserModel
+	var userModel models.UserModel
 	if user_id != 0 {
 		Config.DB.First(&userModel, user_id)
 	}
@@ -61,7 +62,7 @@ func IsAuthenticated(endpoint func(*gin.Context)) gin.HandlerFunc {
 
 			token, err := ValidateToken(tokenString)
 			if token.Valid {
-				var user UserModel
+				var user models.UserModel
 				claims := token.Claims.(jwt.MapClaims)
 				
 				err := Config.DB.Where("email = ?", claims["email"]).First(&user).Error

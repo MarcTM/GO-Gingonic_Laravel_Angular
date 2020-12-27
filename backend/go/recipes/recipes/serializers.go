@@ -24,7 +24,7 @@ type OneRecipeResponse struct {
 
 func (self *OneRecipeSerializer) Response() OneRecipeResponse {
 	id := self.c.Params.ByName("id")
-	var recipe RecipeModel
+	var recipe models.RecipeModel
 	err := Get(&recipe, id)	
 	if err != nil {
 		fmt.Println("error")
@@ -55,7 +55,7 @@ type AllRecipeResponse struct {
 }
 
 func (self *AllRecipeSerializer) Response() []AllRecipeResponse {
-	var recipe []RecipeModel
+	var recipe []models.RecipeModel
 	err := GetAll(&recipe)
 	if err != nil {
 		fmt.Println("error")
@@ -80,7 +80,7 @@ func (self *AllRecipeSerializer) Response() []AllRecipeResponse {
 
 // Recipe author profile serializer
 type RecipeProfileSerializer struct {
-	recipe RecipeModel
+	recipe models.RecipeModel
 }
 
 type RecipeProfileResponse struct {

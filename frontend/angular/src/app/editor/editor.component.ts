@@ -34,7 +34,7 @@ export class EditorComponent {
       .subscribe(
         response => {
           this.toastr.success('Created successfully');
-          setTimeout(() => {this.router.navigate(['/'])}, 1000);
+          setTimeout(() => {this.router.navigate(['/recipes'])}, 1000);
         },
         error => {
           this.toastr.error(error.error);

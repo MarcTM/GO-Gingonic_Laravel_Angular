@@ -1,8 +1,8 @@
 package recipes
 
-
 import (
 	"net/http"
+	"go_server/models"
 	"github.com/gin-gonic/gin"
 )
 
@@ -42,7 +42,7 @@ func GetRecipeByID(c *gin.Context) {
 
 //UpdateRecipe
 func UpdateRecipe(c *gin.Context) {
-	var recipe RecipeModel
+	var recipe models.RecipeModel
 	id := c.Params.ByName("id")
 	err := Get(&recipe, id)
 	if err != nil {
@@ -60,7 +60,7 @@ func UpdateRecipe(c *gin.Context) {
 
 //DeleteRecipe
 func DeleteRecipe(c *gin.Context) {
-	var recipe RecipeModel
+	var recipe models.RecipeModel
 	id := c.Params.ByName("id")
 	err := Delete(&recipe, id)
 	if err != nil {

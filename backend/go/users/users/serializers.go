@@ -1,6 +1,7 @@
 package users
 
 import(
+	"go_server/models"
 	"github.com/gin-gonic/gin"
 )
 
@@ -21,7 +22,7 @@ type UserResponse struct {
 
 func (self *UserSerializer) Response() UserResponse{
 
-	myUserModel := self.c.MustGet("my_user_model").(UserModel)
+	myUserModel := self.c.MustGet("my_user_model").(models.UserModel)
 	user := UserResponse{
 		Username: myUserModel.Username,
 		Email:    myUserModel.Email,
@@ -36,7 +37,7 @@ func (self *UserSerializer) Response() UserResponse{
 
 // Profile serializers
 type ProfileSerializer struct {
-	profile UserModel
+	profile models.UserModel
 }
 
 type ProfileResponse struct {

@@ -3,6 +3,7 @@ package users
 import (
 	"net/http"
 	"fmt"
+	"go_server/models"
 	"github.com/gin-gonic/gin"
 )
 
@@ -10,7 +11,7 @@ import (
 // Get user profile
 func GetProfile(c *gin.Context) {
 	username := c.Params.ByName("username")
-	userModel, err := FindUser(&UserModel{Username: username})
+	userModel, err := FindUser(&models.UserModel{Username: username})
 
 	if err != nil {
 		c.JSON(http.StatusUnprocessableEntity, "User not found")
@@ -24,7 +25,7 @@ func GetProfile(c *gin.Context) {
 
 //Get users
 func GetUsers(c *gin.Context) {
-	var user []UserModel
+	var user []models.UserModel
 
 	err := GetAll(&user)
 	if err != nil {
@@ -69,7 +70,7 @@ func LoginUser(c *gin.Context) {
 		return
 	}
 
-	userModel, err := FindUser(&UserModel{Email: loginValidator.userModel.Email})
+	userModel, err := FindUser(&models.UserModel{Email: loginValidator.userModel.Email})
 	
 	if err != nil {
 		c.JSON(http.StatusUnprocessableEntity, "Email doesn't exist")

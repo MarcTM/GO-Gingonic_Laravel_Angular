@@ -8,21 +8,8 @@ import (
 )
 
 
-type RecipeModel struct {
-	Id      	uint   `json:"id"`
-	Name    	string `json:"name"`
-	Description string `json:"description"`
-	UserModelID	uint
-	UserModel   models.UserModel
-}
-
-func (recipe *RecipeModel) TableName() string {
-    return "recipes"
-}
-
-
 //GetAllRecipes
-func GetAll(recipe *[]RecipeModel) (err error) {
+func GetAll(recipe *[]models.RecipeModel) (err error) {
 	if err = Config.DB.Find(recipe).Error; err != nil {
 		return err
 	}
@@ -30,7 +17,7 @@ func GetAll(recipe *[]RecipeModel) (err error) {
 }
 
 //CreateRecipe ... Insert New data
-func Create(recipe *RecipeModel) (err error) {
+func Create(recipe *models.RecipeModel) (err error) {
 	if err = Config.DB.Create(recipe).Error; err != nil {
 		return err
 	}
@@ -38,7 +25,7 @@ func Create(recipe *RecipeModel) (err error) {
 }
 
 //GetRecipeByID ... Fetch only one recipe by Id
-func Get(recipe *RecipeModel, id string) (err error) {
+func Get(recipe *models.RecipeModel, id string) (err error) {
 	if err = Config.DB.Where("id = ?", id).First(recipe).Error; err != nil {
 		return err
 	}
@@ -46,14 +33,14 @@ func Get(recipe *RecipeModel, id string) (err error) {
 }
 
 //UpdateRecipe ... Update recipe
-func Update(recipe *RecipeModel, id string) (err error) {
+func Update(recipe *models.RecipeModel, id string) (err error) {
 	fmt.Println(recipe)
 	Config.DB.Save(recipe)
 	return nil
 }
 
 //DeleteRecipe ... Delete recipe
-func Delete(recipe *RecipeModel, id string) (err error) {
+func Delete(recipe *models.RecipeModel, id string) (err error) {
 	if err = Config.DB.Where("ID = ?", id).First(recipe).Error; err != nil {
 		return err
 	} else {

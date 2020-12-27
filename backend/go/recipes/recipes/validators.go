@@ -12,7 +12,7 @@ type RecipeModelValidator struct {
 		Name       string   `form:"name" json:"name" binding:"required"`
 		Description string   `form:"description" json:"description" binding:"required"`
 	} `json:"recipe"`
-	recipeModel RecipeModel `json:"-"`
+	recipeModel models.RecipeModel `json:"-"`
 }
 
 

@@ -1,34 +1,16 @@
 package users
 
 import (
-	"time"
+	"go_server/models"
 	"go_server/Config"
 	"golang.org/x/crypto/bcrypt"
 	_ "github.com/go-sql-driver/mysql"
 )
 
 
-// User model
-type UserModel struct {
-	ID           uint    `json:"id"`
-	Username     string  `json:"username" gorm:"not null;unique;type:varchar(191)"`
-	Email        string  `json:"email" gorm:"not null;unique;type:varchar(191)"`
-	Password     string  `json:"password" gorm:"not null;type:varchar(191)"`
-	Bio          string  `json:"bio" gorm:"type:varchar(191)"`
-	Image        string  `json:"image" gorm:"type:varchar(191)"`
-	Type		 string  `json:"type" gorm:"not null;type:varchar(191)"`
-	CreatedAt	 time.Time
-	UpdatedAt	 time.Time
-}
-
-func (user *UserModel) TableName() string {
-    return "users"
-}
-
-
 // Find user in database and return it
-func FindUser(condition interface{}) (UserModel, error) {
-	var model UserModel
+func FindUser(condition interface{}) (models.UserModel, error) {
+	var model models.UserModel
 
 	err := Config.DB.Where(condition).First(&model).Error
 	return model, err
@@ -36,7 +18,7 @@ func FindUser(condition interface{}) (UserModel, error) {
 
 
 // Check if user exists by email or username (register)
-func CheckUserRegister(user *UserModel, username string, email string) (error) {
+func CheckUserRegister(user *models.UserModel, username string, email string) (error) {
 	err := Config.DB.Where("email = ?", email).Or("username = ?", username).First(user).Error
 
 	if err != nil{
@@ -47,7 +29,7 @@ func CheckUserRegister(user *UserModel, username string, email string) (error) {
 
 
 //Get all users
-func GetAll(user *[]UserModel) (err error) {
+func GetAll(user *[]models.UserModel) (err error) {
 	if err = Config.DB.Find(user).Error; err != nil {
 		return err
 	}
@@ -56,7 +38,7 @@ func GetAll(user *[]UserModel) (err error) {
 
 
 //Register user
-func Create(user *UserModel) (err error) {
+func Create(user *models.UserModel) (err error) {
 	if err = Config.DB.Create(user).Error; err != nil {
 		return err
 	}

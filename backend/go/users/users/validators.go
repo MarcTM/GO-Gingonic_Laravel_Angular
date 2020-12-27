@@ -1,6 +1,7 @@
 package users
 
 import (
+	"go_server/models"
 	"github.com/gin-gonic/gin"
 )
 
@@ -12,7 +13,7 @@ type RegisterValidator struct {
 		Email    string `form:"email" json:"email" binding:"required,email"`
 		Password string `form:"password" json:"password" binding:"required"`
 	} `json:"user"`
-	userModel UserModel `json:"-"`
+	userModel models.UserModel `json:"-"`
 }
 
 
@@ -44,7 +45,7 @@ type LoginValidator struct {
 		Email    string `form:"email" json:"email" binding:"required,email"`
 		Password string `form:"password" json:"password" binding:"required"`
 	} `json:"user"`
-	userModel UserModel `json:"-"`
+	userModel models.UserModel `json:"-"`
 }
 
 
