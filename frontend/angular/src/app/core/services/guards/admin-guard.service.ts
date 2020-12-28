@@ -22,14 +22,14 @@ export class AdminGuardService implements CanActivate {
           valid => {},
           error => {
             localStorage.removeItem('Bearer_lar')
-            this.router.navigate(['recipes']);
+            this.router.navigate(['']);
             console.log(error)
           }
         );
         return true;
-      } else {
 
-        (this.jwtService.getToken('Bearer')) ? this.router.navigate(['recipes']) : this.router.navigate(['signin']);
+      } else {
+        (this.jwtService.getToken('Bearer')) ? this.router.navigate(['']) : this.router.navigate(['signin']);
         return false;
       }
     }

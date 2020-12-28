@@ -25,17 +25,6 @@ func main() {
 	// Set routes
 	r := Routes.SetupRouter()
 
-
-	// // Chuleta has one (related)
-	// 
-	// var fRecipe models.RecipeModel
-	// var use models.UserModel
-	// Config.DB.Last(&fRecipe, "Name = ?", "p")
-	// fmt.Println(fRecipe)
-	// Config.DB.Model(fRecipe).Related(&use)
-	// fmt.Println(use)
-
-
 	// Run application on port 3000
 	r.Run(":3002")
 }

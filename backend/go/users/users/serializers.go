@@ -1,6 +1,7 @@
 package users
 
 import(
+	"go_server/Config"
 	"go_server/models"
 	"github.com/gin-gonic/gin"
 )
@@ -21,7 +22,6 @@ type UserResponse struct {
 }
 
 func (self *UserSerializer) Response() UserResponse{
-
 	myUserModel := self.c.MustGet("my_user_model").(models.UserModel)
 	user := UserResponse{
 		Username: myUserModel.Username,
@@ -45,15 +45,45 @@ type ProfileResponse struct {
 	Username string  `json:"username"`
 	Bio      string  `json:"bio"`
 	Image    string  `json:"image"`
+	Recipes  []ProfileRecipesResponse  `json:"recipes"`
 }
 
 func (self *ProfileSerializer) Response() ProfileResponse{
-
+	var recipes []models.RecipeModel
+	Config.DB.Model(self.profile).Association("Recipes").Find(&recipes)
+	
+	profileRecipesResponse := ProfileRecipesSerializer{recipes}
 	profile := ProfileResponse{
 		ID:       self.profile.ID,
 		Username: self.profile.Username,
 		Bio:      self.profile.Bio,
 		Image:    self.profile.Image,
+		Recipes:  profileRecipesResponse.Response(),
 	}
 	return profile
+}
+
+
+// Profile recipes serializer
+type ProfileRecipesSerializer struct {
+	recipes []models.RecipeModel
+}
+
+type ProfileRecipesResponse struct {
+	ID		    uint	`json:"id"`
+	Name     	string  `json:"name"`
+	Description string  `json:"description"`
+}
+
+func (self *ProfileRecipesSerializer) Response() []ProfileRecipesResponse {
+	var allrecipes []ProfileRecipesResponse
+	for _, r := range self.recipes {
+		onerecipe := ProfileRecipesResponse{
+			ID:			 r.Id,
+			Name:		 r.Name,
+			Description: r.Description,
+		}
+		allrecipes = append(allrecipes, onerecipe)
+	}
+	return allrecipes
 }

@@ -1,6 +1,7 @@
 .profile_page {
     width: 100%;
     display: flex;
+    flex-direction: column;
     padding-top: 100px;
     padding-bottom: 100px;
     align-items: center;
@@ -8,7 +9,12 @@
     background-color: rgb(206, 206, 142);
 }
 
+/* User profile */
 .profile_user {
+    display: block;
+}
+
+.profile_user div {
     width: 80%;
     display: flex;
     flex-direction: column;
@@ -28,12 +34,36 @@
 }
 
 .profile_username {
+    display: block;
     font-size: 2.5em;
     margin-bottom: 30px;
 }
 
 .profile_description {
-    text-align: center;
     display: block;
+    text-align: center;
     width: 60%;
+}
+
+/* User recipes */
+.profile_recipes {
+    width: 80%;
+    display: block;
+    margin-top: 50px;
+}
+
+.profile_recipes h2 {
+    align-content: center;
+}
+
+.recipes {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.recipe {
+    margin: 10px 5px 10px 5px;
 }

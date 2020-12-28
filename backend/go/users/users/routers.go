@@ -10,7 +10,6 @@ func UsersProfiles(router *gin.RouterGroup) {
 	router.GET("/:username", GetProfile)
 }
 
-
 // /users
 func UsersRegister(router *gin.RouterGroup) {
 	router.GET("/", GetUsers)
