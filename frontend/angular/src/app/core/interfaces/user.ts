@@ -1,3 +1,5 @@
+import { Recipe } from './recipe';
+
 export interface User {
     id: number;
     username: string;
@@ -19,4 +21,5 @@ export interface Profile {
     username: string;
     image: string;
     bio: string;
+    recipes: Recipe[];
 }

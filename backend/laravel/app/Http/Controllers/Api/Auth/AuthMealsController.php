@@ -7,6 +7,7 @@ use App\Http\Controllers\Api\Controller;
 use Illuminate\Support\Facades\Hash;
 use App\User;
 use App\Meal;
+use App\Data\Requests\CreateMeal;
 
 
 class AuthMealsController extends Controller
@@ -20,11 +21,13 @@ class AuthMealsController extends Controller
             return response()->json("You do not have perimssions to do this");
         }
 
-        $meals = new Meal();
+        $validation = new CreateMeal;
+        $validated = $validation->validate($request);
 
-    	$meals->name = $request->name;
-    	$meals->description = $request->description;
-        $meals->price = $request->price;
+        $meals = new Meal();
+    	$meals->name = $validated['meal']['name'];
+    	$meals->description = $validated['meal']['description'];
+        $meals->price = $validated['meal']['price'];
 
     	$meals->save();
     }

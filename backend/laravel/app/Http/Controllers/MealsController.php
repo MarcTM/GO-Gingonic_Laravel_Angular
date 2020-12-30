@@ -4,17 +4,21 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Meal;
+use App\Data\Transformers\MealsTransformer;
 
 
 class MealsController extends Controller
 {
-    // Meals
 
     // Show all meals
     public function show()
     {
         $meals = Meal::all();
-        return response()->json($meals);
+
+        $transformer = new MealsTransformer;
+        $transform = $transformer->transform($meals);
+        
+        return response()->json($transform);
     }
 
 
