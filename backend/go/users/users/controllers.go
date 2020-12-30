@@ -3,6 +3,7 @@ package users
 import (
 	"net/http"
 	"fmt"
+	"go_server/Config"
 	"go_server/models"
 	"github.com/gin-gonic/gin"
 )
@@ -105,3 +106,66 @@ func ValidateUserToken(c *gin.Context) {
 		c.JSON(http.StatusUnprocessableEntity, "Invalid Token")
 	}
 }
+
+
+// Already following?
+func IsFollowing(c *gin.Context) {
+	username := c.Params.ByName("username")
+	myUserModel := c.MustGet("my_user_model").(models.UserModel)
+
+	var user models.UserModel
+	Config.DB.Where("id = ?", myUserModel.ID).First(&user)
+
+	var followers models.UserModel
+	err := Config.DB.Model(user).Where("username = ?", username).Association("Following").Find(&followers).Error
+
+	if err != nil {
+		c.JSON(http.StatusUnprocessableEntity, "Not found")
+	} else {
+		c.JSON(http.StatusOK, "Found")
+	}
+}
+
+
+// Follow user
+func FollowUser(c *gin.Context) {
+	id := c.Params.ByName("id")
+	myUserModel := c.MustGet("my_user_model").(models.UserModel)
+
+	var user models.UserModel
+	Config.DB.Preload("Following").First(&user, "id = ?", myUserModel.ID)
+	
+	var followed models.UserModel
+	Config.DB.Where("id = ?", id).First(&followed)
+
+	Config.DB.Model(user).Association("Following").Append(followed)
+	c.JSON(http.StatusOK, "OK")
+}
+
+
+// Unfollow user
+func UnfollowUser(c *gin.Context) {
+	id := c.Params.ByName("id")
+	myUserModel := c.MustGet("my_user_model").(models.UserModel)
+
+	var user models.UserModel
+	Config.DB.Preload("Following").First(&user, "id = ?", myUserModel.ID)
+	
+	var unfollowed models.UserModel
+	Config.DB.Where("id = ?", id).First(&unfollowed)
+
+	Config.DB.Model(user).Association("Following").Delete(unfollowed)
+	c.JSON(http.StatusOK, "OK")
+}
+
+
+// // Count following
+// func Count(c *gin.Context) {
+// 	myUserModel := c.MustGet("my_user_model").(models.UserModel)
+
+// 	var user models.UserModel
+// 	Config.DB.Preload("Following").First(&user, "id = ?", myUserModel.ID)
+
+// 	count := Config.DB.Model(user).Association("Following").Count()
+// 	fmt.Println(count)
+// }

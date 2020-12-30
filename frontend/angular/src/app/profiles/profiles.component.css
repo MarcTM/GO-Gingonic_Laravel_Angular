@@ -45,6 +45,32 @@
     width: 60%;
 }
 
+.follow {
+    margin-top: 20px;
+    display: block;
+    flex-direction: row;
+}
+
+.follow div {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.follow div button {
+    width: 200px;
+    color: white;
+    font-weight: bold;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    border-radius: 10px;
+    background-color: black;
+    border: 2px solid grey;
+}
+
+
 /* User recipes */
 .profile_recipes {
     width: 80%;

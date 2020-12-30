@@ -28,10 +28,10 @@ export class MealDetailsComponent implements OnInit {
     const id = +this.route.snapshot.paramMap.get('id');
     
     this.mealService.getMeal(id)
-    .subscribe(meal => {
-      console.log(meal);
-      this.meal = meal;
-    })
+      .subscribe(meal => {
+        console.log(meal);
+        this.meal = meal;
+      })
   }
 
   // Go back to the previous page

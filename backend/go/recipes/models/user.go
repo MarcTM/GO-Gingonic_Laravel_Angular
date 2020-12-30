@@ -13,6 +13,7 @@ type UserModel struct {
 	Image        string  `json:"image" gorm:"type:varchar(191)"`
 	Type		 string  `json:"type" gorm:"not null;type:varchar(191)"`
 	Recipes		 []RecipeModel
+	Following	 []UserModel	`gorm:"many2many:followers;association_jointable_foreignkey:following_id"`
 	CreatedAt	 time.Time
 	UpdatedAt	 time.Time
 }

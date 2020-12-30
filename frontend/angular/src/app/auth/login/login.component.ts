@@ -1,10 +1,9 @@
-import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormArray, Validators } from '@angular/forms';
+import { Component } from '@angular/core';
+import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from "@angular/router"
 import { ToastrService } from 'ngx-toastr';
 
 import { UserService } from '../../core/services/user.service';
-
 
 @Component({
   selector: 'app-login',
@@ -18,7 +17,7 @@ export class LoginComponent {
   constructor(private fb: FormBuilder,
     private router: Router,
     private userService: UserService,
-    private toastr: ToastrService) { }
+    private toastr: ToastrService) {}
 
 
   // Login form

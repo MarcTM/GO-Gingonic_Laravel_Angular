@@ -1,8 +1,10 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Profile } from '../core/interfaces/user';
 import { ActivatedRoute, Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 
 import { UserService } from '../core/services/user.service';
+import { ProfileService } from '../core/services/profile.service';
 
 @Component({
   selector: 'app-profiles',
@@ -13,17 +15,14 @@ import { UserService } from '../core/services/user.service';
 export class ProfilesComponent implements OnInit {
 
   profile: Profile;
+  following: boolean = false;
 
   constructor(
     private route: ActivatedRoute,
     private router: Router,
     private userService: UserService,
-  ) {}
-
-
-  ngOnInit(): void {
-    this.getProfile()
-  }
+    private profileService: ProfileService,
+    private toastr: ToastrService) {}
 
 
   // Get one user profile
@@ -37,7 +36,36 @@ export class ProfilesComponent implements OnInit {
         },
         error => {this.router.navigate(['/recipes'])}
       )
+
+    if(localStorage.getItem('Bearer')) {
+      this.profileService.isFollowing(username)
+      .subscribe(
+        res => {this.following = true},
+        error => {this.following = false}
+      )
+    }
   }
 
+  // Follow user
+  follow(id) {
+    this.profileService.follow(id)
+    .subscribe(
+      response => {this.following = true},
+      error => {this.toastr.error('You have to login to do this')}
+    )
+  }
+
+  // Follow user
+  unfollow(id) {
+    this.profileService.unfollow(id)
+    .subscribe(
+      response => {this.following = false},
+      error => {this.toastr.error('You have to login to do this')}
+    )
+  }
+
+  ngOnInit(): void {
+    this.getProfile();
+  }
 
 }
