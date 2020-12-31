@@ -3,6 +3,7 @@ package recipes
 import (
 	"net/http"
 	"go_server/models"
+	"go_server/Config"
 	"github.com/gin-gonic/gin"
 )
 
@@ -68,4 +69,55 @@ func DeleteRecipe(c *gin.Context) {
 	} else {
 		c.JSON(http.StatusOK, gin.H{"id " + id: "is deleted"})
 	}
+}
+
+
+// Already favorited?
+func IsFavorited(c *gin.Context) {
+	id := c.Params.ByName("id")
+	myUserModel := c.MustGet("my_user_model").(models.UserModel)
+
+	var user models.UserModel
+	Config.DB.Where("id = ?", myUserModel.ID).First(&user)
+
+	var favorites models.RecipeModel
+	err := Config.DB.Model(user).Where("id = ?", id).Association("Favorites").Find(&favorites).Error
+
+	if err != nil {
+		c.JSON(http.StatusUnprocessableEntity, "Not found")
+	} else {
+		c.JSON(http.StatusOK, "Found")
+	}
+}
+
+
+// Favorite recipe
+func FavoriteRecipe(c *gin.Context) {
+	id := c.Params.ByName("id")
+	myUserModel := c.MustGet("my_user_model").(models.UserModel)
+
+	var user models.UserModel
+	Config.DB.Preload("Favorites").First(&user, "id = ?", myUserModel.ID)
+	
+	var favorited models.RecipeModel
+	Config.DB.Where("id = ?", id).First(&favorited)
+
+	Config.DB.Model(user).Association("Favorites").Append(favorited)
+	c.JSON(http.StatusOK, "OK")
+}
+
+
+// Unfavorite recipe
+func UnfavoriteRecipe(c *gin.Context) {
+	id := c.Params.ByName("id")
+	myUserModel := c.MustGet("my_user_model").(models.UserModel)
+
+	var user models.UserModel
+	Config.DB.Preload("Favorites").First(&user, "id = ?", myUserModel.ID)
+	
+	var unfavorited models.RecipeModel
+	Config.DB.Where("id = ?", id).First(&unfavorited)
+
+	Config.DB.Model(user).Association("Favorites").Delete(unfavorited)
+	c.JSON(http.StatusOK, "OK")
 }

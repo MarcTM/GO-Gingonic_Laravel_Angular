@@ -12,6 +12,7 @@ type UserModel struct {
 	Type		 string  		`json:"type" gorm:"not null;type:varchar(191)"`
 	Recipes		 []RecipeModel
 	Following	 []UserModel	`gorm:"many2many:followers;association_jointable_foreignkey:following_id"`
+	Favorites	 []RecipeModel  `gorm:"many2many:favorites"`
 	CreatedAt	 time.Time
 	UpdatedAt	 time.Time
 }

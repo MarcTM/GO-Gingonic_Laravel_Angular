@@ -21,7 +21,7 @@ export class RecipeDetailsComponent implements OnInit {
   ) {}
 
 
-  @Input() recipe: Recipe;
+  recipe: Recipe;
 
   // Get one recipe information
   getRecipe(): void {

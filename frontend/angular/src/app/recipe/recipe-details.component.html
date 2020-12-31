@@ -1,10 +1,26 @@
-<div *ngIf="recipe">
+<section class="recipe_page">
+    <div *ngIf="recipe" class="recipe">
 
-    <h2>{{recipe.name}} Details</h2>
-    <div><span>ID: </span>{{recipe.id}}</div>
-    <div><span>Description: </span>{{recipe.description}}</div>
+        <div class="recipe_author">
+            <a routerLink="/profiles/{{recipe.author.username}}">
+                <span class="author_img"><img src="https://lh3.googleusercontent.com/ogw/ADGmqu_wixuPJYRfks70Xz_NL3vS68HLHfKUIsBKKsBIIw=s32-c-mo"/></span>
+                <!-- <span class="author_img"><img src="{{recipe.author.image}}"/></span> -->
+                <span class="author_username">{{recipe.author.username}}</span>
+                <div class="fav-follow-btn">
+                    <app-follow-fav-buttons [author_id]="recipe.author.id" [author_username]="recipe.author.username" [recipe]="recipe.id"></app-follow-fav-buttons>
+                </div>
+            </a>
+        </div>
 
-    <br><br>
-    <button (click)="goBack()">GO BACK</button>
+        <div class="recipe_info">
+            <h2 class="recipe_title">{{recipe.name}}</h2>
+            <img class="recipe_image" src="https://www.hogarmania.com/archivos/202001/karl6500-macarrones-con-queso-xl-1280x720x80xX.jpg"/>
+            <div class="recipe_description">
+                <span>Description</span>
+                <p>{{recipe.description}}</p>
+            </div>
+            <button class="back-btn" (click)="goBack()">GO BACK</button>
+        </div>
 
-</div>
+    </div>
+</section>

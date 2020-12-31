@@ -28,7 +28,23 @@ export class RecipeService {
 
   // Get recipe by Id
   getRecipe(id: number): Observable<Recipe> {
-    return this.http.get<Recipe>(`${environment.api_recipes_url}/recipes/${id}`)
+    return this.http.get<Recipe>(`${environment.api_recipes_url}/recipes/recipe/${id}`)
+  }
+
+
+  // Already favorited
+  isFavorited(id) {
+    return this.http.post(environment.api_recipes_url+'/recipes/favorited/'+id, {}, {headers: new HttpHeaders({'Authorization': `Bearer ${localStorage.getItem('Bearer')}`})});
+  }
+
+  // Favorite recipe
+  favorite(id) {
+    return this.http.put(environment.api_recipes_url+'/recipes/favorite/'+id, {}, {headers: new HttpHeaders({'Authorization': `Bearer ${localStorage.getItem('Bearer')}`})});
+  }
+
+  // Unfavorite recipe
+  unfavorite(id) {
+    return this.http.put(environment.api_recipes_url+'/recipes/unfavorite/'+id, {}, {headers: new HttpHeaders({'Authorization': `Bearer ${localStorage.getItem('Bearer')}`})});
   }
 
 }

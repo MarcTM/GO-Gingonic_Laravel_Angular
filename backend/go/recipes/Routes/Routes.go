@@ -19,7 +19,7 @@ func SetupRouter() *gin.Engine {
 	grp1 := r.Group("/api")
 	{
 		// Recipes
-		recipes.RecipesRegister(grp1.Group("/recipes"))
+		recipes.RecipesRoutes(grp1.Group("/recipes"))
 	}
 	return r
 }

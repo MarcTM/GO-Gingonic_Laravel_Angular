@@ -28,6 +28,7 @@ import { MealPreviewComponent } from './shared/meal-helpers/meal-preview.compone
 import { MealDetailsComponent } from './meal/meal-details.component';
 import { HomeComponent } from './home/home.component';
 import { SliderComponent } from './shared/slider/slider.component';
+import { FollowFavButtonsComponent } from './shared/buttons/fav_follow/follow-fav-buttons.component';
 
 
 @NgModule({
@@ -53,6 +54,7 @@ import { SliderComponent } from './shared/slider/slider.component';
     MealDetailsComponent,
     HomeComponent,
     SliderComponent,
+    FollowFavButtonsComponent,
   ],
   imports: [
     BrowserModule,
