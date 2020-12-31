@@ -24,3 +24,10 @@ Route::group(['prefix'=>'meals'], function ($router) {
     Route::get('/', 'MealsController@show');
     Route::get('/{id}', 'MealsController@showMeal');
 });
+
+
+Route::group(['prefix'=>'slider'], function ($router) {
+    
+    // Slider
+    Route::get('/', 'SliderController@show');
+});

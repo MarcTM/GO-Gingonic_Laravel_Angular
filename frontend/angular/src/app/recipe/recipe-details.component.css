@@ -13,10 +13,6 @@
     width: 80%;
 }
 
-.recipe_author {
-
-}
-
 .recipe_info {
     display: flex;
     flex-direction: column;

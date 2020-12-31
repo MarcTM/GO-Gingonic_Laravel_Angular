@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
+import { SliderService } from '../../core/services/slider.service';
+import { Slider } from '../../core/interfaces/slider';
 
 @Component({
   selector: 'app-slider',
@@ -7,11 +9,15 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./slider.component.css']
 })
 
-export class SliderComponent {
+export class SliderComponent implements OnInit {
 
-  constructor() {}
+  constructor(
+    private sliderService: SliderService
+  ) {}
 
-  
+
+  homeSlides = [];
+
   customOptions: any = {
     loop: true,
     items: 1,
@@ -19,13 +25,18 @@ export class SliderComponent {
     dots: true
   }
 
-  slides = [
-    {
-      image: "../../assets/img/meal1.jpeg"
-    },
-    {
-      image: "../../assets/img/meal2.jpeg"
-    },
-  ]
+  getSlides(): void {
+    this.sliderService.getSlides()
+    .subscribe(slides => {
+      slides.map(slide => {
+        slide.image = '../../assets/img/' + slide.image;
+        this.homeSlides.push(slide);
+      })
+    });
+  }
+
+  ngOnInit(): void {
+    this.getSlides();
+  }
 
 }

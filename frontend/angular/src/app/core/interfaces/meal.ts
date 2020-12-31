@@ -1,6 +1,3 @@
-import { Time } from '@angular/common';
-import { Timestamp } from 'rxjs';
-
 export interface Meal {
     id: number;
     name: string;

@@ -1,11 +1,19 @@
-<div *ngIf="meal">
+<section class="meal_page">
+    <div *ngIf="meal" class="meal">
 
-    <h2>{{meal.name}} Details</h2>
-    <div><span>ID: </span>{{meal.id}}</div>
-    <div><span>Description: </span>{{meal.description}}</div>
-    <div><span>Price: </span>{{meal.price}}€</div>
+        <div class="meal_info">
+            <h2 class="meal_title">{{meal.name}}</h2>
+            <img class="meal_image" src="https://images.immediate.co.uk/production/volatile/sites/30/2020/08/chorizo-mozarella-gnocchi-bake-cropped-9ab73a3.jpg?quality=90&resize=960,872"/>
+            <div class="meal_description">
+                <span>Description</span>
+                <p>{{meal.description}}</p>
+            </div>
+            <div class="meal_price">
+                <span class="price_title">Price:</span>
+                <span class="price">{{meal.price}} €</span>
+            </div>
+            <button class="back-btn" (click)="goBack()">GO BACK</button>
+        </div>
 
-    <br><br>
-    <button (click)="goBack()">GO BACK</button>
-
-</div>
+    </div>
+</section>
