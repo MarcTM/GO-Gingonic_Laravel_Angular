@@ -4,22 +4,88 @@
 	<title>PROYECTO SERVIDOR - MEJORAS</title>
 	<style type="text/css">
 		
+		body {
+			background-color: lightblue;
+			font-family: Courier New, sans-serif;
+			padding-left: 20px;
+		}
+
+		h1 {
+			margin-top: 50px;
+		}
+
+		img {
+			margin: 10px;
+		}
+
 	</style>	
 </head>
 <body>
 
+	<!-- GO MODULES -->
 	<h1>REFACTORIZACIÓN DE GO PARA PASAR A GO MODULES</h1>
 	<p>Vamos a ver cómo pasar nuestro proyecto de Go a Go Modules, muy útil para dejar de utilizar los comandos para exportar las variables gopath, goroot, etc, cada vez que queremos ejecutar nuestro proyecto. De esta manera con tan solo ejecutar <b>go run main.go</b> ya nos funcionaría.</p>
 
 	<h3>Iniciar fichero go.mod</h3>
 	<p>Para empezar a usar Go Mod en nuestro proyecto, tan solo tenemos que escribir <b>go mod init 'nombre de modulo'></b>. En mi caso es <b>go mod init go_server</b>. El nombre del módulo será normalmente el nombre del propio proyecto, pero se puede llamar como querais. Esto nos creará un fichero <b>go.mod</b> en el cual no tendremos que tocar nada.</p>
+	<img src="images/1.png"/>
 
 	<h3>Descargar las dependencias</h3>
-	<p>Ahora toca descargar las dependencias para ese módulo. Esto servirá tanto para la primera vez como para cada vez que añadamos nuevas dependencias. Para ello, escribir en la terminal <b>go mod tidy</b>.<br><br>
-	Go mod tidy se encargará de incluir en el go.mod todas las dependencias necesarias para nuestros tests, así como todas las dependencias necesarias en nuestro proyecto (digamos que recorre toda tu arquitectura de paquetes buscando las depenencias que debe instalar). También creará el fichero <b>go.sum</b>, el cual se encargará de gestionar nuestras versiones e indicar el hash de integridad de cada una de ellas.</p>
+	<p>Ahora toca descargar las dependencias para ese módulo. Esto servirá tanto para la primera vez como para cada vez que añadamos nuevas dependencias. Para ello, escribir en la terminal <b>go mod tidy</b>.</p>
+	<img src="images/2.png"/>
+	<p>Go mod tidy se encargará de incluir en el go.mod todas las dependencias necesarias para nuestros tests, así como todas las dependencias necesarias en nuestro proyecto (digamos que recorre toda tu arquitectura de paquetes buscando las depenencias que debe instalar). También creará el fichero <b>go.sum</b>, el cual se encargará de gestionar nuestras versiones e indicar el hash de integridad de cada una de ellas.</p>
 
 
+	<!-- MICROSERVICIOS -->
+	<h1>REFACTORIZACIÓN DE LA APLICACIÓN EN MICROSERVICIOS</h1>
+	<p>En este punto vamos a refactorizar nuestra aplicación entera en microservicios, de esta forma cada "entidad" del proyecto se ejecutará en un puerto diferente.</p>
 
+	<p>Para ello, debemos separar cada "entidad" de nuestro proyecto en diferentas carpetas, cada una con su main.go, go.mod, y archivos y ficheros necesarios para que funcione. En mi caso tengo dos microservicios, el de <i>users</i> y el de <i>recipes</i>. Cada uno tiene su main.go y go.mod y los mismos ficheros de configuración de la base de datos, pero luego cada uno tiene sus propios ficheros, como los controladores, modelos, etc.</p>
+	<img src="images/3.png"/>
+	<img src="images/4.png"/>
+	<img src="images/5.png"/>
+
+	<p>La arquitectura de mis carpetas se reparte de la siguiente manera:</p>
+	<ul>
+		<li>
+			<p><b>Config:</b> Aspectos de configuración globales para cada microservicio, en este caso archivos de configuración de la base de datos y de redis.</p>
+			<img src="images/6.png"/>
+		</li>
+
+		<li>
+			<p><b>models:</b> Esta carpeta contiene todos los modelos del proyecto. En cada microservicio tendré los modelos repetidos.</p>
+			<img src="images/7.png"/>
+		</li>
+
+		<li>
+			<p><b>Routes:</b> En este archivo se definen algunas rutas/endpoints del microservicio, y los encabezados CORS.</p>
+			<img src="images/8.png"/>
+		</li>
+
+		<li>
+			<p><b>users / recipes:</b> Aquí tengo varios ficheros que son independientes de cada microservicio. Tengo los controladores, donde se definen las funciones de cada endpoint; los middlewares, para proteger las rutas; las funciones específicas del modelo principal del microservicio (por ejemplo buscar en base de datos un usuario o una receta); las rutas/endpoints (antes en la carpeta Routes se definian los prefijos para cada endpoint, que se definen aquí); y los validators y serializers, para validar datos y enviarlos.</p>
+			<img src="images/9.png"/>
+			<img src="images/10.png"/>
+		</li>
+	</ul>
+
+	<p>Con esto ya estarían los microservicios terminados. Ahora en cada main.go defino que cada uno se ejecute por un puerto diferente:</p>
+	<img src="images/11.png"/>
+	<img src="images/12.png"/>
+
+
+	<!-- DOCKER-COMPOSE EXTENDS -->
+	<h1>MICROSERVICIOS EN DOCKER-COMPOSE (CON EXTENDS)</h1>
+	<p>Ahora voy a enseñar como me han quedado los servicios de go en el docker-compose.yml con la propiedad extends. Esta propiedad sirve para extender otro servicio.</p>
+	<img src="images/13.png"/>
+	<p>Con extends le digo a cada servicio que me extienda el servicio 'microservices' del archivo microservices.yml, que quedaría así:</p>
+	<img src="images/14.png"/>
+	<p>Con la versión 3+ de Docker Compose no podía utilizar la propiedad extends, así que tuve que bajarla a la 2.4.</p>
+	<p>Esta propiedad me sirve para extender caracterísitcas en común de cada microservicio, en mi caso el comando a ejecutar y la network.</p>
+
+
+	<!-- TRAEFIK, PROMETHEUS, GRAFANA -->
+	<h1>PROMETHEUS Y GRAFANA</h1>
 
 
 </body>
