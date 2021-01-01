@@ -1,0 +1,166 @@
+version: "2.4"
+
+services:
+# MySql service
+    db:
+      image: mysql:5.7
+      container_name: mysql_marc_container
+      environment:
+        MYSQL_ROOT_PASSWORD: "root"
+        MYSQL_DATABASE: "marc_project"
+        MYSQL_USER: "root"
+        MYSQL_PASSWORD: "root"
+      volumes:
+        - ./mysql:/var/lib/mysql
+      ports:
+        - "3308:3306"
+      networks:
+        - servidor_network
+      
+
+# Redis service
+    redis:
+      image: redis:4.0
+      container_name: redis_marc_container
+      volumes:
+        - redisData:/data
+      ports:
+        - "6382:6379"
+      networks:
+        - servidor_network
+
+
+# Go service (users microservice)
+    go_users:
+        extends:
+          file: microservices.yml
+          service: microservices
+        build: ./backend/go/users
+        container_name: go_users_marc_container
+        ports:
+          - 3001:3001
+        labels:
+          traefik.backend: "users"
+          traefik.frontend.rule: "PathPrefix:/"
+        depends_on:
+          - db
+          - redis
+        volumes:
+          - ./backend/go/users:/go/src/go/users
+     
+
+# Go service (recipes microservice)
+    go_recipes:
+        extends:
+          file: microservices.yml
+          service: microservices
+        build: ./backend/go/recipes
+        container_name: go_recipes_marc_container
+        ports:
+          - 3002:3002
+        labels:
+          traefik.backend: "recipes"
+          traefik.frontend.rule: "PathPrefix:/"
+        depends_on:
+          - db
+          - redis
+        volumes:
+          - ./backend/go/recipes:/go/src/go/recipes
+
+
+# Laravel service
+    laravel:
+        tty: true
+        image: bitnami/laravel:7
+        container_name: laravel_marc_container
+        working_dir: /laravel/src/laravel
+        volumes:
+          - ./backend/laravel:/laravel/src/laravel
+        command: >
+          bash -c " composer install
+          && php artisan route:list
+          && php artisan key:generate
+          && php artisan migrate
+          && php artisan db:seed
+          && php artisan serve "
+        depends_on:
+          - db
+          - redis
+          - go_users
+          - go_recipes
+        ports:
+          - 8000:8000
+        networks:
+          - servidor_network
+
+
+# Traefik service
+    traefik:
+      image: traefik:1.7.2-alpine
+      container_name: traefik_marc_container
+      ports:
+        - "81:80"
+        - "8081:8080"
+      volumes:
+        - /var/run/docker.sock:/var/run/docker.sock 
+        - ./backend/go/traefik:/etc/traefik
+      networks:
+        - servidor_network
+      # command:
+      #   - "--logLevel=DEBUG"
+      #   - "--api"
+      #   - "--metrics"
+      #   - "--metrics.prometheus.buckets=0.1,0.3,1.2,5.0"
+      #   - "--docker"
+      #   - "--docker.swarmMode"
+      #   - "--docker.domain=docker.localhost"
+      #   - "--docker.watch"
+
+
+# # Prometheus
+#     prometheus:
+#       image: prom/prometheus
+#       volumes:
+#         - ./prometheus/:/etc/prometheus/
+#         - prometheus_data:/prometheus
+#       command:
+#         - '--config.file=/etc/prometheus/prometheus.yml'
+#         - '--storage.tsdb.path=/prometheus'
+#         - '--web.console.libraries=/usr/share/prometheus/console_libraries'
+#         - '--web.console.templates=/usr/share/prometheus/consoles'
+#       networks:
+#         - servidor_network
+#       labels:
+#         - "traefik.http.routers.prometheus.rule=Host(`prometheus.localhost`)"
+#         - "traefik.http.routers.prometheus.service=prometheus"
+#         - "traefik.http.services.prometheus.loadbalancer.server.port=9090"
+#         - "traefik.docker.network=inbound"
+  
+
+# # Grafana
+#     grafana:
+#       image: grafana/grafana
+#       depends_on:
+#         - prometheus
+#       volumes:
+#         - grafana_data:/var/lib/grafana
+#         - ./grafana/provisioning/:/etc/grafana/provisioning/
+#       env_file:
+#         - ./grafana/config.monitoring
+#       networks:
+#         - servidor_network
+#       user: "104"
+#       labels:
+#         - "traefik.http.routers.grafana.rule=Host(`grafana.localhost`)"
+#         - "traefik.http.routers.grafana.service=grafana"
+#         - "traefik.http.services.grafana.loadbalancer.server.port=3000"
+#         - "traefik.docker.network=inbound"
+
+
+networks:
+  servidor_network:
+  
+volumes:
+  redisData:
+  # prometheus_data: {}
+  # grafana_data: {}

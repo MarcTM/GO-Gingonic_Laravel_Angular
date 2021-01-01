@@ -1,5 +1,9 @@
 <div class="recipes">
     <ul>
+        <div class="controls">
+            <pagination-controls class="my-pagination" (pageChange)="actualPage = $event"></pagination-controls>
+        </div>
+        
         <app-recipe-preview *ngFor="let recipe of recipes | paginate: { itemsPerPage: 5, currentPage: actualPage }" [recipe]="recipe">
         </app-recipe-preview>
     

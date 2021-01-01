@@ -17,7 +17,7 @@ export class RecipeService {
 
   // Create recipe
   save(data) {
-    return this.http.post<any>(environment.api_recipes_url+'/recipes/', { recipe: data }, {headers: new HttpHeaders({'Authorization': `Bearer ${localStorage.getItem('Bearer')}`})})
+    return this.http.post<any>(environment.api_recipes_url+'/recipes/', {recipe: data}, {headers: new HttpHeaders({'Authorization': `Bearer ${localStorage.getItem('Bearer')}`})})
   }
 
   // Get recipes
@@ -47,9 +47,19 @@ export class RecipeService {
     return this.http.put(environment.api_recipes_url+'/recipes/unfavorite/'+id, null, {headers: new HttpHeaders({'Authorization': `Bearer ${localStorage.getItem('Bearer')}`})});
   }
 
+  // Update recipe
+  update(data) {
+    return this.http.put(environment.api_recipes_url+'/recipes/recipe/'+data.id, {recipe: data}, {headers: new HttpHeaders({'Authorization': `Bearer ${localStorage.getItem('Bearer')}`})});
+  }
+
   // Delete recipe
   delete(id) {
     return this.http.delete(environment.api_recipes_url+'/recipes/recipe/'+id, {headers: new HttpHeaders({'Authorization': `Bearer ${localStorage.getItem('Bearer')}`})});
+  }
+
+  // Return if a user owns that recipe
+  owns(id:number): Observable<Recipe>{
+    return this.http.post<Recipe>(environment.api_recipes_url+'/recipes/owns/'+id, null, {headers: new HttpHeaders({'Authorization': `Bearer ${localStorage.getItem('Bearer')}`})});
   }
 
 }

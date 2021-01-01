@@ -5,20 +5,20 @@ import { ToastrService } from 'ngx-toastr';
 
 import { RecipeService } from '../core/services/recipe.service';
 
-
 @Component({
   selector: 'app-editor',
   templateUrl: './editor.component.html',
   styleUrls: ['./editor.component.css']
 })
 
-
 export class EditorComponent {
 
-  constructor(private fb: FormBuilder,
+  constructor(
+    private fb: FormBuilder,
     private router: Router,
     private recipeService: RecipeService,
-    private toastr: ToastrService) { }
+    private toastr: ToastrService
+  ) {}
 
 
   // Editor form fields
@@ -27,19 +27,18 @@ export class EditorComponent {
     description: ['', Validators.required],
   });
 
-
   // Submit form
   submitEditor() {
-      this.recipeService.save(this.editorForm.value)
-      .subscribe(
-        response => {
-          this.toastr.success('Created successfully');
-          setTimeout(() => {this.router.navigate(['/recipes'])}, 1000);
-        },
-        error => {
-          this.toastr.error(error.error);
-        }
-      )
+    this.recipeService.save(this.editorForm.value)
+    .subscribe(
+      response => {
+        this.toastr.success('Created successfully');
+        setTimeout(() => {this.router.navigate(['/recipes'])}, 1000);
+      },
+      error => {
+        this.toastr.error(error.error);
+      }
+    )
   }
 
 }

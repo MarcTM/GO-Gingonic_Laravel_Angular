@@ -31,6 +31,7 @@ import { HomeComponent } from './home/home.component';
 import { SliderComponent } from './shared/slider/slider.component';
 import { FollowFavButtonsComponent } from './shared/buttons/fav_follow/follow-fav-buttons.component';
 import { UpdateDeleteButtonsComponent } from './shared/buttons/update-delete/update-delete-buttons.component';
+import { EditorUpdateComponent } from './editor/update/editor-update.component';
 
 
 @NgModule({
@@ -58,6 +59,7 @@ import { UpdateDeleteButtonsComponent } from './shared/buttons/update-delete/upd
     SliderComponent,
     FollowFavButtonsComponent,
     UpdateDeleteButtonsComponent,
+    EditorUpdateComponent,
   ],
   imports: [
     BrowserModule,

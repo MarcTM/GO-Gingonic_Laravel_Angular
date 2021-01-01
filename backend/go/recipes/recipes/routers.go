@@ -15,4 +15,6 @@ func RecipesRoutes(router *gin.RouterGroup) {
 	router.POST("/favorited/:id", IsAuthenticated(IsFavorited))
 	router.PUT("/favorite/:id", IsAuthenticated(FavoriteRecipe))
 	router.PUT("/unfavorite/:id", IsAuthenticated(UnfavoriteRecipe))
+
+	router.POST("/owns/:id", IsAuthenticated(OwnsRecipe))
 }

@@ -28,9 +28,7 @@ export class FollowFavButtonsComponent implements OnInit {
   favorited: boolean = false;
 
   // Follow user
-  follow($event) {
-    $event.preventDefault();
-
+  follow() {
     this.profileService.follow(this.author_id)
     .subscribe(
       response => {this.following = true},
@@ -57,9 +55,7 @@ export class FollowFavButtonsComponent implements OnInit {
   }
 
   // Unfollow user
-  unfavorite($event) {
-    $event.preventDefault();
-
+  unfavorite() {
     this.recipeService.unfavorite(this.recipe)
     .subscribe(
       response => {this.favorited = false},

@@ -34,8 +34,10 @@ func Get(recipe *models.RecipeModel, id string) (err error) {
 
 //UpdateRecipe ... Update recipe
 func Update(recipe *models.RecipeModel, id string) (err error) {
-	fmt.Println(recipe)
-	Config.DB.Save(recipe)
+	var update models.RecipeModel
+	Config.DB.Where("id = ?", id).First(&update)
+
+	Config.DB.Model(&update).Updates(recipe)
 	return nil
 }
 

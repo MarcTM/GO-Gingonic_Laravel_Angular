@@ -10,6 +10,28 @@ import(
 )
 
 
+
+// Short recipe serializer, without author
+type ShortRecipeSerializer struct {
+	recipe models.RecipeModel
+}
+
+type ShortRecipeResponse struct {
+	ID             uint                  `json:"id"`
+	Name           string                `json:"name"`
+	Description    string                `json:"description"`
+}
+
+func (self *ShortRecipeSerializer) Response() ShortRecipeResponse {
+	response := ShortRecipeResponse{
+		ID:          self.recipe.Id,
+		Name:        self.recipe.Name,
+		Description: self.recipe.Description,
+	}
+	return response
+}
+
+
 // One recipe serializer
 type OneRecipeSerializer struct {
 	c *gin.Context

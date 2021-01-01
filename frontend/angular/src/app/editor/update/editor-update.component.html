@@ -1,0 +1,20 @@
+<section class="editor_page">
+
+    <div *ngIf="recipe" class="editor-display-form">
+        <h1>UPDATE RECIPE</h1>
+
+        <div class="editor_form">
+            <form [formGroup]="editorForm">
+                <label>Name</label>
+                <input required type="text" value={{recipe.name}} formControlName="name">
+
+
+                <label>Description</label>
+                <input required type="text" value="{{recipe.description}}" formControlName="description">
+
+                <button type="submit" [disabled]="!editorForm.valid" (click)="submitEditor()">Update!</button>
+            </form>
+        </div>
+    </div>
+
+</section>

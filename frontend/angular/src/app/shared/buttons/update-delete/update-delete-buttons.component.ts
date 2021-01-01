@@ -31,7 +31,7 @@ export class UpdateDeleteButtonsComponent {
 
   // Update recipe
   update(id) {
-    console.log(id);
+    this.router.navigate(['editor/'+id]);
   }
 
 

@@ -15,6 +15,7 @@ import { CreateMealComponent } from './meals/create/create-meal.component';
 import { AuthGuardService } from './core/services/guards/auth-guard.service';
 import { AdminGuardService } from './core/services/guards/admin-guard.service';
 import { NoAuthGuardService } from './core/services/guards/no-auth-guard.service';
+import { EditorUpdateComponent } from './editor/update/editor-update.component';
 
 
 const routes: Routes = [
@@ -27,6 +28,9 @@ const routes: Routes = [
   { path: 'profiles/:username', component: ProfilesComponent },
 
   { path: 'editor', component: EditorComponent,
+    canActivate: [AuthGuardService] },
+
+  { path: 'editor/:id', component: EditorUpdateComponent,
     canActivate: [AuthGuardService] },
 
   { path: 'signin', component: LoginComponent,
