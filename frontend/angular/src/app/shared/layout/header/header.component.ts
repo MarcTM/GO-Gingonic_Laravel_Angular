@@ -9,14 +9,17 @@ import { UserService } from 'src/app/core/services/user.service';
   styleUrls: ['./header.component.css']
 })
 
-export class HeaderComponent{
+export class HeaderComponent implements OnInit{
+
+    constructor(
+      private userService: UserService,
+      private router: Router
+    ) { }
+
 
     // Admin variables
     admin: boolean = false;
     adminText: string = 'SHOW PANNEL ADMIN'
-
-    constructor(private userService: UserService,
-      private router: Router) { }
 
     // Logout
     logout() {
@@ -25,7 +28,6 @@ export class HeaderComponent{
       this.router.navigate(['/']);
       this.admin = false;
     }
-
 
     // Activate and desactivate pannel admin
     showAdmin() {
@@ -36,7 +38,21 @@ export class HeaderComponent{
         this.admin=true;
         this.adminText="HIDE PANNEL ADMIN";
       }
+    }
 
+    // See if token is still valid or not
+    validateToken() {
+      if(localStorage.getItem('Bearer')) {
+        this.userService.validateToken()
+        .subscribe(
+          response=>{console.log("User validated")},
+          err=>{this.logout()}
+        )
+      }
+    }
+
+    ngOnInit(): void {
+      this.validateToken();
     }
 
 }

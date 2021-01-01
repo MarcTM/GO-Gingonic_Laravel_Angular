@@ -17,6 +17,8 @@ export class MealListComponent implements OnInit {
 
   meals: Meal[];
   
+  actualPage: number = 1;
+
   getMeals(): void {
     this.mealService.getMeals()
     .subscribe(meals => {

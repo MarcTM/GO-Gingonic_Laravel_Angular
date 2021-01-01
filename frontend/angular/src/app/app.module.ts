@@ -5,6 +5,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
 import { CarouselModule } from 'ngx-owl-carousel-o';
+import { NgxPaginationModule } from 'ngx-pagination';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -63,7 +64,8 @@ import { FollowFavButtonsComponent } from './shared/buttons/fav_follow/follow-fa
     AppRoutingModule,
     BrowserAnimationsModule,
     CarouselModule,
-    ToastrModule.forRoot()
+    ToastrModule.forRoot(),
+    NgxPaginationModule
   ],
   providers: [],
   bootstrap: [

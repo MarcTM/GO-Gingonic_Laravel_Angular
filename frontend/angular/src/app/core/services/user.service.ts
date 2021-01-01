@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 import { User, Profile } from '../interfaces/user';
 import { JwtService } from './jwt.service';
@@ -43,6 +43,12 @@ export class UserService {
   // Returns an admin token or not, to know if user is authenticated as admin
   isAdmin(){
     return this.jwtService.getToken('Bearer_lar');
+  }
+
+
+  // See if token is still valid or not
+  validateToken() {
+    return this.http.post(environment.api_users_url+'/auth/validate', null, {headers: new HttpHeaders({'Authorization': `Bearer ${localStorage.getItem('Bearer')}`})})
   }
 
 

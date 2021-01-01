@@ -5,3 +5,13 @@
     display: block;
     width: 90%;
 }
+
+/* Pagination */
+.controls {
+    margin-top: 50px;
+}
+
+.my-pagination /deep/ a {
+    color: black;
+    font-size: 1.2em;
+}

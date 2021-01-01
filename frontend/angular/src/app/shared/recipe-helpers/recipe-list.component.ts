@@ -17,6 +17,8 @@ export class RecipeListComponent implements OnInit {
 
   recipes: Recipe[];
 
+  actualPage: number = 1;
+
   getRecipes(): void {
     this.recipeService.getRecipes().subscribe(
       recipes => {
