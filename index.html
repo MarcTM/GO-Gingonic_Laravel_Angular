@@ -8,5 +8,19 @@
 </head>
 <body>
 
+	<h1>REFACTORIZACIÓN DE GO PARA PASAR A GO MODULES</h1>
+	<p>Vamos a ver cómo pasar nuestro proyecto de Go a Go Modules, muy útil para dejar de utilizar los comandos para exportar las variables gopath, goroot, etc, cada vez que queremos ejecutar nuestro proyecto. De esta manera con tan solo ejecutar <b>go run main.go</b> ya nos funcionaría.</p>
+
+	<h3>Iniciar fichero go.mod</h3>
+	<p>Para empezar a usar Go Mod en nuestro proyecto, tan solo tenemos que escribir <b>go mod init 'nombre de modulo'></b>. En mi caso es <b>go mod init go_server</b>. El nombre del módulo será normalmente el nombre del propio proyecto, pero se puede llamar como querais. Esto nos creará un fichero <b>go.mod</b> en el cual no tendremos que tocar nada.</p>
+
+	<h3>Descargar las dependencias</h3>
+	<p>Ahora toca descargar las dependencias para ese módulo. Esto servirá tanto para la primera vez como para cada vez que añadamos nuevas dependencias. Para ello, escribir en la terminal <b>go mod tidy</b>.<br><br>
+	Go mod tidy se encargará de incluir en el go.mod todas las dependencias necesarias para nuestros tests, así como todas las dependencias necesarias en nuestro proyecto (digamos que recorre toda tu arquitectura de paquetes buscando las depenencias que debe instalar). También creará el fichero <b>go.sum</b>, el cual se encargará de gestionar nuestras versiones e indicar el hash de integridad de cada una de ellas.</p>
+
+
+
+
+
 </body>
 </html>
