@@ -7,7 +7,7 @@
             <!-- <p class="profile_description">{{profile.description}}</p> -->
             <p class="profile_description">description</p>
         </div>
-        <div class="follow">
+        <div *ngIf="!me" class="follow">
             <div>
                 <button *ngIf="following" (click)="unfollow(profile.id)">UNFOLLOW</button>
                 <button *ngIf="!following" (click)="follow(profile.id)">FOLLOW</button>

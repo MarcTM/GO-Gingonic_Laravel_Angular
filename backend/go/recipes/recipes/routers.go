@@ -9,8 +9,8 @@ func RecipesRoutes(router *gin.RouterGroup) {
 	router.GET("/", GetRecipes)
 	router.POST("/", IsAuthenticated(CreateRecipe))
 	router.GET("/recipe/:id", GetRecipeByID)
-	router.PUT("/recipe/:id", UpdateRecipe)
-	router.DELETE("/recipe/:id", DeleteRecipe)
+	router.PUT("/recipe/:id", IsAuthenticated(UpdateRecipe))
+	router.DELETE("/recipe/:id", IsAuthenticated(DeleteRecipe))
 
 	router.POST("/favorited/:id", IsAuthenticated(IsFavorited))
 	router.PUT("/favorite/:id", IsAuthenticated(FavoriteRecipe))

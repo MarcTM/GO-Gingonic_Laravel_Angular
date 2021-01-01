@@ -34,17 +34,22 @@ export class RecipeService {
 
   // Already favorited
   isFavorited(id) {
-    return this.http.post(environment.api_recipes_url+'/recipes/favorited/'+id, {}, {headers: new HttpHeaders({'Authorization': `Bearer ${localStorage.getItem('Bearer')}`})});
+    return this.http.post(environment.api_recipes_url+'/recipes/favorited/'+id, null, {headers: new HttpHeaders({'Authorization': `Bearer ${localStorage.getItem('Bearer')}`})});
   }
 
   // Favorite recipe
   favorite(id) {
-    return this.http.put(environment.api_recipes_url+'/recipes/favorite/'+id, {}, {headers: new HttpHeaders({'Authorization': `Bearer ${localStorage.getItem('Bearer')}`})});
+    return this.http.put(environment.api_recipes_url+'/recipes/favorite/'+id, null, {headers: new HttpHeaders({'Authorization': `Bearer ${localStorage.getItem('Bearer')}`})});
   }
 
   // Unfavorite recipe
   unfavorite(id) {
-    return this.http.put(environment.api_recipes_url+'/recipes/unfavorite/'+id, {}, {headers: new HttpHeaders({'Authorization': `Bearer ${localStorage.getItem('Bearer')}`})});
+    return this.http.put(environment.api_recipes_url+'/recipes/unfavorite/'+id, null, {headers: new HttpHeaders({'Authorization': `Bearer ${localStorage.getItem('Bearer')}`})});
+  }
+
+  // Delete recipe
+  delete(id) {
+    return this.http.delete(environment.api_recipes_url+'/recipes/recipe/'+id, {headers: new HttpHeaders({'Authorization': `Bearer ${localStorage.getItem('Bearer')}`})});
   }
 
 }

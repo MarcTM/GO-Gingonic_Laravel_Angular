@@ -6,10 +6,14 @@
                 <span class="author_img"><img src="https://lh3.googleusercontent.com/ogw/ADGmqu_wixuPJYRfks70Xz_NL3vS68HLHfKUIsBKKsBIIw=s32-c-mo"/></span>
                 <!-- <span class="author_img"><img src="{{recipe.author.image}}"/></span> -->
                 <span class="author_username">{{recipe.author.username}}</span>
-                <div class="fav-follow-btn">
-                    <app-follow-fav-buttons [author_id]="recipe.author.id" [author_username]="recipe.author.username" [recipe]="recipe.id"></app-follow-fav-buttons>
-                </div>
             </a>
+
+            <div *ngIf="!me" class="action-btns">
+                <app-follow-fav-buttons [author_id]="recipe.author.id" [author_username]="recipe.author.username" [recipe]="recipe.id"></app-follow-fav-buttons>
+            </div>
+            <div *ngIf="me" class="action-btns">
+                <app-update-delete-buttons [recipe]="recipe.id"></app-update-delete-buttons>
+            </div>
         </div>
 
         <div class="recipe_info">

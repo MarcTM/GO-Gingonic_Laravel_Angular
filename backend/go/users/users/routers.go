@@ -13,6 +13,7 @@ func UsersProfiles(router *gin.RouterGroup) {
 // /users
 func UsersRegister(router *gin.RouterGroup) {
 	router.GET("/", GetUsers)
+	router.POST("/me", IsAuthenticated(Me))
 	router.POST("/register", RegisterUser)
 	router.POST("/login", LoginUser)
 

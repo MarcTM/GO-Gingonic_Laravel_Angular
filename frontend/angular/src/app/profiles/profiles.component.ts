@@ -15,6 +15,7 @@ import { ProfileService } from '../core/services/profile.service';
 export class ProfilesComponent implements OnInit {
 
   profile: Profile;
+  me: boolean = false;
   following: boolean = false;
 
   constructor(
@@ -29,20 +30,30 @@ export class ProfilesComponent implements OnInit {
   getProfile(): void {
     const username = this.route.snapshot.paramMap.get('username');
     this.userService.getProfile(username)
-      .subscribe(
-        profile => {
-            console.log(profile);
-            this.profile = profile;
-        },
-        error => {this.router.navigate(['/recipes'])}
-      )
+    .subscribe(
+      profile => {
+          console.log(profile);
+          this.profile = profile;
+      },
+      error => {this.router.navigate(['/recipes'])}
+    )
 
     if(localStorage.getItem('Bearer')) {
-      this.profileService.isFollowing(username)
+      this.profileService.me()
       .subscribe(
-        res => {this.following = true},
-        error => {this.following = false}
-      )
+        response=>{
+          (response.username===username) ? this.me = true : this.me = false;
+
+          if(!this.me) {
+            this.profileService.isFollowing(username)
+            .subscribe(
+              res => {this.following = true},
+              error => {this.following = false}
+            )
+          }
+          
+        }
+      );
     }
   }
 

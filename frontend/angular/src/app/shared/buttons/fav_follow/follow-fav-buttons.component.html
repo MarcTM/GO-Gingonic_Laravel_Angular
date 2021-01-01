@@ -1,5 +1,7 @@
-<button *ngIf="!following" (click)="follow($event)" class="btn btn--follow">FOLLOW</button>
-<button *ngIf="following" (click)="unfollow($event)" class="btn btn--follow">UNFOLLOW</button>
-
-<button *ngIf="!favorited" (click)="favorite($event)" class="btn btn--favorite">FAVORITE</button>
-<button *ngIf="favorited" (click)="unfavorite($event)" class="btn btn--favorite">UNFAVORITE</button>
+<div>
+    <button *ngIf="!following" (click)="follow()" class="btn">FOLLOW</button>
+    <button *ngIf="following" (click)="unfollow()" class="btn">UNFOLLOW</button>
+    
+    <button *ngIf="!favorited" (click)="favorite()" class="btn">FAVORITE</button>
+    <button *ngIf="favorited" (click)="unfavorite()" class="btn">UNFAVORITE</button>
+</div>

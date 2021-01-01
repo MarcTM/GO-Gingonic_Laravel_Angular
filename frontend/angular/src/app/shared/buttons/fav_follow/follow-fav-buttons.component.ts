@@ -39,9 +39,7 @@ export class FollowFavButtonsComponent implements OnInit {
   }
 
   // Unfollow user
-  unfollow($event) {
-    $event.preventDefault();
-
+  unfollow() {
     this.profileService.unfollow(this.author_id)
     .subscribe(
       response => {this.following = false},
@@ -50,9 +48,7 @@ export class FollowFavButtonsComponent implements OnInit {
   }
 
   // Favorite recipe
-  favorite($event) {
-    $event.preventDefault();
-
+  favorite() {
     this.recipeService.favorite(this.recipe)
     .subscribe(
       response => {this.favorited = true},
@@ -90,12 +86,10 @@ export class FollowFavButtonsComponent implements OnInit {
       )
   }
 
-  
+
   ngOnInit(): void {
-    if(localStorage.getItem('Bearer')) {
-      this.isFollowing();
-      this.isFavorited();
-    }
+    this.isFollowing();
+    this.isFavorited();
   }
 
 }

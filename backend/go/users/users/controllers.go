@@ -37,6 +37,13 @@ func GetUsers(c *gin.Context) {
 }
 
 
+//Me
+func Me(c *gin.Context) {
+	me := c.MustGet("my_user_model").(models.UserModel)
+	c.JSON(http.StatusOK, me)
+}
+
+
 // Register user
 func RegisterUser(c *gin.Context) {
 	registerValidator := NewRegisterValidator()
