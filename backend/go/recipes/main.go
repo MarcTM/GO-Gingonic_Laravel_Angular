@@ -25,6 +25,6 @@ func main() {
 	// Set routes
 	r := Routes.SetupRouter()
 
-	// Run application on port 3000
+	// Run application on port 3002
 	r.Run(":3002")
 }
