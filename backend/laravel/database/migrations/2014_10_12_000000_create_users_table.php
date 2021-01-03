@@ -6,7 +6,6 @@ use Illuminate\Database\Migrations\Migration;
 
 class CreateUsersTable extends Migration
 {
-    // Create table
     public function up()
     {
         // If table doesn't exist, create it

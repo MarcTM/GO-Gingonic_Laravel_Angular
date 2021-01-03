@@ -9,8 +9,9 @@ import(
 
 type RecipeModelValidator struct {
 	Recipe struct {
-		Name       string   `form:"name" json:"name" binding:"required"`
+		Name        string   `form:"name" json:"name" binding:"required"`
 		Description string   `form:"description" json:"description" binding:"required"`
+		Image	    string	 `form:"image" json:"image" binding:"required"`
 	} `json:"recipe"`
 	recipeModel models.RecipeModel `json:"-"`
 }
@@ -31,6 +32,7 @@ func (self *RecipeModelValidator) Bind(c *gin.Context) error {
 
 	self.recipeModel.Name = self.Recipe.Name
 	self.recipeModel.Description = self.Recipe.Description
+	self.recipeModel.Image = self.Recipe.Image
 	self.recipeModel.UserModel = myUserModel
 	return nil
 }

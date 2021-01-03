@@ -8,9 +8,11 @@
                 <label>Name</label>
                 <input required type="text" value={{recipe.name}} formControlName="name">
 
-
                 <label>Description</label>
                 <input required type="text" value="{{recipe.description}}" formControlName="description">
+
+                <label>Image url</label>
+                <input required type="text" value="{{recipe.image}}" formControlName="image">
 
                 <button type="submit" [disabled]="!editorForm.valid" (click)="submitEditor()">Update!</button>
             </form>

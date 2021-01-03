@@ -29,7 +29,7 @@ export class EditorUpdateComponent implements OnInit {
 
   // Submit form
   submitEditor() {
-    let updateRecipe = {'id':this.recipe.id, 'name':this.editorForm.value.name, 'description':this.editorForm.value.description};
+    let updateRecipe = {'id':this.recipe.id, 'name':this.editorForm.value.name, 'description':this.editorForm.value.description, 'image':this.editorForm.value.image};
 
     this.recipeService.update(updateRecipe)
     .subscribe(
@@ -55,12 +55,12 @@ export class EditorUpdateComponent implements OnInit {
         this.editorForm = this.fb.group({
           name: [this.recipe.name, Validators.required],
           description: [this.recipe.description, Validators.required],
+          image: [this.recipe.image, Validators.required],
         });
       },
       error => {this.router.navigate(['recipes'])}
     )
   }
-
   
   ngOnInit(): void {
     this.validateRecipe();

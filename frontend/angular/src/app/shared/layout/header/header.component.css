@@ -95,6 +95,11 @@ header {
 
 /* Pannel-admin */
 .pannel_admin_nav {
+    text-align: center;
+}
+
+.pannel_admin_nav nav {
+    width: 100%;
     padding-top: 20px;
     padding-bottom: 20px;
     background-color: grey;
@@ -102,6 +107,10 @@ header {
     flex-direction: row;
     justify-content: space-around;
     align-items: center;
+}
+
+a {
+    cursor: pointer;
 }
 
 .pannel_admin_nav nav a {

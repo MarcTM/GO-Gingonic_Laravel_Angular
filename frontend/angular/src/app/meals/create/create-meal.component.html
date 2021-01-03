@@ -8,13 +8,18 @@
                 <label>Name</label>
                 <input required type="text" formControlName="name">
 
-
                 <label>Description</label>
                 <input required type="text" formControlName="description">
 
                 <label>Price</label>
                 <input required type="number" formControlName="price" id="tentacles" name="tentacles" min="0">
 
+                <label>Category</label>
+                <select *ngIf="categories" required formControlName="category" name="category" id="category">
+                    <option value="0">-- No category --</option>
+                    <option *ngFor="let category of categories" value="{{category.id}}">{{category.name}}</option>
+                </select>
+                  
                 <button type="submit" [disabled]="!creatorForm.valid" (click)="submitCreator()">Create Meal</button>
             </form>
         </div>

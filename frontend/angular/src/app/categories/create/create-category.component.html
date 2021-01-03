@@ -1,0 +1,20 @@
+<section class="creator_page">
+
+    <div class="creator-display-form">
+        <h1>NEW CATEGORY</h1>
+
+        <div class="creator_form">
+            <form [formGroup]="creatorForm">
+                <label>Name</label>
+                <input required type="text" formControlName="name">
+
+
+                <label>Image url</label>
+                <input required type="text" formControlName="image">
+
+                <button type="submit" [disabled]="!creatorForm.valid" (click)="submitCreator()">Create Category</button>
+            </form>
+        </div>
+    </div>
+
+</section>

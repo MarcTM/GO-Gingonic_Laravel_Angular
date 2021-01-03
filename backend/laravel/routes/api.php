@@ -26,6 +26,17 @@ Route::group(['prefix'=>'meals'], function ($router) {
 });
 
 
+Route::group(['prefix'=>'categories'], function ($router) {
+    
+   // Categories authed
+   Route::post('/', 'Api\Auth\AuthCategoriesController@createCategory');
+
+   // Categories
+   Route::get('/', 'CategoriesController@show');
+});
+
+
+
 Route::group(['prefix'=>'slider'], function ($router) {
     
     // Slider

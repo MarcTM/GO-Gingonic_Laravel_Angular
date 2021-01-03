@@ -23,7 +23,8 @@ export class ProfilesComponent implements OnInit {
     private router: Router,
     private userService: UserService,
     private profileService: ProfileService,
-    private toastr: ToastrService) {}
+    private toastr: ToastrService
+  ) {}
 
 
   // Get one user profile

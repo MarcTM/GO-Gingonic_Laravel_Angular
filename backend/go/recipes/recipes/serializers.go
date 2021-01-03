@@ -20,6 +20,7 @@ type ShortRecipeResponse struct {
 	ID             uint                  `json:"id"`
 	Name           string                `json:"name"`
 	Description    string                `json:"description"`
+	Image		   string				 `json:"image"`
 }
 
 func (self *ShortRecipeSerializer) Response() ShortRecipeResponse {
@@ -27,6 +28,7 @@ func (self *ShortRecipeSerializer) Response() ShortRecipeResponse {
 		ID:          self.recipe.Id,
 		Name:        self.recipe.Name,
 		Description: self.recipe.Description,
+		Image:		 self.recipe.Image,
 	}
 	return response
 }
@@ -41,6 +43,7 @@ type OneRecipeResponse struct {
 	ID             uint                  `json:"id"`
 	Name           string                `json:"name"`
 	Description    string                `json:"description"`
+	Image		   string				 `json:"image"`
 	Author         RecipeProfileResponse `json:"author"`
 }
 
@@ -58,6 +61,7 @@ func (self *OneRecipeSerializer) Response() OneRecipeResponse {
 		ID:          recipe.Id,
 		Name:        recipe.Name,
 		Description: recipe.Description,
+		Image:		 recipe.Image,
 		Author:      recipeProfileSerializer.Response(),
 	}
 	return response
@@ -73,6 +77,7 @@ type AllRecipeResponse struct {
 	ID             uint                  `json:"id"`
 	Name           string                `json:"name"`
 	Description    string                `json:"description"`
+	Image		   string				 `json:"image"`
 	Author         RecipeProfileResponse `json:"author"`
 }
 
@@ -92,6 +97,7 @@ func (self *AllRecipeSerializer) Response() []AllRecipeResponse {
 			ID:          r.Id,
 			Name:        r.Name,
 			Description: r.Description,
+			Image:		 r.Image,
 			Author:      recipeProfileSerializer.Response(),
 		}
 		recipeAll = append(recipeAll, response)

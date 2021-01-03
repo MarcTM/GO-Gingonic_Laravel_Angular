@@ -32,6 +32,8 @@ import { SliderComponent } from './shared/slider/slider.component';
 import { FollowFavButtonsComponent } from './shared/buttons/fav_follow/follow-fav-buttons.component';
 import { UpdateDeleteButtonsComponent } from './shared/buttons/update-delete/update-delete-buttons.component';
 import { EditorUpdateComponent } from './editor/update/editor-update.component';
+import { CategoriesComponent } from './categories/categories.component';
+import { CreateCategoryComponent } from './categories/create/create-category.component';
 
 
 @NgModule({
@@ -60,6 +62,8 @@ import { EditorUpdateComponent } from './editor/update/editor-update.component';
     FollowFavButtonsComponent,
     UpdateDeleteButtonsComponent,
     EditorUpdateComponent,
+    CategoriesComponent,
+    CreateCategoryComponent
   ],
   imports: [
     BrowserModule,

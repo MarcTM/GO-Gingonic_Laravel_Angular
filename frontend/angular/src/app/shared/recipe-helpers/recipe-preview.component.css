@@ -10,7 +10,6 @@
 }
 
 /* Author info */
-
 .author_info {
     display: block;
     padding: 20px 0px 20px 0px;
@@ -44,10 +43,10 @@
 }
 
 
-
 /* Recipe */
-
 .recipe_info {
+    padding-top: 10px;
+    padding-bottom: 10px;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -64,8 +63,13 @@
 }
 
 .recipe_img {
-    margin-right: 20px;
     width: 30%;
+    margin-right: 10px;
+}
+
+.recipe_img img {
+    width: 100%;
+    height: 300px;
 }
 
 .recipe_name {

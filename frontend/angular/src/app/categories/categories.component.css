@@ -1,0 +1,43 @@
+.categories {
+    padding-top: 30px;
+    padding-bottom: 30px;
+    background-color: rgb(230, 230, 230);
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.category {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.category * {
+    display: block;
+}
+
+.category img {
+    width: 250px;
+    height: 250px;
+}
+
+.category h3 {
+    font-family: 'Courier New', Courier, monospace;
+}
+
+.categories button {
+    margin-top: 10px;
+    background-color: rgb(218, 213, 213);
+    height: 50px;
+    width: 120px;
+    border: none;
+    font-weight: bold;
+    border-radius: 10px;
+}
+
+.category button:hover {
+    background-color: rgb(219, 71, 71);
+}

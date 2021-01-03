@@ -18,7 +18,7 @@ export class MealService {
 
   // Create meal
   save(data) {
-    return this.http.post<any>(environment.laravel_url+'/meals/', {"meal":data}, {headers: new HttpHeaders({'Authorization': `Bearer ${localStorage.getItem('Bearer_lar')}`})})
+    return this.http.post<Meal>(environment.laravel_url+'/meals/', {"meal":data}, {headers: new HttpHeaders({'Authorization': `Bearer ${localStorage.getItem('Bearer_lar')}`})})
   }
 
   // Get meals

@@ -25,6 +25,7 @@ export class EditorComponent {
   editorForm = this.fb.group({
     name: ['', Validators.required],
     description: ['', Validators.required],
+    image: ['', Validators.required],
   });
 
   // Submit form

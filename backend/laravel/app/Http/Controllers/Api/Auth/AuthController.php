@@ -25,7 +25,6 @@ class AuthController extends Controller
         return response()->json($user);
     }
 
-
     // Login
     public function login(Request $request)
     {
@@ -38,7 +37,6 @@ class AuthController extends Controller
         return response()->json(['token' => $bearer]);
     }
 
-
     // Refresh token
     public function refresh()
     {
@@ -50,7 +48,6 @@ class AuthController extends Controller
 
         return response()->json(['bearer' => $newToken]);
     }
-
 
     // Check if user is admin
     public function isAdmin()

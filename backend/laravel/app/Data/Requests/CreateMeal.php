@@ -12,6 +12,7 @@ class CreateMeal
             'meal.name' => 'required|string',
             'meal.description' => 'required|string',
             'meal.price' => 'required|integer',
+            'meal.category' => 'required|integer'
         ]);
     }
 }

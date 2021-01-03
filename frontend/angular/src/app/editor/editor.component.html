@@ -8,9 +8,11 @@
                 <label>Name</label>
                 <input required type="text" formControlName="name">
 
-
                 <label>Description</label>
                 <input required type="text" formControlName="description">
+
+                <label>Image url</label>
+                <input required type="text" formControlName="image">
 
                 <button type="submit" [disabled]="!editorForm.valid" (click)="submitEditor()">Post Recipe!</button>
             </form>

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Meal;
+use App\Category;
 use App\Data\Transformers\MealsTransformer;
 
 
