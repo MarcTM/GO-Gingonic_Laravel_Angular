@@ -1,0 +1,12 @@
+<section *ngIf="category" class="category_section">
+    <h1>{{category.name}}</h1>
+    <div class="meals-grid">
+        <div class="meal" *ngFor="let meal of category.meals">
+            <h3 class="meal_name">{{meal.name}}</h3>
+            <a routerLink="/meal/{{meal.id}}">
+                <img class="meal_image" src="https://images.immediate.co.uk/production/volatile/sites/30/2020/08/chorizo-mozarella-gnocchi-bake-cropped-9ab73a3.jpg?quality=90&resize=960,872"/>
+                <p class="meal_price">Price: <b>{{meal.price}}€</b></p>
+            </a>
+        </div>
+    </div>
+</section>

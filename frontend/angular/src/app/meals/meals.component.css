@@ -1,4 +1,8 @@
 .meals_page {
-    width: 100%;
-    margin: 20px;
+    padding: 30px;
+}
+
+.meals_page h2 {
+    padding-bottom: 10px;
+    border-bottom: 1px solid black;
 }

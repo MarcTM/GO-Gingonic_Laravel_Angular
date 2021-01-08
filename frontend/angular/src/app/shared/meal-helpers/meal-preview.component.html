@@ -1,11 +1,7 @@
 <div class="meal_preview">
-
-    <div style="padding: 20px; margin: 20px; border: 1px solid orange;">
-        <a routerLink="/meal/{{meal.id}}">
-            <h1>{{meal.name}}</h1>
-            <p>{{meal.description}}</p>
-            <p>{{meal.price}}</p>
-        </a>
-    </div>
-    
+    <h3 class="meal_name">{{meal.name}}</h3>
+    <a routerLink="/meal/{{meal.id}}">
+        <img class="meal_image" src="https://images.immediate.co.uk/production/volatile/sites/30/2020/08/chorizo-mozarella-gnocchi-bake-cropped-9ab73a3.jpg?quality=90&resize=960,872"/>
+        <p class="meal_price">Price: <b>{{meal.price}}€</b></p>
+    </a>
 </div>

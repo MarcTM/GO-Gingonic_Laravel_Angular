@@ -33,6 +33,7 @@ Route::group(['prefix'=>'categories'], function ($router) {
 
    // Categories
    Route::get('/', 'CategoriesController@show');
+   Route::get('/{id}', 'CategoriesController@getMeals');
 });
 
 

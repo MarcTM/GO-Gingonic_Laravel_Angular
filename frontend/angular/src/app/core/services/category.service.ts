@@ -3,7 +3,8 @@ import { Observable } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 import { environment } from '../../../environments/environment';
-import { Category } from '../interfaces/category';
+import { Category, CategoryMeals } from '../interfaces/category';
+import { Meal } from '../interfaces/meal';
 
 @Injectable({
   providedIn: 'root'
@@ -22,6 +23,11 @@ export class CategoryService {
   // Get categories
   getCategories(): Observable<Category[]> {
     return this.http.get<Category[]>(environment.laravel_url+'/categories/');
+  }
+
+  // Get category meals
+  getMeals(id): Observable<CategoryMeals> {
+    return this.http.get<CategoryMeals>(environment.laravel_url+'/categories/'+id);
   }
 
 }

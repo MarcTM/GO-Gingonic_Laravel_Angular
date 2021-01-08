@@ -1,7 +1,9 @@
 <div *ngIf="categories" class="categories">
     <div *ngFor="let category of categories" class="category">
         <h3>{{category.name}}</h3>
-        <img src="{{category.image}}">
-        <button class="cat-btn">SHOP</button>
+        <a routerLink="/category/{{category.id}}">
+            <img src="{{category.image}}">
+            <button class="cat-btn">SHOP</button>    
+        </a>
     </div>
 </div>

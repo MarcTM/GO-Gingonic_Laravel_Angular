@@ -17,6 +17,7 @@ import { AdminGuardService } from './core/services/guards/admin-guard.service';
 import { NoAuthGuardService } from './core/services/guards/no-auth-guard.service';
 import { EditorUpdateComponent } from './editor/update/editor-update.component';
 import { CreateCategoryComponent } from './categories/create/create-category.component';
+import { CategoryComponent } from './category/category.component';
 
 
 const routes: Routes = [
@@ -46,6 +47,8 @@ const routes: Routes = [
   { path: 'meals', component: MealsComponent },
 
   { path: 'meal/:id', component: MealDetailsComponent },
+
+  { path: 'category/:id', component: CategoryComponent },
 
   { path: 'create_meal', component: CreateMealComponent,
     canActivate: [AdminGuardService] },

@@ -15,11 +15,18 @@
     align-items: center;
 }
 
+.category a {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
 .category * {
     display: block;
 }
 
-.category img {
+.category a img {
     width: 250px;
     height: 250px;
 }
@@ -28,7 +35,7 @@
     font-family: 'Courier New', Courier, monospace;
 }
 
-.categories button {
+.categories a button {
     margin-top: 10px;
     background-color: rgb(218, 213, 213);
     height: 50px;
@@ -38,6 +45,11 @@
     border-radius: 10px;
 }
 
-.category button:hover {
+.category a button:hover {
     background-color: rgb(219, 71, 71);
+}
+
+a, a:visited, a:active {
+    color: black;
+    text-decoration: none;
 }

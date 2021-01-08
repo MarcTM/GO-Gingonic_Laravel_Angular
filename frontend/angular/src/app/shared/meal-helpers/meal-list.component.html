@@ -1,14 +1,14 @@
 <div class="meals">
-    <ul>
-        <div class="controls">
-            <pagination-controls class="my-pagination" (pageChange)="actualPage = $event"></pagination-controls>
-        </div>
-        
-        <app-meal-preview *ngFor="let meal of meals | paginate: { itemsPerPage: 5, currentPage: actualPage }" [meal]="meal">
+    <div class="controls">
+        <pagination-controls class="my-pagination" (pageChange)="actualPage = $event"></pagination-controls>
+    </div>
+
+    <div class="meals-grid">
+        <app-meal-preview *ngFor="let meal of meals | paginate: { itemsPerPage: 8, currentPage: actualPage }" [meal]="meal">
         </app-meal-preview>
-    
-        <div class="controls">
-            <pagination-controls class="my-pagination" (pageChange)="actualPage = $event"></pagination-controls>
-        </div>
-    </ul>
+    </div>
+
+    <div class="controls">
+        <pagination-controls class="my-pagination" (pageChange)="actualPage = $event"></pagination-controls>
+    </div>
 </div>

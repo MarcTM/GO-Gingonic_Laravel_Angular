@@ -34,6 +34,7 @@ import { UpdateDeleteButtonsComponent } from './shared/buttons/update-delete/upd
 import { EditorUpdateComponent } from './editor/update/editor-update.component';
 import { CategoriesComponent } from './categories/categories.component';
 import { CreateCategoryComponent } from './categories/create/create-category.component';
+import { CategoryComponent } from './category/category.component';
 
 
 @NgModule({
@@ -63,7 +64,8 @@ import { CreateCategoryComponent } from './categories/create/create-category.com
     UpdateDeleteButtonsComponent,
     EditorUpdateComponent,
     CategoriesComponent,
-    CreateCategoryComponent
+    CreateCategoryComponent,
+    CategoryComponent
   ],
   imports: [
     BrowserModule,

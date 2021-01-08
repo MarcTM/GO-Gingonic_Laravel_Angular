@@ -1,9 +1,14 @@
 .meals {
     margin-top: 30px;
     margin-bottom: 100px;
-    padding-top: 20px;
-    display: block;
-    width: 90%;
+    padding: 20px 30px 30px 0px;
+}
+
+.meals-grid {
+    text-align: center;
+    display: grid;
+    grid: auto / repeat(4, 1fr);
+    grid-gap: 40px 20px;
 }
 
 /* Pagination */

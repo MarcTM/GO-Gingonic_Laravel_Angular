@@ -1,4 +1,21 @@
-.meal_preview {
+.category_section {
+    padding: 30px;
+}
+
+.category_section h1 {
+    text-align: left;
+    border-bottom: 1px solid black;
+    padding-bottom: 10px;
+    margin-bottom: 50px;
+}
+
+.meals-grid {
+    display: grid;
+    grid: auto / repeat(4, 1fr);
+    grid-gap: 40px 20px;
+}
+
+.meal {
     display: inline-flex;
     flex-direction: column;
     justify-content: center;
