@@ -1,4 +1,9 @@
 .recipes_page {
     width: 100%;
-    margin: 20px;
+    padding: 30px;
+}
+
+.recipes_page .title {
+    padding-bottom: 10px;
+    border-bottom: 1px solid black;
 }

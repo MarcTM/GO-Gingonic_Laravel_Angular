@@ -1,7 +1,16 @@
-.categories {
+.categories_preview {
     padding-top: 30px;
     padding-bottom: 30px;
     background-color: rgb(230, 230, 230);
+}
+
+.categories_preview h1 {
+    font-style: italic;
+    margin-bottom: 30px;
+}
+
+.categories {
+    margin-top: 20px;
     display: flex;
     flex-direction: row;
     justify-content: space-around;

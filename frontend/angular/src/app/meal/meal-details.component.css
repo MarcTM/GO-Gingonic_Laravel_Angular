@@ -52,7 +52,11 @@
 
 
 /* Buttons */
-.back-btn {
+.meal-buttons {
+    display: block;
+}
+
+.meal-btn {
     margin-top: 30px;
     background-color: white;
     color: black;
@@ -61,7 +65,20 @@
     width: 120px;
 }
 
+.back-btn {
+    margin-right: 50px;
+}
+
 .back-btn:hover {
     transition: 0.3s;
-    background-color: rgb(223, 221, 221);
+    background-color: rgb(209, 205, 205);
+}
+
+.purchase-btn {
+    margin-right: 50px;
+}
+
+.purchase-btn:hover {
+    transition: 0.3s;
+    background-color: rgb(238, 177, 177);
 }
