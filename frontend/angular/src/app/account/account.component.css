@@ -1,6 +1,6 @@
 .account_page {
     padding: 100px;
-    padding-bottom: 400px;
+    padding-bottom: 200px;
 }
 
 .account {
@@ -20,7 +20,9 @@
 .account_profile img {
     width: 200px;
     height: 200px;
+    border-radius: 50%;
 }
+
 .account_profile h2 {
     margin-top: 50px;
 }

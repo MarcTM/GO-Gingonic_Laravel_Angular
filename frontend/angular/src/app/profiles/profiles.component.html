@@ -1,28 +1,28 @@
 <section *ngIf="profile" class="profile_page">
     <section class="profile_user">
         <div class="profile">
-            <!-- <span class="profile_img"><img src="{{profile.image}}"/></span> -->
-            <span class="profile_img"><img src="https://lh3.googleusercontent.com/ogw/ADGmqu_wixuPJYRfks70Xz_NL3vS68HLHfKUIsBKKsBIIw=s32-c-mo"/></span>
-            <h2 class="profile_username">{{profile.username}}</h2>
-            <!-- <p class="profile_description">{{profile.description}}</p> -->
-            <p class="profile_description">description</p>
-        </div>
-        <div *ngIf="!me" class="follow">
-            <div>
+            <img src="https://lh3.googleusercontent.com/ogw/ADGmqu_wixuPJYRfks70Xz_NL3vS68HLHfKUIsBKKsBIIw=s32-c-mo" />
+            <h2>{{profile.username}}</h2>
+
+            <div *ngIf="!me" class="follow">
                 <button *ngIf="following" (click)="unfollow(profile.id)">UNFOLLOW</button>
                 <button *ngIf="!following" (click)="follow(profile.id)">FOLLOW</button>
             </div>
+        </div>
+        <div class="profile_bio">
+            <p>Biografia va aqui</p>
         </div>
     </section>
 
     <section class="profile_recipes">
         <div class="recipes">
-            <h2>RECIPES</h2>
+            <h1>RECIPES</h1>
             <div *ngFor="let recipe of profile.recipes" class="recipe">
                 <a routerLink="/recipe/{{recipe.id}}">
                     <h3>{{recipe.name}}</h3>
                     <p>{{recipe.description}}</p>
                 </a>
+                <img src="{{recipe.image}}" />
             </div>
         </div>
     </section>

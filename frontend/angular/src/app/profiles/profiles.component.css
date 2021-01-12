@@ -1,95 +1,99 @@
 .profile_page {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    padding-top: 100px;
-    padding-bottom: 100px;
-    align-items: center;
-    justify-content: center;
-    background-color: rgb(206, 206, 142);
+    padding: 100px;
 }
 
 /* User profile */
 .profile_user {
-    display: block;
+    display: flex;
+    flex-direction: row;
+    padding-bottom: 60px;
+    border-bottom: 1px solid grey;
 }
 
-.profile_user div {
-    width: 80%;
+.profile {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    padding-right: 100px;
+    border-right: 1px solid orange;
 }
 
-.profile_img {
-    display: block;
-    margin-top: 20px;
-}
-
-.profile_img img {
+.profile img {
+    height: 200px;
     border-radius: 50%;
-    width: 120px;
-    height: 120px;
 }
 
-.profile_username {
-    display: block;
-    font-size: 2.5em;
-    margin-bottom: 30px;
+.profile h2 {
+    margin-top: 50px;
 }
 
-.profile_description {
-    display: block;
-    text-align: center;
-    width: 60%;
+.profile_bio {
+    color: black;
+    font-weight: bold;
+    margin-left: 80px;
 }
 
 .follow {
     margin-top: 20px;
-    display: block;
-    flex-direction: row;
 }
 
-.follow div {
-    width: 100%;
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-}
-
-.follow div button {
-    width: 200px;
-    color: white;
+.follow button {
     font-weight: bold;
     padding-top: 10px;
     padding-bottom: 10px;
     border-radius: 10px;
-    background-color: black;
-    border: 2px solid grey;
+    border: 1px solid black;
+}
+
+.follow button:hover {
+    transition: 0.4s;
+    background-color: rgb(214, 214, 214);
 }
 
 
 /* User recipes */
 .profile_recipes {
-    width: 80%;
     display: block;
     margin-top: 50px;
 }
 
-.profile_recipes h2 {
+.profile_recipes h1 {
+    font-size: 2em;
     align-content: center;
 }
 
 .recipes {
-    width: 100%;
+    width: 90%;
+    margin-top: 30px;
     display: flex;
     flex-direction: column;
-    justify-content: center;
     align-items: center;
 }
 
 .recipe {
-    margin: 10px 5px 10px 5px;
+    width: 100%;
+    padding: 10px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+
+    background-color: rgb(242, 242, 242);
+    margin: 15px 0px 30px 0px;
+    border-bottom: 1px solid grey;
+}
+
+.recipe a {
+    width: 70%;
+}
+
+.recipe img {
+    width: 20%;
+    height: 200px;
+}
+
+/* Links */
+a, a:visited, a:active {
+    color: black;
+    text-decoration: none;
 }

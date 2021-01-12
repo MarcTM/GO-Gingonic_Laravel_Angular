@@ -96,6 +96,7 @@ type ProfileRecipesResponse struct {
 	ID		    uint	`json:"id"`
 	Name     	string  `json:"name"`
 	Description string  `json:"description"`
+	Image	 	string	`json:"image"`
 }
 
 func (self *ProfileRecipesSerializer) Response() []ProfileRecipesResponse {
@@ -105,6 +106,7 @@ func (self *ProfileRecipesSerializer) Response() []ProfileRecipesResponse {
 			ID:			 r.Id,
 			Name:		 r.Name,
 			Description: r.Description,
+			Image:		 r.Image,
 		}
 		allrecipes = append(allrecipes, onerecipe)
 	}
