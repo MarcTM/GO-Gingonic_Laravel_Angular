@@ -35,6 +35,8 @@ import { EditorUpdateComponent } from './editor/update/editor-update.component';
 import { CategoriesComponent } from './categories/categories.component';
 import { CreateCategoryComponent } from './categories/create/create-category.component';
 import { CategoryComponent } from './category/category.component';
+import { AccountComponent } from './account/account.component';
+import { UpdateAccountComponent } from './account/update/update-account.component';
 
 
 @NgModule({
@@ -65,7 +67,9 @@ import { CategoryComponent } from './category/category.component';
     EditorUpdateComponent,
     CategoriesComponent,
     CreateCategoryComponent,
-    CategoryComponent
+    CategoryComponent,
+    AccountComponent,
+    UpdateAccountComponent
   ],
   imports: [
     BrowserModule,

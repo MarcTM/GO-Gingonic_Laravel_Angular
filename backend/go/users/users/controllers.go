@@ -8,6 +8,11 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
+// Get your account profile
+func GetAccount(c *gin.Context) {
+
+}
+
 
 // Get user profile
 func GetProfile(c *gin.Context) {
@@ -39,8 +44,13 @@ func GetUsers(c *gin.Context) {
 
 //Me
 func Me(c *gin.Context) {
-	me := c.MustGet("my_user_model").(models.UserModel)
-	c.JSON(http.StatusOK, me)
+	me := c.MustGet("my_user_id")
+
+	var myprofile models.UserModel
+	Config.DB.Where("id = ?", me).First(&myprofile)
+
+	meSerializer := ShortProfileSerializer{myprofile}
+	c.JSON(http.StatusOK, meSerializer.Response())
 }
 
 
@@ -96,6 +106,26 @@ func LoginUser(c *gin.Context) {
 	serializer := UserSerializer{c}
 	c.JSON(http.StatusOK, gin.H{"user": serializer.Response()})
 }
+
+
+// // Update profile
+// func UpdateProfile(c *gin.Context) {
+// 	id := c.Params.ByName("id")
+
+// 	recipeModelValidator := NewRecipeModelValidator()
+// 	if err := recipeModelValidator.Bind(c); err != nil {
+// 		c.JSON(http.StatusUnprocessableEntity, "Invalid JSON")
+// 		return
+// 	}
+
+// 	fmt.Println(&recipeModelValidator.recipeModel)
+// 	err := Update(&recipeModelValidator.recipeModel, id)
+// 	if err != nil {
+// 		c.AbortWithStatus(http.StatusNotFound)
+// 	} else {
+// 		c.JSON(http.StatusOK, "ok")
+// 	}
+// }
 
 
 // Validate if a token is correct or incorrect

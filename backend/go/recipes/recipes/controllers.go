@@ -9,7 +9,7 @@ import (
 )
 
 
-//CreateRecipe
+//Create recipe
 func CreateRecipe(c *gin.Context) {
 	recipeModelValidator := NewRecipeModelValidator()
 	if err := recipeModelValidator.Bind(c); err != nil {
@@ -26,7 +26,7 @@ func CreateRecipe(c *gin.Context) {
 }
 
 
-//GetRecipes
+//Get recipes
 func GetRecipes(c *gin.Context) {
 	serializer := AllRecipeSerializer{c}
 	recipes := serializer.Response()
@@ -34,7 +34,7 @@ func GetRecipes(c *gin.Context) {
 }
 
 
-//GetRecipeByID
+//Get recipe by ID
 func GetRecipeByID(c *gin.Context) {
 	serializer := OneRecipeSerializer{c}
 	recipe := serializer.Response()
@@ -42,7 +42,7 @@ func GetRecipeByID(c *gin.Context) {
 }
 
 
-//UpdateRecipe
+//Update recipe
 func UpdateRecipe(c *gin.Context) {
 	id := c.Params.ByName("id")
 
@@ -62,7 +62,7 @@ func UpdateRecipe(c *gin.Context) {
 }
 
 
-//DeleteRecipe
+//Delete recipe
 func DeleteRecipe(c *gin.Context) {
 	var recipe models.RecipeModel
 	id := c.Params.ByName("id")

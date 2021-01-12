@@ -13,7 +13,7 @@
             <!-- Show if admin -->
             <a *appShowAdmin="true" (click)="showAdmin()">{{adminText}}</a>
             <!--  -->
-            <a>MY ACCOUNT</a>
+            <a routerLink="/account">MY ACCOUNT</a>
             <a routerLink="/" (click)="logout()">LOGOUT</a>
             <a>CART</a>
         </nav>

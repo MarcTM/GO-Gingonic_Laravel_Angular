@@ -79,7 +79,7 @@ export class UserService {
   }
 
 
-  // Get user profile by username
+  // Get user profile
   getProfile(username) {
     return this.http.get<Profile>(environment.api_users_url+'/profiles/'+username)
     .pipe(map(
@@ -88,5 +88,15 @@ export class UserService {
       }
     ))
   }
+
+    // Get your account profile
+    getAccount() {
+      return this.http.get<Profile>(environment.api_users_url+'/users/me', {headers: new HttpHeaders({'Authorization': `Bearer ${localStorage.getItem('Bearer')}`})})
+      .pipe(map(
+        data => {
+          return data;
+        }
+      ))
+    }
 
 }

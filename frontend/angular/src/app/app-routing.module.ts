@@ -18,8 +18,11 @@ import { NoAuthGuardService } from './core/services/guards/no-auth-guard.service
 import { EditorUpdateComponent } from './editor/update/editor-update.component';
 import { CreateCategoryComponent } from './categories/create/create-category.component';
 import { CategoryComponent } from './category/category.component';
+import { AccountComponent } from './account/account.component';
+import { UpdateAccountComponent } from './account/update/update-account.component';
 
 
+// Routes
 const routes: Routes = [
   { path: '', component: HomeComponent },
 
@@ -28,6 +31,12 @@ const routes: Routes = [
   { path: 'recipe/:id', component: RecipeDetailsComponent },
 
   { path: 'profiles/:username', component: ProfilesComponent },
+
+  { path: 'account', component: AccountComponent,
+    canActivate: [AuthGuardService] },
+
+  { path: 'account/update', component: UpdateAccountComponent,
+    canActivate: [AuthGuardService] },
 
   { path: 'editor', component: EditorComponent,
     canActivate: [AuthGuardService] },

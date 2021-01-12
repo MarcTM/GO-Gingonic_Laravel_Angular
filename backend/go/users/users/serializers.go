@@ -35,7 +35,30 @@ func (self *UserSerializer) Response() UserResponse{
 }
 
 
-// Profile serializers
+// Short profile serializer
+type ShortProfileSerializer struct {
+	profile models.UserModel
+}
+
+type ShortProfileResponse struct {
+	ID		 uint	 `json:"id"`
+	Username string  `json:"username"`
+	Bio      string  `json:"bio"`
+	Image    string  `json:"image"`
+}
+
+func (self *ShortProfileSerializer) Response() ShortProfileResponse{
+	profile := ShortProfileResponse{
+		ID:       self.profile.ID,
+		Username: self.profile.Username,
+		Bio:      self.profile.Bio,
+		Image:    self.profile.Image,
+	}
+	return profile
+}
+
+
+// Profile with recipes serializer
 type ProfileSerializer struct {
 	profile models.UserModel
 }

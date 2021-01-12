@@ -14,9 +14,10 @@ export class ProfileService {
 
   constructor(private http: HttpClient) { }
 
+  
   // Return my user
-  me(): Observable<User>{
-    return this.http.post<User>(environment.api_users_url+'/users/me', null, {headers: new HttpHeaders({'Authorization': `Bearer ${localStorage.getItem('Bearer')}`})});
+  me(){
+    return this.http.get<User>(environment.api_users_url+'/users/me', {headers: new HttpHeaders({'Authorization': `Bearer ${localStorage.getItem('Bearer')}`})});
   }
 
   // Already following

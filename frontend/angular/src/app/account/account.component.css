@@ -1,0 +1,47 @@
+.account_page {
+    padding: 100px;
+    padding-bottom: 400px;
+}
+
+.account {
+    display: flex;
+    flex-direction: row;
+}
+
+.account_profile {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding-right: 100px;
+    border-right: 1px solid orange;
+}
+
+.account_profile img {
+    width: 200px;
+    height: 200px;
+}
+.account_profile h2 {
+    margin-top: 50px;
+}
+
+.update_account {
+    margin-top: 20px;
+    border: 1px solid black;
+    color: black;
+    border-radius: 10px;
+    width: 60%;
+    height: 50px;
+}
+
+.update_account:hover {
+    transition: 0.3s;
+    background-color: rgb(221, 216, 216);
+}
+
+.account_bio {
+    color: black;
+    font-weight: bold;
+    margin-left: 80px;
+    width: 50%;
+}
