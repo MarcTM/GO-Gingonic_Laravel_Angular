@@ -2,12 +2,12 @@
 
     <div class="account">
        <div class="account_profile">
-            <img src="https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/default-avatar.png" />
+            <img src="{{account.image}}" />
             <h2>{{account.username}}</h2>
             <button (click)="updateProfile()" class="update_account">UPDATE PROFILE</button> 
        </div> 
        <div class="account_bio">
-            <p>em diuen marc</p>
+            <p>{{account.bio}}</p>
        </div>
     </div>
 

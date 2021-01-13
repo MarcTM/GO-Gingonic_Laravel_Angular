@@ -89,14 +89,19 @@ export class UserService {
     ))
   }
 
-    // Get your account profile
-    getAccount() {
-      return this.http.get<Profile>(environment.api_users_url+'/users/me', {headers: new HttpHeaders({'Authorization': `Bearer ${localStorage.getItem('Bearer')}`})})
-      .pipe(map(
-        data => {
-          return data;
-        }
-      ))
-    }
+  // Get your account profile
+  getAccount() {
+    return this.http.get<Profile>(environment.api_users_url+'/users/me', {headers: new HttpHeaders({'Authorization': `Bearer ${localStorage.getItem('Bearer')}`})})
+    .pipe(map(
+      data => {
+        return data;
+      }
+    ))
+  }
+
+  // Update profile
+  update(data) {
+    return this.http.put(environment.api_users_url+'/users/', {user: data}, {headers: new HttpHeaders({'Authorization': `Bearer ${localStorage.getItem('Bearer')}`})});
+  }
 
 }

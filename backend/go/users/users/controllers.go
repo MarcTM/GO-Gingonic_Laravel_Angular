@@ -8,11 +8,6 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-// Get your account profile
-func GetAccount(c *gin.Context) {
-
-}
-
 
 // Get user profile
 func GetProfile(c *gin.Context) {
@@ -36,9 +31,9 @@ func GetUsers(c *gin.Context) {
 	err := GetAll(&user)
 	if err != nil {
 		c.AbortWithStatus(http.StatusNotFound)
-	} else {
-		c.JSON(http.StatusOK, user)
+		return
 	}
+	c.JSON(http.StatusOK, user)
 }
 
 
@@ -65,14 +60,13 @@ func RegisterUser(c *gin.Context) {
 
 	// Checks if email and password exist in database, if not, creates the user
 	if err := CheckUserRegister(&registerValidator.userModel, registerValidator.userModel.Username, registerValidator.userModel.Email); err != nil {
-		if err := Create(&registerValidator.userModel); err != nil {
 
+		if err := Create(&registerValidator.userModel); err != nil {
 			fmt.Println(err.Error())
 			c.AbortWithStatus(http.StatusNotFound)
-		} else {
-
-			c.JSON(http.StatusOK, "Registration successfull")
+			return
 		}
+		c.JSON(http.StatusOK, "Registration successfull")
 		return
 	}
 	c.JSON(http.StatusUnprocessableEntity, "The username or email is already taken")
@@ -108,24 +102,31 @@ func LoginUser(c *gin.Context) {
 }
 
 
-// // Update profile
-// func UpdateProfile(c *gin.Context) {
-// 	id := c.Params.ByName("id")
+// Update profile
+func UpdateUser(c *gin.Context) {
+	updateProfileValidator := NewUpdateProfileValidator()
 
-// 	recipeModelValidator := NewRecipeModelValidator()
-// 	if err := recipeModelValidator.Bind(c); err != nil {
-// 		c.JSON(http.StatusUnprocessableEntity, "Invalid JSON")
-// 		return
-// 	}
+	if err := updateProfileValidator.Bind(c); err != nil {
+		c.JSON(http.StatusUnprocessableEntity, "Invalid data")
+		return
+	}
 
-// 	fmt.Println(&recipeModelValidator.recipeModel)
-// 	err := Update(&recipeModelValidator.recipeModel, id)
-// 	if err != nil {
-// 		c.AbortWithStatus(http.StatusNotFound)
-// 	} else {
-// 		c.JSON(http.StatusOK, "ok")
-// 	}
-// }
+	id := c.MustGet("my_user_id")
+	var userModel models.UserModel
+	Config.DB.First(&userModel, id)
+
+	userModel.Image = updateProfileValidator.userModel.Image
+	userModel.Bio = updateProfileValidator.userModel.Bio
+
+	err := Update(&userModel, userModel.ID)
+	if err != nil {
+		c.AbortWithStatus(http.StatusNotFound)
+		return
+	}
+
+	SetSessionUser(c, userModel.ID)
+	c.JSON(http.StatusOK, "ok")
+}
 
 
 // Validate if a token is correct or incorrect
@@ -138,10 +139,11 @@ func ValidateUserToken(c *gin.Context) {
 
 	if token.Valid {
 		c.JSON(http.StatusOK, "Valid Token")
-	} else {
-		fmt.Println(err)
-		c.JSON(http.StatusUnprocessableEntity, "Invalid Token")
+		return
 	}
+
+	fmt.Println(err)
+	c.JSON(http.StatusUnprocessableEntity, "Invalid Token")
 }
 
 
@@ -158,9 +160,9 @@ func IsFollowing(c *gin.Context) {
 
 	if err != nil {
 		c.JSON(http.StatusUnprocessableEntity, "Not found")
-	} else {
-		c.JSON(http.StatusOK, "Found")
+		return
 	}
+	c.JSON(http.StatusOK, "Found")
 }
 
 

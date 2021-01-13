@@ -1,1 +1,19 @@
-<p>update-account works!</p>
+<section class="update_page">
+
+    <div *ngIf="account" class="update-display-form">
+        <h1>UPDATE ACCOUNT</h1>
+
+        <div class="update_form">
+            <form [formGroup]="updateForm">
+                <label>Profile image url</label>
+                <input required type="text" value={{account.image}} formControlName="image">
+
+                <label>Biography</label>
+                <input required type="text" value="{{account.bio}}" formControlName="bio">
+
+                <button type="submit" [disabled]="!updateForm.valid" (click)="submitUpdate()">Update profile!</button>
+            </form>
+        </div>
+    </div>
+
+</section>

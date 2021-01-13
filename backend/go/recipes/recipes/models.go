@@ -8,7 +8,7 @@ import (
 )
 
 
-//GetAllRecipes
+//Get all recipes
 func GetAll(recipe *[]models.RecipeModel) (err error) {
 	if err = Config.DB.Find(recipe).Error; err != nil {
 		return err
@@ -16,7 +16,8 @@ func GetAll(recipe *[]models.RecipeModel) (err error) {
 	return nil
 }
 
-//CreateRecipe ... Insert New data
+
+//Create recipe
 func Create(recipe *models.RecipeModel) (err error) {
 	if err = Config.DB.Create(recipe).Error; err != nil {
 		return err
@@ -24,7 +25,8 @@ func Create(recipe *models.RecipeModel) (err error) {
 	return nil
 }
 
-//GetRecipeByID ... Fetch only one recipe by Id
+
+//Get recipe by ID
 func Get(recipe *models.RecipeModel, id string) (err error) {
 	if err = Config.DB.Where("id = ?", id).First(recipe).Error; err != nil {
 		return err
@@ -32,7 +34,8 @@ func Get(recipe *models.RecipeModel, id string) (err error) {
 	return nil
 }
 
-//UpdateRecipe ... Update recipe
+
+//Update recipe
 func Update(recipe *models.RecipeModel, id string) (err error) {
 	var update models.RecipeModel
 	Config.DB.Where("id = ?", id).First(&update)
@@ -41,7 +44,8 @@ func Update(recipe *models.RecipeModel, id string) (err error) {
 	return nil
 }
 
-//DeleteRecipe ... Delete recipe
+
+//Delete recipe
 func Delete(recipe *models.RecipeModel, id string) (err error) {
 	if err = Config.DB.Where("ID = ?", id).First(recipe).Error; err != nil {
 		return err

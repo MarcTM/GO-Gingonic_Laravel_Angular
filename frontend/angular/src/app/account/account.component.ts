@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from "@angular/router";
 
 import { UserService } from '../core/services/user.service';
 import { Profile } from '../core/interfaces/user';
@@ -13,6 +14,7 @@ import { Profile } from '../core/interfaces/user';
 export class AccountComponent implements OnInit {
 
   constructor(
+    private router: Router,
     private userService: UserService
   ) {}
 
@@ -21,7 +23,7 @@ export class AccountComponent implements OnInit {
 
   // Update profile button
   updateProfile() {
-    console.log(this.account.id)
+    this.router.navigate(['/account/update'])
   }
 
   // Get your profile
@@ -29,7 +31,6 @@ export class AccountComponent implements OnInit {
     this.userService.getAccount()
     .subscribe(
       account => {
-        console.log(account)
         this.account = account;
       }
     )

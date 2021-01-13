@@ -1,7 +1,7 @@
 <section *ngIf="profile" class="profile_page">
     <section class="profile_user">
         <div class="profile">
-            <img src="https://lh3.googleusercontent.com/ogw/ADGmqu_wixuPJYRfks70Xz_NL3vS68HLHfKUIsBKKsBIIw=s32-c-mo" />
+            <img src="{{profile.image}}" />
             <h2>{{profile.username}}</h2>
 
             <div *ngIf="!me" class="follow">
@@ -10,7 +10,7 @@
             </div>
         </div>
         <div class="profile_bio">
-            <p>Biografia va aqui</p>
+            <p>{{profile.bio}}</p>
         </div>
     </section>
 

@@ -16,6 +16,7 @@ func UsersRegister(router *gin.RouterGroup) {
 	router.GET("/me", IsAuthenticated(Me))
 	router.POST("/register", RegisterUser)
 	router.POST("/login", LoginUser)
+	router.PUT("/", IsAuthenticated(UpdateUser))
 
 	router.POST("/following/:username", IsAuthenticated(IsFollowing))
 	router.PUT("/follow/:id", IsAuthenticated(FollowUser))

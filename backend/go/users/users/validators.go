@@ -7,6 +7,11 @@ import (
 
 
 // Register validator
+func NewRegisterValidator() RegisterValidator {
+	registerValidator := RegisterValidator{}
+	return registerValidator
+}
+
 type RegisterValidator struct {
 	User struct {
 		Username string `form:"username" json:"username" binding:"required"`
@@ -15,7 +20,6 @@ type RegisterValidator struct {
 	} `json:"user"`
 	userModel models.UserModel `json:"-"`
 }
-
 
 func (self *RegisterValidator) Bind(c *gin.Context) error {
 	err := c.ShouldBindJSON(self)
@@ -32,14 +36,12 @@ func (self *RegisterValidator) Bind(c *gin.Context) error {
 }
 
 
-func NewRegisterValidator() RegisterValidator {
-	registerValidator := RegisterValidator{}
-	return registerValidator
+// Login validator
+func NewLoginValidator() LoginValidator {
+	loginValidator := LoginValidator{}
+	return loginValidator
 }
 
-
-
-// Login validator
 type LoginValidator struct {
 	User struct {
 		Email    string `form:"email" json:"email" binding:"required,email"`
@@ -47,7 +49,6 @@ type LoginValidator struct {
 	} `json:"user"`
 	userModel models.UserModel `json:"-"`
 }
-
 
 func (self *LoginValidator) Bind(c *gin.Context) error {
 	err := c.ShouldBindJSON(self)
@@ -61,7 +62,28 @@ func (self *LoginValidator) Bind(c *gin.Context) error {
 }
 
 
-func NewLoginValidator() LoginValidator {
-	loginValidator := LoginValidator{}
-	return loginValidator
+// Update profile validator
+func NewUpdateProfileValidator() UpdateProfileValidator {
+	updateProfileValidator := UpdateProfileValidator{}
+	return updateProfileValidator
+}
+
+type UpdateProfileValidator struct {
+	User struct {
+		Image    string `form:"image" json:"image"`
+		Bio 	 string `form:"bio" json:"bio"`
+	} `json:"user"`
+	userModel models.UserModel `json:"-"`
+}
+
+func (self *UpdateProfileValidator) Bind(c *gin.Context) error {
+	err := c.ShouldBindJSON(self)
+	if err != nil {
+		return err
+	}
+
+	self.userModel.Image = self.User.Image
+	self.userModel.Bio = self.User.Bio
+
+	return nil
 }
