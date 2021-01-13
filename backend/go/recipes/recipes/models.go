@@ -10,7 +10,7 @@ import (
 
 //Get all recipes
 func GetAll(recipe *[]models.RecipeModel) (err error) {
-	if err = Config.DB.Find(recipe).Error; err != nil {
+	if err = Config.DB.Order("created_at desc").Find(recipe).Error; err != nil {
 		return err
 	}
 	return nil
