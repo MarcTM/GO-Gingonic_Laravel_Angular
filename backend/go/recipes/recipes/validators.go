@@ -1,11 +1,15 @@
 package recipes
 
-
 import(
 	"go_server/models"
 	"github.com/gin-gonic/gin"
 )
 
+
+// Recipe validator
+func NewRecipeModelValidator() RecipeModelValidator {
+	return RecipeModelValidator{}
+}
 
 type RecipeModelValidator struct {
 	Recipe struct {
@@ -15,12 +19,6 @@ type RecipeModelValidator struct {
 	} `json:"recipe"`
 	recipeModel models.RecipeModel `json:"-"`
 }
-
-
-func NewRecipeModelValidator() RecipeModelValidator {
-	return RecipeModelValidator{}
-}
-
 
 func (self *RecipeModelValidator) Bind(c *gin.Context) error {
 	myUserModel := c.MustGet("my_user_model").(models.UserModel)
@@ -34,5 +32,36 @@ func (self *RecipeModelValidator) Bind(c *gin.Context) error {
 	self.recipeModel.Description = self.Recipe.Description
 	self.recipeModel.Image = self.Recipe.Image
 	self.recipeModel.UserModel = myUserModel
+	return nil
+}
+
+
+// Comment validator
+func NewCommentModelValidator(id string) CommentModelValidator {
+	return CommentModelValidator{Recipe: id}
+}
+
+type CommentModelValidator struct {
+	Recipe  string
+	Comment struct {
+		Body		string	`form:"body" json:"body" binding:"required"`
+	} `json:"comment"`
+	commentModel models.CommentModel `json:"-"`
+}
+
+func (self *CommentModelValidator) Bind(c *gin.Context) error {
+	myUserModel := c.MustGet("my_user_model").(models.UserModel)
+
+	err := c.ShouldBindJSON(self)
+	if err != nil {
+		return err
+	}
+
+	var recipe models.RecipeModel
+	Get(&recipe, self.Recipe)
+
+	self.commentModel.Body = self.Comment.Body
+	self.commentModel.UserModel = myUserModel
+	self.commentModel.RecipeModel = recipe
 	return nil
 }

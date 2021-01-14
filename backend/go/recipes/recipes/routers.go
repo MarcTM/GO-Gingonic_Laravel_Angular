@@ -18,3 +18,10 @@ func RecipesRoutes(router *gin.RouterGroup) {
 
 	router.POST("/owns/:id", IsAuthenticated(OwnsRecipe))
 }
+
+// /comments
+func CommentsRoutes(router *gin.RouterGroup) {
+	// (:id refers to the recipe id)
+	router.GET("/:id", GetComments)
+	router.POST("/:id", IsAuthenticated(CreateComment))
+}

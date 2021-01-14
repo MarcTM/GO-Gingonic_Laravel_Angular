@@ -21,6 +21,7 @@ func main() {
 
 	// Migrate tables
 	Config.DB.AutoMigrate(&models.RecipeModel{})
+	Config.DB.AutoMigrate(&models.CommentModel{})
 
 	// Set routes
 	r := Routes.SetupRouter()

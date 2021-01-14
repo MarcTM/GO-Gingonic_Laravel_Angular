@@ -1,6 +1,5 @@
 package recipes
 
-
 import(
 	"net/http"
 	"fmt"
@@ -8,7 +7,6 @@ import(
 	"go_server/models"
 	"github.com/gin-gonic/gin"
 )
-
 
 
 // Short recipe serializer, without author

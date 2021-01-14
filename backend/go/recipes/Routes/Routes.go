@@ -20,6 +20,9 @@ func SetupRouter() *gin.Engine {
 	{
 		// Recipes
 		recipes.RecipesRoutes(grp1.Group("/recipes"))
+
+		// Comments
+		recipes.CommentsRoutes(grp1.Group("/comments"))
 	}
 	return r
 }

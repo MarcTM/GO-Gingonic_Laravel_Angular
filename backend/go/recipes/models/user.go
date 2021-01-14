@@ -3,7 +3,6 @@ package models
 import "time"
 
 
-// User model
 type UserModel struct {
 	ID           uint    `json:"id"`
 	Username     string  `json:"username" gorm:"not null;unique;type:varchar(191)"`
@@ -15,6 +14,7 @@ type UserModel struct {
 	Recipes		 []RecipeModel
 	Following	 []UserModel	`gorm:"many2many:followers;association_jointable_foreignkey:following_id"`
 	Favorites	 []RecipeModel  `gorm:"many2many:favorites"`
+	Comments	 []CommentModel
 	CreatedAt	 time.Time
 	UpdatedAt	 time.Time
 }

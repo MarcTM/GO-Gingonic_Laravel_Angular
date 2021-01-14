@@ -57,3 +57,12 @@ func Delete(recipe *models.RecipeModel, id string) (err error) {
 		return nil
 	}
 }
+
+
+// Save comment
+func SaveComment(comment *models.CommentModel) (err error) {
+	if err = Config.DB.Create(comment).Error; err != nil {
+		return err
+	}
+	return nil
+}

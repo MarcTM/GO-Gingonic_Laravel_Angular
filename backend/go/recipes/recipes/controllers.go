@@ -8,6 +8,9 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
+/////////
+// RECIPES
+//////////
 
 //Create recipe
 func CreateRecipe(c *gin.Context) {
@@ -143,4 +146,31 @@ func OwnsRecipe(c *gin.Context) {
 
 	response := ShortRecipeSerializer{recipe}
 	c.JSON(http.StatusOK, response.Response())
+}
+
+
+
+/////////
+// COMMENTS
+/////////////
+
+// Get recipe comments
+func GetComments(c *gin.Context) {
+	recipe_id := c.Params.ByName("id")
+	fmt.Println(recipe_id)
+}
+
+
+// Create comment
+func CreateComment(c *gin.Context) {
+	recipe_id := c.Params.ByName("id")
+
+	commentModelValidator := NewCommentModelValidator(recipe_id)
+	if err := commentModelValidator.Bind(c); err != nil {
+		c.JSON(http.StatusUnprocessableEntity, "Invalid JSON")
+		return
+	}
+
+	SaveComment(&commentModelValidator.commentModel)
+	c.JSON(http.StatusOK, commentModelValidator.commentModel)
 }
