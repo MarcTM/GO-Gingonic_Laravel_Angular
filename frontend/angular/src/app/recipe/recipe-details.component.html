@@ -3,8 +3,7 @@
 
         <div class="recipe_author">
             <a routerLink="/profiles/{{recipe.author.username}}">
-                <span class="author_img"><img src="https://lh3.googleusercontent.com/ogw/ADGmqu_wixuPJYRfks70Xz_NL3vS68HLHfKUIsBKKsBIIw=s32-c-mo"/></span>
-                <!-- <span class="author_img"><img src="{{recipe.author.image}}"/></span> -->
+                <span class="author_img"><img src="{{recipe.author.image}}"/></span>
                 <span class="author_username">{{recipe.author.username}}</span>
             </a>
 
@@ -26,5 +25,21 @@
             <button class="back-btn" (click)="goBack()">GO BACK</button>
         </div>
 
+    </div>
+
+    <div class="recipe_comments">
+        <h3>COMMENTS</h3>
+        <div class="add_comment">
+            <form [formGroup]="commentForm">
+                <input required class="input_comment" type="text" formControlName="body" placeholder="Add a comment..." height="100px">
+            </form> 
+            <button (click)="submitForm()" class="btn-add-comment">POST COMMENT</button>
+        </div>
+
+        <div *ngIf="comments" class="comments">
+            <div *ngFor="let comment of comments" class="comment">
+                <p class="comment_body">{{comment.body}}</p>
+            </div>
+        </div>
     </div>
 </section>

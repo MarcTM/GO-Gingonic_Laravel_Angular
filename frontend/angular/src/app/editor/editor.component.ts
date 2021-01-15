@@ -28,6 +28,7 @@ export class EditorComponent {
     image: ['', Validators.required],
   });
 
+
   // Submit form
   submitEditor() {
     this.recipeService.save(this.editorForm.value)
@@ -36,9 +37,7 @@ export class EditorComponent {
         this.toastr.success('Created successfully');
         setTimeout(() => {this.router.navigate(['/recipes'])}, 1000);
       },
-      error => {
-        this.toastr.error(error.error);
-      }
+      error => { this.toastr.error(error.error); }
     )
   }
 

@@ -126,3 +126,29 @@ func (self *RecipeProfileSerializer) Response() RecipeProfileResponse{
 	}
 	return profile
 }
+
+// Short comments serializer
+type ShortCommentsSerializer struct {
+	comments []models.CommentModel
+}
+
+type ShortCommentsResponse struct {
+	ID             uint                  `json:"id"`
+	Body           string                `json:"body"`
+	RecipeModelID  uint                  `json:"recipe_id"`
+	UserModelID    uint					 `json:"user_id"`
+}
+
+func (self *ShortCommentsSerializer) Response() []ShortCommentsResponse {
+	var allcomments []ShortCommentsResponse
+	for _, r := range self.comments {
+		onecomment := ShortCommentsResponse{
+			ID:			   r.Id,
+			Body:		   r.Body,
+			RecipeModelID: r.RecipeModelID,
+			UserModelID:   r.UserModelID,
+		}
+		allcomments = append(allcomments, onecomment)
+	}
+	return allcomments
+}

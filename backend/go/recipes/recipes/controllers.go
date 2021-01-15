@@ -157,7 +157,20 @@ func OwnsRecipe(c *gin.Context) {
 // Get recipe comments
 func GetComments(c *gin.Context) {
 	recipe_id := c.Params.ByName("id")
-	fmt.Println(recipe_id)
+
+	var recipe models.RecipeModel
+	Get(&recipe, recipe_id)
+	fmt.Println(recipe)
+
+	var comments []models.CommentModel
+	err := Config.DB.Model(recipe).Order("created_at desc").Association("Comments").Find(&comments).Error
+	if err != nil {
+		c.JSON(http.StatusUnprocessableEntity, "Comments not found")
+		return
+	}
+
+	shortCommentsSerializer := ShortCommentsSerializer{comments}
+	c.JSON(http.StatusOK, shortCommentsSerializer.Response())
 }
 
 

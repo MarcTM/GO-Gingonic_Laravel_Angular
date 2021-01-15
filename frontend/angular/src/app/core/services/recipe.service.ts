@@ -3,6 +3,7 @@ import { Observable, of } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 import { environment } from '../../../environments/environment';
+import { Comment } from '../interfaces/comment';
 import { Recipe } from '../interfaces/recipe';
 
 
@@ -34,32 +35,42 @@ export class RecipeService {
 
   // Already favorited
   isFavorited(id) {
-    return this.http.post(environment.api_recipes_url+'/recipes/favorited/'+id, null, {headers: new HttpHeaders({'Authorization': `Bearer ${localStorage.getItem('Bearer')}`})});
+    return this.http.post(environment.api_recipes_url+`/recipes/favorited/${id}`, null, {headers: new HttpHeaders({'Authorization': `Bearer ${localStorage.getItem('Bearer')}`})});
   }
 
   // Favorite recipe
   favorite(id) {
-    return this.http.put(environment.api_recipes_url+'/recipes/favorite/'+id, null, {headers: new HttpHeaders({'Authorization': `Bearer ${localStorage.getItem('Bearer')}`})});
+    return this.http.put(environment.api_recipes_url+`/recipes/favorite/${id}`, null, {headers: new HttpHeaders({'Authorization': `Bearer ${localStorage.getItem('Bearer')}`})});
   }
 
   // Unfavorite recipe
   unfavorite(id) {
-    return this.http.put(environment.api_recipes_url+'/recipes/unfavorite/'+id, null, {headers: new HttpHeaders({'Authorization': `Bearer ${localStorage.getItem('Bearer')}`})});
+    return this.http.put(environment.api_recipes_url+`/recipes/unfavorite/${id}`, null, {headers: new HttpHeaders({'Authorization': `Bearer ${localStorage.getItem('Bearer')}`})});
   }
 
   // Update recipe
   update(data) {
-    return this.http.put(environment.api_recipes_url+'/recipes/recipe/'+data.id, {recipe: data}, {headers: new HttpHeaders({'Authorization': `Bearer ${localStorage.getItem('Bearer')}`})});
+    return this.http.put(environment.api_recipes_url+`/recipes/recipe/${data.id}`, {recipe: data}, {headers: new HttpHeaders({'Authorization': `Bearer ${localStorage.getItem('Bearer')}`})});
   }
 
   // Delete recipe
   delete(id) {
-    return this.http.delete(environment.api_recipes_url+'/recipes/recipe/'+id, {headers: new HttpHeaders({'Authorization': `Bearer ${localStorage.getItem('Bearer')}`})});
+    return this.http.delete(environment.api_recipes_url+`/recipes/recipe/${id}`, {headers: new HttpHeaders({'Authorization': `Bearer ${localStorage.getItem('Bearer')}`})});
   }
 
   // Return if a user owns that recipe
   owns(id:number): Observable<Recipe>{
-    return this.http.post<Recipe>(environment.api_recipes_url+'/recipes/owns/'+id, null, {headers: new HttpHeaders({'Authorization': `Bearer ${localStorage.getItem('Bearer')}`})});
+    return this.http.post<Recipe>(environment.api_recipes_url+`/recipes/owns/${id}`, null, {headers: new HttpHeaders({'Authorization': `Bearer ${localStorage.getItem('Bearer')}`})});
+  }
+
+  // Get recipe comments
+  getComments(recipe_id: number): Observable<Comment[]> {
+    return this.http.get<Comment[]>(`${environment.api_recipes_url}/comments/${recipe_id}`)
+  }
+
+  // Save comment
+  saveComment(recipe_id, data) {
+    return this.http.post(environment.api_recipes_url+`/comments/${recipe_id}`, {comment: data}, {headers: new HttpHeaders({'Authorization': `Bearer ${localStorage.getItem('Bearer')}`})})
   }
 
 }

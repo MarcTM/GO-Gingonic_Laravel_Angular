@@ -1,4 +1,8 @@
 .recipe_page {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     width: 100%;
     padding-top: 50px;
     padding-bottom: 50px;
@@ -86,4 +90,46 @@
 
 .action-btns {
     margin-left: 20px;
+}
+
+/* Recipes */
+.recipe_comments {
+    width: 80%;
+    margin-top: 70px;
+}
+
+.add_comment {
+    text-align: right;
+}
+
+.input_comment {
+    min-height: 50px;
+    width: 100%;
+    padding-bottom: 20px;
+}
+
+.btn-add-comment {
+    cursor: pointer;
+    padding: 5px;
+    margin-top: 10px;
+    height: 40px;
+    min-width: 20%;
+    background-color: rgb(2, 170, 2);
+    color: white;
+    font-weight: bold;
+    border: 1px solid rgb(0, 121, 0)
+}
+
+.comments {
+    margin-top: 20px;
+    padding-top: 10px;
+    border-top: 1px solid rgb(153, 148, 148);
+}
+
+.comment {
+    margin-top: 12px;
+    min-height: 50px;
+    padding: 10px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid rgb(223, 218, 218);
 }
