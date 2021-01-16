@@ -11,6 +11,7 @@ class CreateMeal
         return $request->validate([
             'meal.name' => 'required|string',
             'meal.description' => 'required|string',
+            'meal.image' => 'required|string',
             'meal.price' => 'required|integer',
             'meal.category' => 'required|integer'
         ]);

@@ -9,9 +9,9 @@ class CategoriesTransformer
         $categories = [];
         foreach ($data as &$category) {
             $result = (object)array(
-                "id"=>$category->id,
-                "name"=>$category->name,
-                "image"=>$category->image
+                "id" => $category->id,
+                "name" => $category->name,
+                "image" => $category->image
             );
             array_push($categories, $result);
         }

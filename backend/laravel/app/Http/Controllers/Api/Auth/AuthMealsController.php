@@ -27,7 +27,8 @@ class AuthMealsController extends Controller
 
         $meals = new Meal();
     	$meals->name = $validated['meal']['name'];
-    	$meals->description = $validated['meal']['description'];
+        $meals->description = $validated['meal']['description'];
+        $meals->image = $validated['meal']['image'];
         $meals->price = $validated['meal']['price'];
 
         $meals->save();
@@ -43,37 +44,5 @@ class AuthMealsController extends Controller
 
         return response()->json($meals);
     }
-
-    // // Update meal
-    // public function updateMeal(Request $request, $id)
-    // {
-    //     $user = $this->authUser();
-    //     if($user->type != 'admin') {
-    //         return response()->json("You do not have perimssions to do this");
-    //     }
-
-    //     $meal = Meal::find($id);
-
-    //     // error_log($meal);
-    //     $meal->name = $request->name;
-    //     $meal->description = $request->description;
-
-    //     $meal->save();
-
-    //     return response()->json($meal);
-    // }
-
-    // // Delete meal
-    // public function deleteMeal($id)
-    // {
-    //     $user = $this->authUser();
-    //     if($user->type != 'admin') {
-    //         return response()->json("You do not have perimssions to do this");
-    //     }
-        
-    //     $meal = Meal::find($id);
-    //     $meal->delete();
-    //     return response()->json($meal);
-    // }
 
 }

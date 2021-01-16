@@ -37,6 +37,7 @@ export class CreateMealComponent implements OnInit {
   creatorForm = this.fb.group({
     name: ['', Validators.required],
     description: ['', Validators.required],
+    image: ['', Validators.required],
     price: ['', Validators.required],
     category: ['', Validators.required]
   });

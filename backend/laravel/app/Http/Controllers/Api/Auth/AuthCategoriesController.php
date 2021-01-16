@@ -17,8 +17,9 @@ class AuthCategoriesController extends Controller
     public function createCategory(Request $request)
     {
         $user = $this->authUser();
+
         if($user->type != 'admin') {
-            return response()->json("You do not have perimssions to do this");
+            return response()->json("You do not have permissions to do this");
         }
 
         $validation = new CreateCategory;

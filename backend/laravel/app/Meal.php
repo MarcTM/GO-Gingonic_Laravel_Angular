@@ -8,7 +8,7 @@ use App\Category;
 class Meal extends Model
 {
     protected $table = 'meals';
-    protected $fillable = ['name', 'description', 'price'];
+    protected $fillable = ['name', 'description', 'image', 'price'];
 
     
     public function categories()
