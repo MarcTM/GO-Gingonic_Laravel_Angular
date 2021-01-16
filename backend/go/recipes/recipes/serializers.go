@@ -115,11 +115,34 @@ type RecipeProfileResponse struct {
 	Image    string  `json:"image"`
 }
 
-func (self *RecipeProfileSerializer) Response() RecipeProfileResponse{
+func (self *RecipeProfileSerializer) Response() RecipeProfileResponse {
 	var user models.UserModel
 	Config.DB.Model(self.recipe).Related(&user)
 
 	profile := RecipeProfileResponse{
+		ID:		  user.ID,
+		Username: user.Username,
+		Image:    user.Image,
+	}
+	return profile
+}
+
+// Comment author
+type CommentAuthorSerializer struct {
+	comment models.CommentModel
+}
+
+type CommentAuthorResponse struct {
+	ID		 uint	 `json:"id"`
+	Username string  `json:"username"`
+	Image    string  `json:"image"`
+}
+
+func (self *CommentAuthorSerializer) Response() CommentAuthorResponse {
+	var user models.UserModel
+	Config.DB.Model(self.comment).Related(&user)
+
+	profile := CommentAuthorResponse {
 		ID:		  user.ID,
 		Username: user.Username,
 		Image:    user.Image,
@@ -136,17 +159,21 @@ type ShortCommentsResponse struct {
 	ID             uint                  `json:"id"`
 	Body           string                `json:"body"`
 	RecipeModelID  uint                  `json:"recipe_id"`
-	UserModelID    uint					 `json:"user_id"`
+	User		   CommentAuthorResponse `json:"user"`
 }
 
 func (self *ShortCommentsSerializer) Response() []ShortCommentsResponse {
 	var allcomments []ShortCommentsResponse
 	for _, r := range self.comments {
+		user := CommentAuthorSerializer{r}
+		// var user models.UserModel
+		// Config.DB.Where("id = ?", r.UserModelID).First(&user)
+
 		onecomment := ShortCommentsResponse{
 			ID:			   r.Id,
 			Body:		   r.Body,
 			RecipeModelID: r.RecipeModelID,
-			UserModelID:   r.UserModelID,
+			User:		   user.Response(),
 		}
 		allcomments = append(allcomments, onecomment)
 	}

@@ -38,6 +38,10 @@
 
         <div *ngIf="comments" class="comments">
             <div *ngFor="let comment of comments" class="comment">
+                <a class="comment_author" routerLink="/profiles/{{comment.user.username}}">
+                    <img src="{{comment.user.image}}"/>
+                    <span>{{comment.user.username}}</span>
+                </a>
                 <p class="comment_body">{{comment.body}}</p>
             </div>
         </div>

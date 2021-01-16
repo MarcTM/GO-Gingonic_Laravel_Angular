@@ -168,6 +168,7 @@ func GetComments(c *gin.Context) {
 		c.JSON(http.StatusUnprocessableEntity, "Comments not found")
 		return
 	}
+	// c.JSON(http.StatusOK, comments)
 
 	shortCommentsSerializer := ShortCommentsSerializer{comments}
 	c.JSON(http.StatusOK, shortCommentsSerializer.Response())
