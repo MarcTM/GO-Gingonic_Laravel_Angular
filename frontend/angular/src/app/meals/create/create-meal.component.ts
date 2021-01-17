@@ -7,7 +7,6 @@ import { CategoryService } from 'src/app/core/services/category.service';
 import { MealService } from '../../core/services/meal.service';
 import { Category } from '../../core/interfaces/category';
 
-
 @Component({
   selector: 'app-create-meal',
   templateUrl: './create-meal.component.html',
@@ -49,9 +48,6 @@ export class CreateMealComponent implements OnInit {
       response => {
         this.toastr.success('Created successfully');
         setTimeout(() => {this.router.navigate(['/meals'])}, 1000);
-      },
-      error => {
-        console.log(error.error);
       }
     )
   }

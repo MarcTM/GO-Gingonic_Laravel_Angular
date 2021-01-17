@@ -6,7 +6,6 @@ import { ToastrService } from 'ngx-toastr';
 import { UserService } from '../../core/services/user.service';
 import { Profile } from '../../core/interfaces/user';
 
-
 @Component({
   selector: 'app-update-account',
   templateUrl: './update-account.component.html',
@@ -25,7 +24,6 @@ export class UpdateAccountComponent implements OnInit {
 
   
   account: Profile;
-
   updateForm;
 
   // Submit form
@@ -50,7 +48,6 @@ export class UpdateAccountComponent implements OnInit {
     .subscribe(
       account => {
         this.account = account;
-        console.log(this.account)
 
         this.updateForm = this.fb.group({
           image: [this.account.image, Validators.required],

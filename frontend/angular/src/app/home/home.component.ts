@@ -9,7 +9,6 @@ import { UserService } from '../core/services/user.service';
   styleUrls: ['./home.component.css']
 })
 
-
 export class HomeComponent implements OnInit {
 
   constructor(
@@ -23,11 +22,7 @@ export class HomeComponent implements OnInit {
   getBestuser() {
     this.userService.bestuser()
     .subscribe(
-      response => {
-        console.log(response);
-        this.best = response;
-      },
-      error => { console.log(error); }
+      response => { this.best = response; }
     )
   }
 

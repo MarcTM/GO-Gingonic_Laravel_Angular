@@ -9,7 +9,6 @@ import { RecipeService } from '../../core/services/recipe.service';
   styleUrls: ['./recipe-list.component.css']
 })
 
-
 export class RecipeListComponent implements OnInit {
 
   constructor(private recipeService: RecipeService) {}
@@ -21,10 +20,7 @@ export class RecipeListComponent implements OnInit {
 
   getRecipes(): void {
     this.recipeService.getRecipes().subscribe(
-      recipes => {
-        console.log(recipes)
-        this.recipes = recipes;
-      }
+      recipes => { this.recipes = recipes; }
     );
   }
 

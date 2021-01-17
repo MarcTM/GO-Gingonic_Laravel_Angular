@@ -11,7 +11,6 @@ import { UserService } from '../../core/services/user.service';
   styleUrls: ['./login.component.css']
 })
 
-
 export class LoginComponent {
 
   constructor(private fb: FormBuilder,
@@ -36,7 +35,6 @@ export class LoginComponent {
             if (response.user.type==="user"){
 
               this.toastr.success('Logged in')
-              console.log(response);
               setTimeout(() => {this.router.navigate(['/'])}, 1000);
         
           // Type admin
@@ -45,14 +43,12 @@ export class LoginComponent {
               this.userService.attemptAuthAdmin(this.loginForm.value)
               .subscribe(
                 response => {
-                  console.log(response)
                   this.toastr.success('Logged in')
                   setTimeout(() => {this.router.navigate(['/'])}, 1000);
                 }
               )
             }
         },
-
         error => {this.toastr.error(error.error, 'Invalid credentials')}
       )
   }

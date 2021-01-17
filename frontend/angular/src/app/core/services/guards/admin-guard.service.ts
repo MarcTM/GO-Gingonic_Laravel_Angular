@@ -5,10 +5,10 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { environment } from '../../../../environments/environment';
 import { JwtService } from '../jwt.service';
 
-
 @Injectable({
   providedIn: 'root'
 })
+
 export class AdminGuardService implements CanActivate {
 
   constructor(private jwtService: JwtService,
@@ -23,7 +23,6 @@ export class AdminGuardService implements CanActivate {
           error => {
             localStorage.removeItem('Bearer_lar')
             this.router.navigate(['']);
-            console.log(error)
           }
         );
         return true;

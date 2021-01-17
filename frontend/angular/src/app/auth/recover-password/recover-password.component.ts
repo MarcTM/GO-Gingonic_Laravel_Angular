@@ -11,20 +11,20 @@ import { UserService } from '../../core/services/user.service';
   styleUrls: ['./recover-password.component.css']
 })
 
-
 export class RecoverPasswordComponent implements OnInit {
 
-  constructor(private fb: FormBuilder,
+  constructor(
+    private fb: FormBuilder,
     private router: Router,
     private userService: UserService,
-    private toastr: ToastrService) { }
+    private toastr: ToastrService
+  ) {}
 
 
   // Recover password form
   recoverForm = this.fb.group({
     email: ['', Validators.required],
   });
-
 
   // Submit recover password
   submitRecover() {

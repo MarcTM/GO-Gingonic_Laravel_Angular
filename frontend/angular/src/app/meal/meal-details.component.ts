@@ -5,7 +5,6 @@ import { Location } from '@angular/common';
 
 import { MealService } from '../core/services/meal.service';
 
-
 @Component({
   selector: 'app-meal-details',
   templateUrl: './meal-details.component.html',
@@ -28,10 +27,7 @@ export class MealDetailsComponent implements OnInit {
     const id = +this.route.snapshot.paramMap.get('id');
     
     this.mealService.getMeal(id)
-      .subscribe(meal => {
-        console.log(meal);
-        this.meal = meal;
-      })
+      .subscribe(meal => { this.meal = meal; })
   }
 
   // Go back to the previous page

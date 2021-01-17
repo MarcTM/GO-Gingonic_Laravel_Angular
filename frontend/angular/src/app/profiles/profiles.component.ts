@@ -32,10 +32,7 @@ export class ProfilesComponent implements OnInit {
     const username = this.route.snapshot.paramMap.get('username');
     this.userService.getProfile(username)
     .subscribe(
-      profile => {
-          console.log(profile);
-          this.profile = profile;
-      },
+      profile => { this.profile = profile; },
       error => {this.router.navigate(['/recipes'])}
     )
 

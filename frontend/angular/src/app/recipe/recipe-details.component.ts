@@ -3,7 +3,6 @@ import { Recipe } from '../core/interfaces/recipe';
 import { ActivatedRoute } from '@angular/router';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Location } from '@angular/common';
-import { Router } from "@angular/router"
 
 import { Comment } from '../core/interfaces/comment';
 import { RecipeService } from '../core/services/recipe.service';
@@ -23,7 +22,6 @@ export class RecipeDetailsComponent implements OnInit {
     private recipeService: RecipeService,
     private profileService: ProfileService,
     private location: Location,
-    private router: Router
   ) {}
 
 
@@ -41,11 +39,7 @@ export class RecipeDetailsComponent implements OnInit {
   submitForm() {
     this.recipeService.saveComment(this.recipe.id, this.commentForm.value)
     .subscribe(
-      response => {
-        console.log(response);
-        this.getComments();
-      },
-      error => { console.log(error); }
+      response => { this.getComments(); }
     )
   }
 
@@ -73,11 +67,7 @@ export class RecipeDetailsComponent implements OnInit {
   getComments() {
     this.recipeService.getComments(this.recipe.id)
       .subscribe(
-        comments => { 
-          console.log(comments);
-          this.comments = comments;
-        },
-        error => { console.log(error); }
+        comments => { this.comments = comments; }
       )
   }
 

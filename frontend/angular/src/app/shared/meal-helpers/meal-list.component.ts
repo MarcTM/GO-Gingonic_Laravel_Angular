@@ -3,7 +3,6 @@ import { Component, OnInit } from '@angular/core';
 import { Meal } from '../../core/interfaces/meal';
 import { MealService } from '../../core/services/meal.service';
 
-
 @Component({
   selector: 'app-meal-list',
   templateUrl: './meal-list.component.html',
@@ -21,10 +20,7 @@ export class MealListComponent implements OnInit {
 
   getMeals(): void {
     this.mealService.getMeals()
-    .subscribe(meals => {
-      console.log(meals);
-      this.meals = meals;
-    });
+    .subscribe(meals => { this.meals = meals; });
   }
 
   ngOnInit(): void {

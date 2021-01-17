@@ -12,13 +12,14 @@ import { UserService } from 'src/app/core/services/user.service';
   styleUrls: ['./register.component.css']
 })
 
-
 export class RegisterComponent implements OnInit {
 
-  constructor(private fb: FormBuilder,
+  constructor(
+    private fb: FormBuilder,
     private router: Router,
     private userService: UserService,
-    private toastr: ToastrService) { }
+    private toastr: ToastrService
+  ) {}
 
 
   // Register form fields
@@ -28,20 +29,18 @@ export class RegisterComponent implements OnInit {
     password: ['', Validators.required],
   });
 
-
+  
   // Submit register
   submitRegister() {
     this.userService.attemptAuth('register', this.registerForm.value)
       .subscribe(
         response => {
           this.toastr.success('Registration successfull')
-          console.log(response);
           setTimeout(() => {this.router.navigate(['/signin'])}, 1000);
         },
         error => {this.toastr.error(error.error)}
       )
   }
-
 
   ngOnInit(): void {
   }
