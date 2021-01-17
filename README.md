@@ -77,5 +77,5 @@ You can also run the application in docker:
 
 ## Frontend Application Structure
 
-- `angular` - The frontend works with angular and has some features like the AuthGuard or AdminGuard so you cannot access some routes that require it. You store two bearers, one from go to know that you are logged in, and the other from laravel to know that you are an admin.dule.
+- `angular` - The frontend works with angular and has some features like the AuthGuard or AdminGuard so you cannot access some routes that require it. You store two bearers, one from Go to know that you are logged in, and the other from Laravel to know that you are an admin.dule.
 ---
