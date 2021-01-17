@@ -4,4 +4,15 @@
     <div class="categories_home">
         <app-categories></app-categories>
     </div>
+
+    <div *ngIf="best" class="bestuser">
+        <h1>USER OF THE APP</h1>
+        <a class="best" routerLink="/profiles/{{best.username}}">
+            <div class="best_profile">
+                <img src="{{best.image}}"/>
+                <h2>{{best.username}}</h2>
+            </div>
+            <p class="best_bio">{{best.bio}}</p>
+        </a>
+    </div>
 </section>

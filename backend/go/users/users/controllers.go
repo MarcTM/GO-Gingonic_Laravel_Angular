@@ -198,13 +198,30 @@ func UnfollowUser(c *gin.Context) {
 }
 
 
-// // Count following
-// func Count(c *gin.Context) {
-// 	myUserModel := c.MustGet("my_user_model").(models.UserModel)
+// Save user with more recipes in redis when app starts
+func SaveBestUser() {
+	var users []models.UserModel
+	Config.DB.Find(&users)
 
-// 	var user models.UserModel
-// 	Config.DB.Preload("Following").First(&user, "id = ?", myUserModel.ID)
+	var max int
+	var bestuser string
+	for _, r := range users {
+		count := Config.DB.Model(r).Association("Recipes").Count()
+		if count > max {
+			max = count
+			bestuser = r.Username
+		}
+	}
+	Config.RedisSet("bestuser", bestuser)
+}
 
-// 	count := Config.DB.Model(user).Association("Following").Count()
-// 	fmt.Println(count)
-// }
+
+// Get user with more recipes from redis
+func GetBestUser(c *gin.Context) {
+	bestuser := Config.RedisGet("bestuser")
+
+	var user models.UserModel
+	Config.DB.Where("username = ?", bestuser).First(&user)
+	response := ShortProfileSerializer{user}
+	c.JSON(http.StatusOK, response.Response())
+}

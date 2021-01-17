@@ -22,8 +22,6 @@ func SetSessionUser(c *gin.Context, user_id uint){
 
 	c.Set("my_user_id", user_id)
 	c.Set("my_user_model", userModel)
-	// fmt.Println(c.MustGet("my_user_model"))
-	// fmt.Println(c.MustGet("my_user_id"))
 	Config.RedisSet("user_id", strconv.FormatUint(uint64(user_id), 10))
 	Config.RedisSet("user_email", userModel.Email)
 }
